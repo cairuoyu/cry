@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class TreeModel<T extends TreeData> {
-  TreeModel({this.data});
+class TreeVO<T extends TreeData> {
+  TreeVO({this.data});
 
   T data;
-  TreeModel<T> parent;
-  List<TreeModel<T>> children = [];
+  TreeVO<T> parent;
+  List<TreeVO<T>> children = [];
   bool isExpanded = false;
   IconData icon = Icons.menu;
   bool checked = false;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'model/tree_model.dart';
+import 'vo/tree_vo.dart';
 
 class CryTreeTable<T extends TreeData> extends StatefulWidget {
   final List<CryTreeTableColumnData> columnData;
-  final List<TreeModel<T>> data;
+  final List<TreeVO<T>> data;
   final Widget toolbars;
   final Function getRowOper;
   final Function onSelected;
@@ -95,10 +95,10 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
     );
   }
 
-  List<Widget> _getRowList(List<TreeModel<T>> data, TreeModel<T> parent) {
+  List<Widget> _getRowList(List<TreeVO<T>> data, TreeVO<T> parent) {
     List<Widget> list = [];
     for (var i = 0; i < data.length; i++) {
-      TreeModel<T> vo = data[i];
+      TreeVO<T> vo = data[i];
       List<Widget> columnList = [];
       columnList = widget.columnData
           .map<Widget>(
@@ -197,7 +197,7 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
     this.checkAll = v;
   }
 
-  _checkParent(TreeModel vo, bool v) {
+  _checkParent(TreeVO vo, bool v) {
     if (v && vo.parent != null) {
       vo.parent.checked = v;
       if (vo.parent.parent != null) {
@@ -206,7 +206,7 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
     }
   }
 
-  _checkChildren(TreeModel vo, bool v) {
+  _checkChildren(TreeVO vo, bool v) {
     vo.checked = v;
     if (vo.children != null) {
       vo.children.forEach((c) {
@@ -221,7 +221,7 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
     return this._getSelectedData(result, widget.data);
   }
 
-  List<T> _getSelectedData(List<T> result, List<TreeModel<T>> data) {
+  List<T> _getSelectedData(List<T> result, List<TreeVO<T>> data) {
     data.forEach((element) {
       if (element.checked) {
         result.add(element.data);

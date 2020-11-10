@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'model/configuration.dart';
+import 'model/configuration_model.dart';
 
 class CryRoot extends StatefulWidget {
   CryRoot(

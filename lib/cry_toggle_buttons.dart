@@ -1,6 +1,6 @@
+import 'package:cry/vo/select_option_vo.dart';
 import 'package:flutter/material.dart';
 
-import 'model/select_option_model.dart';
 
 class CryToggleButtons extends StatefulWidget {
   final List<SelectOptionVO> options;

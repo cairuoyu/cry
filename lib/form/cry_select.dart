@@ -1,4 +1,4 @@
-import 'package:cry/model/select_option_model.dart';
+import 'package:cry/vo/select_option_vo.dart';
 import 'package:flutter/material.dart';
 import 'cry_form_field.dart';
 

@@ -1,7 +1,11 @@
 import 'package:cry/cry_image_upload.dart';
 import 'package:cry/cry_button.dart';
+import 'package:cry/cry_tree_table.dart';
 import 'package:cry/form/cry_input.dart';
-import 'package:cry/form1/cry_input.dart' as form1;
+import 'package:cry/form/cry_select.dart';
+import 'package:cry/form1/cry_input.dart' as cryInput1;
+import 'package:cry/form1/cry_select.dart' as crySelect1;
+import 'package:cry/vo/select_option_vo.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -64,9 +68,28 @@ class DemoForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var input = CryInput(label: 'testInput');
-    var input1 = form1.CryInput(label: 'testInput1');
+    var input1 = cryInput1.CryInput(label: 'testInput1');
+    var select = CrySelect(
+      label: 'testSelect',
+      dataList: [
+        SelectOptionVO(label: '1', value: 'a'),
+        SelectOptionVO(label: '2', value: 'b'),
+      ],
+    );
+    var select1 = crySelect1.CrySelect(
+      label: 'testSelect1',
+      dataList: [
+        SelectOptionVO(label: '1', value: 'a'),
+        SelectOptionVO(label: '2', value: 'b'),
+      ],
+    );
     return Column(
-      children: [input, input1],
+      children: [
+        input,
+        select,
+        input1,
+        select1,
+      ],
     );
   }
 }
@@ -84,3 +107,4 @@ class DemoImageUpload extends StatelessWidget {
     return imageUpload;
   }
 }
+
