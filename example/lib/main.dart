@@ -1,6 +1,8 @@
+import 'package:cry/cry_image_upload.dart';
 import 'package:cry/cry_button.dart';
+import 'package:cry/form/cry_input.dart';
+import 'package:cry/form1/cry_input.dart' as form1;
 import 'package:flutter/material.dart';
-
 
 void main() {
   runApp(MyApp());
@@ -35,6 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             DemoButton(),
+            DemoForm(),
+            DemoImageUpload(),
           ],
         ),
       ),
@@ -53,5 +57,30 @@ class DemoButton extends StatelessWidget {
       },
     );
     return button;
+  }
+}
+
+class DemoForm extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var input = CryInput(label: 'testInput');
+    var input1 = form1.CryInput(label: 'testInput1');
+    return Column(
+      children: [input, input1],
+    );
+  }
+}
+
+class DemoImageUpload extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var imageUpload = CryImageUpload(
+      updateAreaSize: 200,
+      updateAreaDefault: Icon(Icons.person, size: 200),
+      onUpload: (imageBytes) {
+        print('onUpload');
+      },
+    );
+    return imageUpload;
   }
 }

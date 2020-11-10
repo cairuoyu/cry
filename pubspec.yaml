@@ -1,6 +1,6 @@
 name: cry
 description: 一个Flutter组件库
-version: 0.0.1
+version: 0.0.2
 #author: cairuoyu <cry_cairuoyu@163.com>
 homepage: http://cairuoyu.com/
 
@@ -11,6 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  quiver: ^2.1.3
+  intl: ^0.16.1
+  image_picker: ^0.6.7
+  image_picker_for_web: ^0.1.0
 
 dev_dependencies:
   flutter_test:
