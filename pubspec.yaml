@@ -1,0 +1,19 @@
+name: cry
+description: 一个Flutter组件库
+version: 0.0.1
+#author: cairuoyu <cry_cairuoyu@163.com>
+homepage: http://cairuoyu.com/
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0 <2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
