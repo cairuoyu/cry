@@ -4,19 +4,19 @@ import 'package:flutter/foundation.dart';
 
 import 'order_item_model.dart';
 
-
 class PageModel {
-  num total = 0;
-  num size = 10;
-  num current = 1;
-  num pages = 1;
+  num total;
+  num size;
+  num current;
+  num pages;
   List<OrderItemModel> orders;
   List<Map> records;
+
   PageModel({
-    this.total,
-    this.size,
-    this.current,
-    this.pages,
+    this.total = 0,
+    this.size = 10,
+    this.current = 1,
+    this.pages = 1,
     this.orders,
     this.records,
   });
@@ -76,13 +76,7 @@ class PageModel {
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
-    return o is PageModel &&
-        o.total == total &&
-        o.size == size &&
-        o.current == current &&
-        o.pages == pages &&
-        listEquals(o.orders, orders) &&
-        listEquals(o.records, records);
+    return o is PageModel && o.total == total && o.size == size && o.current == current && o.pages == pages && listEquals(o.orders, orders) && listEquals(o.records, records);
   }
 
   @override
