@@ -5,7 +5,10 @@ import 'package:cry/form/cry_input.dart';
 import 'package:cry/form/cry_select.dart';
 import 'package:cry/form1/cry_input.dart' as cryInput1;
 import 'package:cry/form1/cry_select.dart' as crySelect1;
+import 'package:cry/model/test_tree_model.dart';
+import 'package:cry/utils/treeUtil.dart';
 import 'package:cry/vo/select_option_vo.dart';
+import 'package:cry/vo/tree_vo.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -36,13 +39,14 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('Cry Demo Home Page'),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             DemoButton(),
-            DemoForm(),
             DemoImageUpload(),
+            DemoForm(),
+            DemoTreeTable(),
           ],
         ),
       ),
@@ -84,11 +88,16 @@ class DemoForm extends StatelessWidget {
       ],
     );
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         input,
         select,
-        input1,
-        select1,
+        Wrap(
+          children: [
+            input1,
+            select1,
+          ],
+        ),
       ],
     );
   }
@@ -108,3 +117,33 @@ class DemoImageUpload extends StatelessWidget {
   }
 }
 
+class DemoTreeTable extends StatefulWidget {
+  @override
+  _DemoTreeTableState createState() => _DemoTreeTableState();
+}
+
+class _DemoTreeTableState extends State<DemoTreeTable> {
+  var data = TreeUtil.toTreeVOList([
+    TestTreeModel(id: '0', c1: 'c1-value0', c2: 'c2-value0'),
+    TestTreeModel(id: '1', pid: '0', c1: 'c1-value1', c2: 'c2-value1'),
+    TestTreeModel(id: '11', pid: '1', c1: 'c11-value11', c2: 'c2-value11'),
+    TestTreeModel(id: '2', pid: '0', c1: 'c1-value2', c2: 'c2-value2'),
+  ]);
+
+  @override
+  Widget build(BuildContext context) {
+    List<CryTreeTableColumnData> columnData = [
+      CryTreeTableColumnData('列1', (TestTreeModel v) => v.c1),
+      CryTreeTableColumnData('列2', (TestTreeModel v) => v.c2),
+    ];
+
+    var treeTable = CryTreeTable(
+      columnData: columnData,
+      data: data,
+      onSelected: (TreeVO<TestTreeModel> v) {
+        this.setState(() {});
+      },
+    );
+    return treeTable;
+  }
+}

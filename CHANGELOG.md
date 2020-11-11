@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.0.3
+* 增加demo
+
 ## 0.0.2
 * 增加组件：form、dataTable、dialog、imageUpload、root、toggleButton、transfer、treeTable
 

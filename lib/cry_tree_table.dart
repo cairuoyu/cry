@@ -19,7 +19,7 @@ class CryTreeTable<T extends TreeData> extends StatefulWidget {
     this.getRowOper,
     this.onSelected,
     this.tableWidth = 1000,
-    this.selectType,
+    this.selectType = CryTreeTableSelectType.childrenCascade,
   }) : super(key: key);
 
   @override
@@ -63,12 +63,14 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
   }
 
   Widget _getTableHeader() {
-    var leading = Checkbox(
-        value: this.checkAll,
-        onChanged: (v) {
-          this._checkAll(v);
-          widget.onSelected(null);
-        });
+    var leading = widget.onSelected == null
+        ? null
+        : Checkbox(
+            value: this.checkAll,
+            onChanged: (v) {
+              this._checkAll(v);
+              widget.onSelected(null);
+            });
     List<Widget> list = [];
     widget.columnData.forEach((element) {
       list.add(_getCell(element.label, width: element.width));
@@ -120,27 +122,29 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
       }
 
       var title = Row(children: columnList);
-      var leading = Checkbox(
-        value: vo.checked,
-        onChanged: (v) {
-          vo.checked = v;
-          switch (widget.selectType) {
-            case CryTreeTableSelectType.childrenCascade:
-              {
-                _checkChildren(vo, v);
-                break;
-              }
-            case CryTreeTableSelectType.parentCascadeTrue:
-              {
-                _checkParent(vo, v);
-                break;
-              }
-          }
-          if (widget.onSelected != null) {
-            widget.onSelected(vo);
-          }
-        },
-      );
+      var leading = widget.onSelected == null
+          ? null
+          : Checkbox(
+              value: vo.checked,
+              onChanged: (v) {
+                vo.checked = v;
+                switch (widget.selectType) {
+                  case CryTreeTableSelectType.childrenCascade:
+                    {
+                      _checkChildren(vo, v);
+                      break;
+                    }
+                  case CryTreeTableSelectType.parentCascadeTrue:
+                    {
+                      _checkParent(vo, v);
+                      break;
+                    }
+                }
+                if (widget.onSelected != null) {
+                  widget.onSelected(vo);
+                }
+              },
+            );
       Widget d;
       if (vo.children != null && vo.children.length > 0) {
         d = Container(
