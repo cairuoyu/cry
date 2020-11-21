@@ -1,5 +1,9 @@
 # 更新日志
 
+## 0.1.0
+* cryListView增加type
+* cryInput增加maxLines
+
 ## 0.0.5
 * 增加listView、searchBar
 

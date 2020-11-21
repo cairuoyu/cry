@@ -9,6 +9,7 @@ class CryInput extends CryFormField {
     double width,
     double padding,
     double contentPadding,
+    int maxLines,
     String label,
     String value,
     ValueChanged onChange,
@@ -23,6 +24,7 @@ class CryInput extends CryFormField {
           padding: padding,
           builder: (CryFormFieldState state) {
             return TextFormField(
+              maxLines: maxLines,
               decoration: InputDecoration(
                 enabled: enable ?? true,
                 labelText: label,
