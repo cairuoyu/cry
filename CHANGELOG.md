@@ -1,6 +1,9 @@
 # 更新日志
 
 ## 0.1.0
+* fix cryListView
+
+## 0.1.0
 * cryListView增加type
 * cryInput增加maxLines
 
