@@ -1,6 +1,9 @@
 # 更新日志
 
-## 0.1.0
+## 0.1.2
+* 增加model：request_body_api,response_body_api
+
+## 0.1.1
 * fix cryListView
 
 ## 0.1.0
