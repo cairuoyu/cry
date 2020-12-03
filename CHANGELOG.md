@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.1.3
+* 增加application配置、httpUtil、CryDataTable例子
+
 ## 0.1.2
 * 增加model：request_body_api,response_body_api
 

@@ -14,7 +14,7 @@ class PageModel {
 
   PageModel({
     this.total = 0,
-    this.size = 10,
+    this.size = 20,
     this.current = 1,
     this.pages = 1,
     this.orders,
