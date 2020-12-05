@@ -24,7 +24,7 @@ class ApplicationContext {
   }
 
   loadApplication() async {
-    GlobalConfiguration globalConfiguration = await GlobalConfiguration().loadFromPath('application.json');
+    GlobalConfiguration globalConfiguration = await GlobalConfiguration().loadFromPath('config/application.json');
     print("application:");
     print(globalConfiguration.appConfig);
     this.application = Application.fromMap(globalConfiguration.appConfig);

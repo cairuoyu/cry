@@ -22,6 +22,8 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  assets:
+    - config/application.json
 
   uses-material-design: true
 

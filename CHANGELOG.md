@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.1.4
+* 处理打包后读取不到配置文件的问题
+
 ## 0.1.3
 * 增加application配置、httpUtil、CryDataTable例子
 

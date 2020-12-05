@@ -1,6 +1,5 @@
-
 import 'package:cry/common/application_context.dart';
-import 'package:cry/constants/constant.dart';
+import 'package:cry/constants/cry_constant.dart';
 import 'package:cry/model/application.dart';
 import 'package:cry/model/response_body_api.dart';
 import 'package:dio/dio.dart';
@@ -46,8 +45,8 @@ class HttpUtil {
       );
 
       dio = new Dio(options);
-      List<Interceptor> list = ApplicationContext.instance.getBean(Constant.KEY_DIO_INTERCEPTORS);
-      if (list.isNotEmpty) {
+      List<Interceptor> list = ApplicationContext.instance.getBean(CryConstant.KEY_DIO_INTERCEPTORS);
+      if (list != null && list.isNotEmpty) {
         dio.interceptors.addAll(list);
       }
     }
