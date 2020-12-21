@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class CryToggleButtons extends StatefulWidget {
   final List<SelectOptionVO> options;
-  final String defaultValue;
+  final Object defaultValue;
   final double fontSize;
   final ValueChanged afterOnPress;
   CryToggleButtons(this.options, {this.defaultValue, this.fontSize, this.afterOnPress});

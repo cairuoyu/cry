@@ -1,5 +1,9 @@
 # 更新日志
 
+## 0.1.5
+* 移除cryRoot和configuration
+* String->Object
+
 ## 0.1.4
 * 处理打包后读取不到配置文件的问题
 

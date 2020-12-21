@@ -1,6 +1,6 @@
 class SelectOptionVO {
   SelectOptionVO({this.value, this.label});
 
-  String value;
+  Object value;
   String label;
 }

@@ -1,8 +1,6 @@
 # cry
 一个Flutter组件包，包含button、form、dataTable、dialog、imageUpload、root、toggleButton、transfer、treeTable
 
-https://github.com/cairuoyu/cry
-
 ## 安装
 ```yaml
 dependencies:
