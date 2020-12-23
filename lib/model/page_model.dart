@@ -58,7 +58,7 @@ class PageModel {
       size: map['size'],
       current: map['current'],
       pages: map['pages'],
-      orders: List<OrderItemModel>.from(map['orders']?.map((x) => OrderItemModel.fromMap(x))),
+      orders: map['orders'] == null ? [] : List<OrderItemModel>.from(map['orders'].map((x) => OrderItemModel.fromMap(x))),
       records: List<Map>.from(map['records']?.map((x) => x)),
     );
   }
