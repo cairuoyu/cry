@@ -1,5 +1,5 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import 'cry_from_field.dart';
 
@@ -33,7 +33,7 @@ class CrySelectDate extends CryFormField {
                   firstDate: DateTime(2015, 8),
                   lastDate: DateTime(2101),
                 );
-                value = DateFormat("yyyy-MM-dd").format(picked);
+                value = formatDate(picked, [yyyy, '-', mm, '-', dd]);
                 state.didChange();
               },
               onSaved: (v) {

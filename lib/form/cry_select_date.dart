@@ -1,18 +1,18 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:quiver/strings.dart';
 
 import 'cry_form_field.dart';
 
 class CrySelectDate extends CryFormField {
-  CrySelectDate({
+  CrySelectDate(
+    BuildContext context, {
     Key key,
     String value,
     String label,
     ValueChanged onChange,
     FormFieldSetter onSaved,
-    BuildContext context,
   }) : super(
           key: key,
           builder: (CryFormFieldState state) {
@@ -33,10 +33,10 @@ class CrySelectDate extends CryFormField {
                   context: context,
                   initialDate: valueDt,
                   firstDate: DateTime(1900, 1),
-                  lastDate: DateTime(2021, 12),
+                  lastDate: DateTime(2031, 12),
                 );
                 if (picked != null) {
-                  value = DateFormat("yyyy-MM-dd").format(picked);
+                  value = formatDate(picked, [yyyy, '-', mm, '-', dd]);
                 }
                 state.didChange();
               },

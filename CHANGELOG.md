@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.1.6
+* intl替换为date_format，修改cry_select_date
+
 ## 0.1.5
 * 移除cryRoot和configuration
 * String->Object

@@ -5,6 +5,7 @@ import 'package:cry/cry_button.dart';
 import 'package:cry/cry_tree_table.dart';
 import 'package:cry/form/cry_input.dart';
 import 'package:cry/form/cry_select.dart';
+import 'package:cry/form/cry_select_date.dart';
 import 'package:cry/form1/cry_input.dart' as cryInput1;
 import 'package:cry/form1/cry_select.dart' as crySelect1;
 import 'package:cry/model/order_item_model.dart';
@@ -124,6 +125,10 @@ class DemoForm extends StatelessWidget {
   Widget build(BuildContext context) {
     var input = CryInput(label: 'testInput');
     var input1 = cryInput1.CryInput(label: 'testInput1');
+    var dateSelect = CrySelectDate(
+      context,
+      label: 'testSelectDate',
+    );
     var select = CrySelect(
       label: 'testSelect',
       dataList: [
@@ -141,6 +146,7 @@ class DemoForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        dateSelect,
         input,
         select,
         Wrap(
