@@ -1,6 +1,6 @@
 name: cry
 description: 一个Flutter组件库，包含button、form、dataTable、dialog、imageUpload、root、toggleButton、transfer、treeTable
-version: 0.1.7
+version: 0.1.8
 homepage: http://www.cairuoyu.com/
 publish_to: https://pub.dev
 #publish_to: https://pub.dartlang.org
@@ -16,7 +16,7 @@ dependencies:
   date_format: ^1.0.9
   image_picker: ^0.6.7
   image_picker_for_web: ^0.1.0
-  dio: 3.0.7
+  dio: ^3.0.7
   global_configuration: ^1.6.0
 
 dev_dependencies:

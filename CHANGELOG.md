@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.1.8
+* 处理cry_tree_table 报错：type 'int' is not a subtype of type 'double?'
+
 ## 0.1.7
 * page_model的order可为空
 

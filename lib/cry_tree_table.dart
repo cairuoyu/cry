@@ -185,7 +185,7 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
     return bd;
   }
 
-  _getCell(title, {width: 200.0}) {
+  _getCell(title, {double width: 200}) {
     return Container(
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 10),
