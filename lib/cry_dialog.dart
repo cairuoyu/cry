@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'generated/l10n.dart';
+
 void cryAlert(BuildContext context, String content) {
   cryAlertWidget(context, Text(content));
 }
@@ -9,11 +11,11 @@ void cryAlertWidget(BuildContext context, Widget content) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('信息'),
+        title: Text(S.of(context).information),
         content: content,
         actions: <Widget>[
           FlatButton(
-            child: Text('取消'),
+            child: Text(S.of(context).cancel),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -29,17 +31,17 @@ void cryConfirm(BuildContext context, String content, onConfirm) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text('信息'),
+        title: Text(S.of(context).information),
         content: Text(content),
         actions: <Widget>[
           FlatButton(
-            child: Text('取消'),
+            child: Text(S.of(context).cancel),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           FlatButton(
-            child: Text('确认'),
+            child: Text(S.of(context).confirm),
             onPressed: onConfirm,
           ),
         ],

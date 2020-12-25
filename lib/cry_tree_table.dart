@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'generated/l10n.dart';
 import 'vo/tree_vo.dart';
 
 class CryTreeTable<T extends TreeData> extends StatefulWidget {
@@ -76,7 +77,7 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
       list.add(_getCell(element.label, width: element.width));
     });
     if (widget.getRowOper != null) {
-      list.insert(0, _getCell('操作', width: 100));
+      list.insert(0, _getCell(S.of(context).operating, width: 100));
     }
     var result = Container(
       decoration: _getBoxDecoration(header: true),

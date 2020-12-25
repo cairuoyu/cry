@@ -9,5 +9,8 @@
   "commit": "Commit",
 
   "confirmDelete": "Are you sure?",
-  "saved": "Saved Successfully"
+  "saved": "Saved Successfully",
+  "operating": "Operating",
+  "information": "Information",
+  "confirm": "Confirm"
 }

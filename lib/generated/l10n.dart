@@ -134,6 +134,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Operating`
+  String get operating {
+    return Intl.message(
+      'Operating',
+      name: 'operating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Information`
+  String get information {
+    return Intl.message(
+      'Information',
+      name: 'information',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

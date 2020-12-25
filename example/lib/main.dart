@@ -205,6 +205,7 @@ class _DemoTreeTableState extends State<DemoTreeTable> {
     ];
 
     var treeTable = CryTreeTable(
+      getRowOper: (v, parent) => [CryButton(iconData: Icons.delete, onPressed: () => print('test'),)],
       columnData: columnData,
       data: data,
       onSelected: (TreeVO<TestTreeModel> v) {
