@@ -1,0 +1,13 @@
+{
+  "add": "Add",
+  "delete": "Delete",
+  "edit": "Edit",
+  "query": "Filter",
+  "reset": "Reset",
+  "save": "Save",
+  "cancel": "Cancel",
+  "commit": "Commit",
+
+  "confirmDelete": "Are you sure?",
+  "saved": "Saved Successfully"
+}

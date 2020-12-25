@@ -1,4 +1,5 @@
 import 'package:cry/common/application_context.dart';
+import 'package:cry/cry_buttons.dart';
 import 'package:cry/cry_data_table.dart';
 import 'package:cry/cry_image_upload.dart';
 import 'package:cry/cry_button.dart';
@@ -8,6 +9,7 @@ import 'package:cry/form/cry_select.dart';
 import 'package:cry/form/cry_select_date.dart';
 import 'package:cry/form1/cry_input.dart' as cryInput1;
 import 'package:cry/form1/cry_select.dart' as crySelect1;
+import 'package:cry/generated/l10n.dart';
 import 'package:cry/model/order_item_model.dart';
 import 'package:cry/model/page_model.dart';
 import 'package:cry/model/request_body_api.dart';
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cry Demo',
+      localizationsDelegates: [S.delegate],
       home: MyHomePage(),
     );
   }
@@ -109,14 +112,21 @@ class _DemoDataTableState extends State<DemoDataTable> {
 class DemoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var button = CryButton(
-      iconData: Icons.save,
-      label: 'testButton',
-      onPressed: () {
-        print('testButton');
-      },
+    var buttons = ButtonBar(
+      children: [
+        CryButton(
+          iconData: Icons.save,
+          label: 'testButton',
+          onPressed: () {
+            print('testButton');
+          },
+        ),
+        CryButtons.query(context, () => print('test commonButton')),
+        CryButtons.add(context, () => print('test commonButton')),
+        CryButtons.save(context, () => print('test commonButton')),
+      ],
     );
-    return button;
+    return buttons;
   }
 }
 
