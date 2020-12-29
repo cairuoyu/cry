@@ -22,12 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "add" : MessageLookupByLibrary.simpleMessage("增加"),
+    "camera" : MessageLookupByLibrary.simpleMessage("相机"),
     "cancel" : MessageLookupByLibrary.simpleMessage("取消"),
     "commit" : MessageLookupByLibrary.simpleMessage("提交"),
     "confirm" : MessageLookupByLibrary.simpleMessage("确定"),
     "confirmDelete" : MessageLookupByLibrary.simpleMessage("确定删除"),
     "delete" : MessageLookupByLibrary.simpleMessage("删除"),
     "edit" : MessageLookupByLibrary.simpleMessage("修改"),
+    "gallery" : MessageLookupByLibrary.simpleMessage("相册"),
     "information" : MessageLookupByLibrary.simpleMessage("信息"),
     "operating" : MessageLookupByLibrary.simpleMessage("操作"),
     "query" : MessageLookupByLibrary.simpleMessage("查询"),

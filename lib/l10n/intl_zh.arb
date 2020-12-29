@@ -12,5 +12,7 @@
   "confirmDelete": "确定删除",
   "operating": "操作",
   "information": "信息",
-  "confirm": "确定"
+  "confirm": "确定",
+  "gallery": "相册",
+  "camera": "相机"
 }

@@ -50,7 +50,7 @@ class TreeUtil {
     if (data == null) {
       return [];
     }
-    var selected = List<TreeVO<T>>();
+    var selected = <TreeVO<T>>[];
     data.forEach((element) {
       if (element.checked) {
         selected.add(element);

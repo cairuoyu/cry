@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 import 'cry_dialog.dart';
 import 'cry_button.dart';
-
+import 'generated/l10n.dart';
 
 class CryImageUpload extends StatefulWidget {
   CryImageUpload({
@@ -58,7 +58,7 @@ class CryImageUploadState extends State<CryImageUpload> {
           children: [
             CryButton(
               iconData: Icons.add,
-              onPressed: () => pickImage(),
+              onPressed: () => beforePickImage(),
             ),
           ],
         ),
@@ -68,11 +68,14 @@ class CryImageUploadState extends State<CryImageUpload> {
     );
     var image = Opacity(
       opacity: this.isHover ? 0.4 : 1.0,
-      child: Container(
-        padding: EdgeInsets.all(2),
-        child: previewImage(),
-        width: widget.updateAreaSize,
-        height: widget.updateAreaSize,
+      child: InkWell(
+        child: Container(
+          padding: EdgeInsets.all(2),
+          child: previewImage(),
+          width: widget.updateAreaSize,
+          height: widget.updateAreaSize,
+        ),
+        onTap: () => beforePickImage(),
       ),
     );
     var imageAndTools = InkWell(
@@ -95,8 +98,36 @@ class CryImageUploadState extends State<CryImageUpload> {
     return result;
   }
 
-  pickImage() async {
-    pickedFile = await imagePicker.getImage(source: ImageSource.gallery);
+  beforePickImage() {
+    if (kIsWeb) {
+      pickImage(ImageSource.gallery);
+      return;
+    }
+
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (context) {
+        return Container(
+          height: 300,
+          child: Column(
+            children: [
+              ListTile(
+                title: Text(S.of(context).gallery),
+                onTap: () => pickImage(ImageSource.gallery, context: context),
+              ),
+              ListTile(
+                title: Text(S.of(context).camera),
+                onTap: () => pickImage(ImageSource.camera, context: context),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  pickImage(ImageSource source, {BuildContext context}) async {
+    pickedFile = await imagePicker.getImage(source: source);
     imageBytes = await pickedFile.readAsBytes();
     if (imageBytes.length > 1000 * 1000 * 10) {
       cryAlert(context, limitMessage);
@@ -108,6 +139,10 @@ class CryImageUploadState extends State<CryImageUpload> {
 
     if (pickedFile != null) {
       widget.onUpload(imageBytes);
+    }
+    setState(() {});
+    if (context != null) {
+      Navigator.pop(context);
     }
   }
 
