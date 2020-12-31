@@ -46,6 +46,9 @@ class CryDataTableState extends State<CryDataTable> {
     PageModel page = widget.page ?? PageModel();
     _ds._page = page;
     _ds.reload();
+    var indexColumn = DataColumn(label: Text('#'));
+    var columns = widget.columns ?? [];
+    columns.insert(0, indexColumn);
     var result = PaginatedDataTable(
       header: Text(widget.title),
       rowsPerPage: page.size,
@@ -57,7 +60,7 @@ class CryDataTableState extends State<CryDataTable> {
       onRowsPerPageChanged: (int value) {
         return widget.onPageChanged(value, 1);
       },
-      columns: widget.columns ?? [DataColumn(label: Text(''))],
+      columns: columns,
       source: _ds,
       showCheckboxColumn: true,
     );
@@ -89,6 +92,7 @@ class _DS extends DataTableSource {
     Map m = _page.records[dataIndex];
 
     List<DataCell> cells = _getCells == null ? [] : _getCells(m);
+    cells.insert(0, DataCell(Text((index + 1).toString())));
     bool selected = m['selected'] ?? false;
     return DataRow.byIndex(
       index: index,
@@ -96,13 +100,13 @@ class _DS extends DataTableSource {
       selected: selected,
       onSelectChanged: (this._selectable == null ? true : this._selectable(m))
           ? (v) {
-              m['selected'] = v;
-              if (_onSelectChanged != null) {
-                _onSelectChanged(m);
-              } else {
-                notifyListeners();
-              }
-            }
+        m['selected'] = v;
+        if (_onSelectChanged != null) {
+          _onSelectChanged(m);
+        } else {
+          notifyListeners();
+        }
+      }
           : null,
     );
   }
@@ -114,5 +118,8 @@ class _DS extends DataTableSource {
   int get rowCount => _page.total;
 
   @override
-  int get selectedRowCount => (_page?.records?.where((v) => v['selected'] ?? false)?.length) ?? 0;
+  int get selectedRowCount =>
+      (_page?.records
+          ?.where((v) => v['selected'] ?? false)
+          ?.length) ?? 0;
 }

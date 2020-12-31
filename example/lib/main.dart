@@ -20,6 +20,7 @@ import 'package:cry/utils/tree_util.dart';
 import 'package:cry/vo/select_option_vo.dart';
 import 'package:cry/vo/tree_vo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +33,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cry Demo',
-      localizationsDelegates: [S.delegate],
+      localizationsDelegates: [
+        S.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      locale: Locale('zh'),
       home: MyHomePage(),
     );
   }
@@ -124,6 +132,7 @@ class DemoButton extends StatelessWidget {
         CryButtons.query(context, () => print('test commonButton')),
         CryButtons.add(context, () => print('test commonButton')),
         CryButtons.save(context, () => print('test commonButton')),
+        CryButtons.commit(context, () => print('test commonButton')),
       ],
     );
     return buttons;
@@ -205,7 +214,12 @@ class _DemoTreeTableState extends State<DemoTreeTable> {
     ];
 
     var treeTable = CryTreeTable(
-      getRowOper: (v, parent) => [CryButton(iconData: Icons.delete, onPressed: () => print('test'),)],
+      getRowOper: (v, parent) => [
+        CryButton(
+          iconData: Icons.delete,
+          onPressed: () => print('test'),
+        )
+      ],
       columnData: columnData,
       data: data,
       onSelected: (TreeVO<TestTreeModel> v) {
