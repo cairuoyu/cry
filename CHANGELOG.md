@@ -1,5 +1,9 @@
 # 更新日志
 
+## 0.1.13
+* 增加 cry_checkbox
+* cry_buttons 可不显示lable
+
 ## 0.1.12
 * cry_data_table增加序号列
 * 增加国际化支持

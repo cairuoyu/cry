@@ -37,7 +37,11 @@ class CryInput extends CryFormField {
                   onChange(v);
                 }
               },
-              onSaved: onSaved,
+              onSaved: (v) {
+                if (onSaved != null) {
+                  onSaved(v);
+                }
+              },
               validator: (v) {
                 if (required && v.isEmpty) {
                   return '必填';

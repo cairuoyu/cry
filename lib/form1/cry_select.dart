@@ -34,7 +34,9 @@ class CrySelect extends CryFormField {
                 state.didChange();
               },
               onSaved: (v) {
-                onSaved(v);
+                if (onSaved != null) {
+                  onSaved(v);
+                }
               },
             );
           },

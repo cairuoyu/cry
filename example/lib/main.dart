@@ -4,6 +4,7 @@ import 'package:cry/cry_data_table.dart';
 import 'package:cry/cry_image_upload.dart';
 import 'package:cry/cry_button.dart';
 import 'package:cry/cry_tree_table.dart';
+import 'package:cry/form/cry_checkbox.dart';
 import 'package:cry/form/cry_input.dart';
 import 'package:cry/form/cry_select.dart';
 import 'package:cry/form/cry_select_date.dart';
@@ -140,10 +141,19 @@ class DemoButton extends StatelessWidget {
 }
 
 class DemoForm extends StatelessWidget {
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String testValue;
+
   @override
   Widget build(BuildContext context) {
-    var input = CryInput(label: 'testInput');
-    var input1 = cryInput1.CryInput(label: 'testInput1');
+    var input = CryInput(
+      label: 'testInput',
+      onSaved: (v) {
+        this.testValue = v;
+      },
+    );
+    var input1 = CryInput(label: 'testInput', width: 400);
+    var input2 = cryInput1.CryInput(label: 'testInput1');
     var dateSelect = CrySelectDate(
       context,
       label: 'testSelectDate',
@@ -162,20 +172,38 @@ class DemoForm extends StatelessWidget {
         SelectOptionVO(label: '2', value: 'b'),
       ],
     );
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        dateSelect,
-        input,
-        select,
-        Wrap(
-          children: [
-            input1,
-            select1,
-          ],
-        ),
-      ],
+    var checkbox1 = CryCheckbox('checkboxTestLabel', true, (v) {});
+    var checkbox2 = CryCheckbox('checkboxTestLabel', false, (v) {});
+    var save = CryButtons.save(context, () {
+      print('save');
+      print(testValue);
+      print(formKey.currentState);
+      formKey.currentState.save();
+      print(testValue);
+    });
+    var form = Form(
+      key: formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          save,
+          input,
+          input1,
+          Wrap(children: [checkbox1, checkbox2]),
+          checkbox1,
+          checkbox2,
+          select,
+          dateSelect,
+          Wrap(
+            children: [
+              input2,
+              select1,
+            ],
+          ),
+        ],
+      ),
     );
+    return form;
   }
 }
 
