@@ -142,14 +142,15 @@ class DemoButton extends StatelessWidget {
 
 class DemoForm extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String testValue;
+  String testValue1;
+  bool testValue2 = true;
 
   @override
   Widget build(BuildContext context) {
     var input = CryInput(
       label: 'testInput',
       onSaved: (v) {
-        this.testValue = v;
+        this.testValue1 = v;
       },
     );
     var input1 = CryInput(label: 'testInput', width: 400);
@@ -172,14 +173,15 @@ class DemoForm extends StatelessWidget {
         SelectOptionVO(label: '2', value: 'b'),
       ],
     );
-    var checkbox1 = CryCheckbox('checkboxTestLabel', true, (v) {});
+    var checkbox1 = CryCheckbox('checkboxTestLabel', this.testValue2, (v) {
+      this.testValue2 = v;
+    });
     var checkbox2 = CryCheckbox('checkboxTestLabel', false, (v) {});
     var save = CryButtons.save(context, () {
       print('save');
-      print(testValue);
-      print(formKey.currentState);
       formKey.currentState.save();
-      print(testValue);
+      print(testValue1);
+      print(testValue2);
     });
     var form = Form(
       key: formKey,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CryCheckbox extends StatelessWidget {
+class CryCheckbox extends StatefulWidget {
   final String label;
   final bool value;
   final ValueChanged<bool> onChanged;
@@ -8,15 +8,33 @@ class CryCheckbox extends StatelessWidget {
   CryCheckbox(this.label, this.value, this.onChanged);
 
   @override
+  _CryCheckboxState createState() => _CryCheckboxState();
+}
+
+class _CryCheckboxState extends State<CryCheckbox> {
+  bool _value;
+
+  @override
+  void initState() {
+    _value = widget.value;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var result = Container(
       padding: EdgeInsets.all(20),
-      child: Row(
+      child: Wrap(
         children: [
-          Text(label),
-          Checkbox(value: value, onChanged: (v) {
-            onChanged(v);
-          }),
+          Text(widget.label),
+          Checkbox(
+            value: _value,
+            onChanged: (v) {
+              this._value = v;
+              widget.onChanged(v);
+              setState(() {});
+            },
+          ),
         ],
       ),
     );

@@ -1,6 +1,10 @@
 # 更新日志
 
 ## 0.1.13
+* 修改 cry_checkbox
+* cry_input的onSave可为空
+
+## 0.1.13
 * 增加 cry_checkbox
 * cry_buttons 可不显示lable
 
