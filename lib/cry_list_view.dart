@@ -6,6 +6,7 @@ class CryListView extends StatefulWidget {
   final VoidCallback loadMore;
   final RefreshCallback onRefresh;
   final CryListViewType cryListViewType;
+  final String title;
 
   CryListView({
     Key key,
@@ -14,6 +15,7 @@ class CryListView extends StatefulWidget {
     this.loadMore,
     this.cryListViewType = CryListViewType.column,
     this.onRefresh,
+    this.title,
   }) : super(key: key);
 
   @override
@@ -35,7 +37,7 @@ class CryListViewState extends State<CryListView> {
         toTopButtonVisible = true;
         setState(() {});
       }
-      if (controller.position.maxScrollExtent == controller.position.pixels) {
+      if (widget.loadMore != null && controller.position.maxScrollExtent == controller.position.pixels) {
         widget.loadMore();
       }
     });
@@ -84,6 +86,7 @@ class CryListViewState extends State<CryListView> {
       );
     }
     var result = Scaffold(
+      appBar: widget.title == null ? null : AppBar(title: Text(widget.title)),
       body: RefreshIndicator(
         child: listView,
         onRefresh: widget.onRefresh ?? () async {},

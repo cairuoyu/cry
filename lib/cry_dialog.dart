@@ -42,7 +42,9 @@ void cryConfirm(BuildContext context, String content, onConfirm) {
           ),
           FlatButton(
             child: Text(S.of(context).confirm),
-            onPressed: onConfirm,
+            onPressed: () {
+              onConfirm(context);
+            },
           ),
         ],
       );

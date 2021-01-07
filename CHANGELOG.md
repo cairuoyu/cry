@@ -1,6 +1,11 @@
 # 更新日志
 
-## 0.1.13
+## 0.1.15
+* cryConfirm传递context
+* cryListView增加title
+* 修复cryCheckbox
+
+## 0.1.14
 * 修改 cry_checkbox
 * cry_input的onSave可为空
 

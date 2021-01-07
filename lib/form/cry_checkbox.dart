@@ -15,6 +15,12 @@ class _CryCheckboxState extends State<CryCheckbox> {
   bool _value;
 
   @override
+  void didUpdateWidget(covariant CryCheckbox oldWidget) {
+    _value = widget.value;
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   void initState() {
     _value = widget.value;
     super.initState();

@@ -1,8 +1,10 @@
 import 'package:cry/common/application_context.dart';
 import 'package:cry/cry_buttons.dart';
 import 'package:cry/cry_data_table.dart';
+import 'package:cry/cry_dialog.dart';
 import 'package:cry/cry_image_upload.dart';
 import 'package:cry/cry_button.dart';
+import 'package:cry/cry_list_view.dart';
 import 'package:cry/cry_tree_table.dart';
 import 'package:cry/form/cry_checkbox.dart';
 import 'package:cry/form/cry_input.dart';
@@ -70,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
             DemoForm(),
             DemoTreeTable(),
             DemoDataTable(),
+            DemoListView(),
           ],
         ),
       ),
@@ -134,21 +137,32 @@ class DemoButton extends StatelessWidget {
         CryButtons.add(context, () => print('test commonButton')),
         CryButtons.save(context, () => print('test commonButton')),
         CryButtons.commit(context, () => print('test commonButton')),
+        CryButtons.delete(context, () {
+          cryConfirm(context, '确定？', (context) {
+            Navigator.pop(context);
+          });
+        }),
       ],
     );
     return buttons;
   }
 }
 
-class DemoForm extends StatelessWidget {
+class DemoForm extends StatefulWidget {
+  @override
+  _DemoFormState createState() => _DemoFormState();
+}
+
+class _DemoFormState extends State<DemoForm> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String testValue1;
+  String testValue1 = '1';
   bool testValue2 = true;
 
   @override
   Widget build(BuildContext context) {
     var input = CryInput(
       label: 'testInput',
+      value: testValue1,
       onSaved: (v) {
         this.testValue1 = v;
       },
@@ -177,18 +191,23 @@ class DemoForm extends StatelessWidget {
       this.testValue2 = v;
     });
     var checkbox2 = CryCheckbox('checkboxTestLabel', false, (v) {});
+    var reset = CryButtons.reset(context, () {
+      this.testValue2 = true;
+      setState(() {});
+    });
     var save = CryButtons.save(context, () {
       print('save');
       formKey.currentState.save();
       print(testValue1);
       print(testValue2);
     });
+    ButtonBar bb = ButtonBar(children: [reset, save]);
     var form = Form(
       key: formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          save,
+          bb,
           input,
           input1,
           Wrap(children: [checkbox1, checkbox2]),
@@ -257,5 +276,30 @@ class _DemoTreeTableState extends State<DemoTreeTable> {
       },
     );
     return treeTable;
+  }
+}
+
+class DemoListView extends StatefulWidget {
+  @override
+  _DemoListViewState createState() => _DemoListViewState();
+}
+
+class _DemoListViewState extends State<DemoListView> {
+  @override
+  Widget build(BuildContext context) {
+    var listView = CryListView(
+      title: 'listViewDemo',
+      count: 50,
+      getCell: (index) {
+        return ListTile(
+          title: Text('test-'+index.toString()),
+        );
+      },
+    );
+    var result = Container(
+      height: 500,
+      child: listView,
+    );
+    return result;
   }
 }
