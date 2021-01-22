@@ -6,20 +6,29 @@ import 'package:quiver/strings.dart';
 import 'cry_form_field.dart';
 
 class CrySelectDate extends CryFormField {
-  CrySelectDate(
-    BuildContext context, {
+  CrySelectDate({
     Key key,
+    double width,
     String value,
     String label,
+    double labelWidth,
+    String labelText,
     ValueChanged onChange,
     FormFieldSetter onSaved,
+    BuildContext context,
+    bool border = false,
   }) : super(
           key: key,
+          border: border,
+          width: width,
+          label: label,
+          labelWidth: labelWidth,
           builder: (CryFormFieldState state) {
             return TextFormField(
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                labelText: label,
+                labelText: labelText,
+                border: border == null || border == false ? null : OutlineInputBorder(),
               ),
               controller: TextEditingController(text: value),
               onChanged: (v) {
@@ -33,14 +42,18 @@ class CrySelectDate extends CryFormField {
                   context: context,
                   initialDate: valueDt,
                   firstDate: DateTime(1900, 1),
-                  lastDate: DateTime(2031, 12),
+                  lastDate: DateTime(2101, 12),
                 );
                 if (picked != null) {
                   value = formatDate(picked, [yyyy, '-', mm, '-', dd]);
                 }
                 state.didChange();
               },
-              onSaved: onSaved,
+              onSaved: (v) {
+                if (onSaved != null) {
+                  onSaved(v);
+                }
+              },
             );
           },
         );
