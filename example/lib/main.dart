@@ -5,6 +5,7 @@ import 'package:cry/cry_dialog.dart';
 import 'package:cry/cry_image_upload.dart';
 import 'package:cry/cry_button.dart';
 import 'package:cry/cry_list_view.dart';
+import 'package:cry/cry_menu.dart';
 import 'package:cry/cry_tree_table.dart';
 import 'package:cry/form/cry_checkbox.dart';
 import 'package:cry/form/cry_input.dart';
@@ -67,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            DemoMenu(),
             DemoButton(),
             DemoImageUpload(),
             DemoForm(),
@@ -77,6 +79,36 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+}
+
+class DemoMenu extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var result = CryMenu(
+      child: ListTile(
+        title: Text('kkk'),
+      ),
+      onSelected: (v) {
+        print(v);
+      },
+      itemBuilder: (context) => <PopupMenuEntry>[
+        PopupMenuItem(
+          value: 'a',
+          child: ListTile(
+            title: Text('Close All'),
+          ),
+        ),
+        PopupMenuItem(
+          value: 'b',
+          child: ListTile(
+            title: Text('Close Others'),
+          ),
+        ),
+      ],
+      // child: tabContent,
+    );
+    return result;
   }
 }
 
@@ -292,7 +324,7 @@ class _DemoListViewState extends State<DemoListView> {
       count: 50,
       getCell: (index) {
         return ListTile(
-          title: Text('test-'+index.toString()),
+          title: Text('test-' + index.toString()),
         );
       },
     );

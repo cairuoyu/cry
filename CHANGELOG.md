@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.2.1
+* 增加CryMenu
+
 ## 0.1.15
 * cryConfirm传递context
 * cryListView增加title
