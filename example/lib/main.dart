@@ -10,6 +10,7 @@ import 'package:cry/cry_tree_table.dart';
 import 'package:cry/form/cry_checkbox.dart';
 import 'package:cry/form/cry_input.dart';
 import 'package:cry/form/cry_select.dart';
+import 'package:cry/form/cry_select_custom_widget.dart';
 import 'package:cry/form/cry_select_date.dart';
 import 'package:cry/form1/cry_input.dart' as cryInput1;
 import 'package:cry/form1/cry_select.dart' as crySelect1;
@@ -87,7 +88,7 @@ class DemoMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     var result = CryMenu(
       child: ListTile(
-        title: Text('kkk'),
+        title: Text('右键或长按'),
       ),
       onSelected: (v) {
         print(v);
@@ -118,7 +119,8 @@ class DemoDataTable extends StatefulWidget {
 }
 
 class _DemoDataTableState extends State<DemoDataTable> {
-  PageModel page = PageModel(orders: [OrderItemModel(column: 'update_time')], size: 5);
+  PageModel page =
+      PageModel(orders: [OrderItemModel(column: 'update_time')], size: 5);
 
   @override
   void initState() {
@@ -147,7 +149,8 @@ class _DemoDataTableState extends State<DemoDataTable> {
   }
 
   _loadData() async {
-    ResponseBodyApi responseBodyApi = await HttpUtil.post('/userInfo/page', data: RequestBodyApi(page: page).toMap());
+    ResponseBodyApi responseBodyApi = await HttpUtil.post('/userInfo/page',
+        data: RequestBodyApi(page: page).toMap());
     this.page = PageModel.fromMap(responseBodyApi.data);
     setState(() {});
   }
@@ -234,11 +237,29 @@ class _DemoFormState extends State<DemoForm> {
       print(testValue2);
     });
     ButtonBar bb = ButtonBar(children: [reset, save]);
+    var cw = CrySelectCustomWidget(
+      context,
+      onSaved: (v) {
+        print('onSave');
+        print(v);
+      },
+      popWidget: CryButtons.cancel(context, () {
+        Navigator.pop(context, 'res');
+      }),
+      getValue: (v) {
+        return 'res-value';
+      },
+      getValueLabel: (v) {
+        return 'res-valueLabel';
+      },
+    );
     var form = Form(
       key: formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          cw,
+          Divider(height: 20, color: Colors.amber),
           bb,
           input,
           input1,

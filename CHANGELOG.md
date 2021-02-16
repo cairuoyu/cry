@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.2.2
+* 增加自定义组件选择组件CrySelectCustomWidget
+
 ## 0.2.1
 * 增加CryMenu
 
