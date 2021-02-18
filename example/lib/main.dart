@@ -119,8 +119,7 @@ class DemoDataTable extends StatefulWidget {
 }
 
 class _DemoDataTableState extends State<DemoDataTable> {
-  PageModel page =
-      PageModel(orders: [OrderItemModel(column: 'update_time')], size: 5);
+  PageModel page = PageModel(orders: [OrderItemModel(column: 'update_time')], size: 5);
 
   @override
   void initState() {
@@ -149,8 +148,7 @@ class _DemoDataTableState extends State<DemoDataTable> {
   }
 
   _loadData() async {
-    ResponseBodyApi responseBodyApi = await HttpUtil.post('/userInfo/page',
-        data: RequestBodyApi(page: page).toMap());
+    ResponseBodyApi responseBodyApi = await HttpUtil.post('/userInfo/page', data: RequestBodyApi(page: page).toMap());
     this.page = PageModel.fromMap(responseBodyApi.data);
     setState(() {});
   }
@@ -228,6 +226,7 @@ class _DemoFormState extends State<DemoForm> {
     var checkbox2 = CryCheckbox('checkboxTestLabel', false, (v) {});
     var reset = CryButtons.reset(context, () {
       this.testValue2 = true;
+      formKey.currentState.reset();
       setState(() {});
     });
     var save = CryButtons.save(context, () {
@@ -241,20 +240,27 @@ class _DemoFormState extends State<DemoForm> {
       context,
       width: 400,
       label: '自定义',
-      value: 'v',
-      valueLabel: 'vl',
+      initialValue: 'v',
+      initialValueLabel: 'vl',
       onSaved: (v) {
         print('onSave');
         print(v);
       },
-      popWidget: CryButtons.cancel(context, () {
-        Navigator.pop(context, 'res');
-      }),
+      popWidget: ButtonBar(
+        children: [
+          CryButtons.save(context, () {
+            Navigator.pop(context, 'save');
+          }),
+          CryButtons.cancel(context, () {
+            Navigator.pop(context, 'cancel');
+          })
+        ],
+      ),
       getValue: (v) {
-        return 'res-value';
+        return '$v-value';
       },
       getValueLabel: (v) {
-        return 'res-valueLabel';
+        return '$v-valueLabel';
       },
     );
     var form = Form(

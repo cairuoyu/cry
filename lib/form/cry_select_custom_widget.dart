@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 class CrySelectCustomWidget<T> extends FormField<T> {
   CrySelectCustomWidget(
     BuildContext context, {
+    this.controller,
+    this.initialValueLabel,
     Key key,
     double width,
     double padding,
     String label,
-    T value,
-    String valueLabel,
+    T initialValue,
     ValueChanged onChange,
     FormFieldSetter<T> onSaved,
     Function getValueLabel,
@@ -16,17 +17,16 @@ class CrySelectCustomWidget<T> extends FormField<T> {
     Widget popWidget,
   }) : super(
           key: key,
-          initialValue: value,
+          initialValue: initialValue,
           onSaved: onSaved,
           builder: (FormFieldState<T> field) {
+            final _CrySelectCustomWidgetState state = field as _CrySelectCustomWidgetState;
             return Container(
               padding: EdgeInsets.all(padding ?? 20.0),
               width: width ?? double.infinity,
               child: TextField(
                 readOnly: true,
-                controller: TextEditingController(
-                  text: valueLabel,
-                ),
+                controller: state._effectiveController,
                 onTap: () {
                   Navigator.push(
                     context,
@@ -35,9 +35,10 @@ class CrySelectCustomWidget<T> extends FormField<T> {
                     if (res == null) {
                       return;
                     }
-                    valueLabel = getValueLabel(res);
-                    value = getValue(res);
-                    field.didChange(value);
+                    String valueLabel = getValueLabel(res);
+                    initialValue = getValue(res);
+                    field.didChange(initialValue);
+                    state.didChangeValueLabel(valueLabel);
                   });
                 },
                 decoration: InputDecoration(
@@ -48,4 +49,38 @@ class CrySelectCustomWidget<T> extends FormField<T> {
             );
           },
         );
+
+  final TextEditingController controller;
+
+  final String initialValueLabel;
+
+  @override
+  _CrySelectCustomWidgetState<T> createState() => _CrySelectCustomWidgetState();
+}
+
+class _CrySelectCustomWidgetState<T> extends FormFieldState<T> {
+  TextEditingController _controller;
+
+  TextEditingController get _effectiveController => widget.controller ?? _controller;
+
+  @override
+  CrySelectCustomWidget<T> get widget => super.widget as CrySelectCustomWidget;
+
+  @override
+  void initState() {
+    super.initState();
+    if (_controller == null) {
+      _controller = TextEditingController(text: widget.initialValueLabel);
+    }
+  }
+
+  @override
+  void reset() {
+    _effectiveController.text = widget.initialValueLabel ?? '';
+    super.reset();
+  }
+
+  didChangeValueLabel(String valueLable) {
+    _effectiveController.text = valueLable;
+  }
 }

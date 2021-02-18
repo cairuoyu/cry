@@ -1,7 +1,7 @@
 .idea/
 .vscode/
 .dart_tool/
-#.packages
+.packages
 build/
 android/
 ios/

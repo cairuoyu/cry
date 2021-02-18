@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.2.4
+* 修复CrySelectCustomWidget重置无效问题
+
 ## 0.2.3
 * 修改CrySelectCustomWidget
 
