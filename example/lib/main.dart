@@ -239,6 +239,10 @@ class _DemoFormState extends State<DemoForm> {
     ButtonBar bb = ButtonBar(children: [reset, save]);
     var cw = CrySelectCustomWidget(
       context,
+      width: 400,
+      label: '自定义',
+      value: 'v',
+      valueLabel: 'vl',
       onSaved: (v) {
         print('onSave');
         print(v);

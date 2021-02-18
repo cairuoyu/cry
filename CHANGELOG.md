@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.2.3
+* 修改CrySelectCustomWidget
+
 ## 0.2.2
 * 增加自定义组件选择组件CrySelectCustomWidget
 

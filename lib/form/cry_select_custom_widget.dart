@@ -1,39 +1,49 @@
 import 'package:flutter/material.dart';
 
-class CrySelectCustomWidget<T> extends FormField<String> {
+class CrySelectCustomWidget<T> extends FormField<T> {
   CrySelectCustomWidget(
     BuildContext context, {
     Key key,
     double width,
+    double padding,
     String label,
-    String value,
+    T value,
     String valueLabel,
     ValueChanged onChange,
-    FormFieldSetter onSaved,
+    FormFieldSetter<T> onSaved,
     Function getValueLabel,
     Function getValue,
     Widget popWidget,
   }) : super(
           key: key,
+          initialValue: value,
           onSaved: onSaved,
-          builder: (FormFieldState<String> field) {
-            return TextField(
-              controller: TextEditingController(
-                text: valueLabel,
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => popWidget),
-                ).then((res) {
-                  valueLabel = getValueLabel(res);
-                  value = getValue(res);
-                  field.didChange(value);
-                });
-              },
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                labelText: label,
+          builder: (FormFieldState<T> field) {
+            return Container(
+              padding: EdgeInsets.all(padding ?? 20.0),
+              width: width ?? double.infinity,
+              child: TextField(
+                readOnly: true,
+                controller: TextEditingController(
+                  text: valueLabel,
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => popWidget),
+                  ).then((res) {
+                    if (res == null) {
+                      return;
+                    }
+                    valueLabel = getValueLabel(res);
+                    value = getValue(res);
+                    field.didChange(value);
+                  });
+                },
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                  labelText: label,
+                ),
               ),
             );
           },
