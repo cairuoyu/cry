@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.2.5
+* CryTreeTable的getData改为getCell
+
 ## 0.2.4
 * 修复CrySelectCustomWidget重置无效问题
 

@@ -74,10 +74,10 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
             });
     List<Widget> list = [];
     widget.columnData.forEach((element) {
-      list.add(_getCell(element.label, width: element.width));
+      list.add(_wrapCell(Text(element.label ?? '--'), width: element.width));
     });
     if (widget.getRowOper != null) {
-      list.insert(0, _getCell(S.of(context).operating, width: 100));
+      list.insert(0, _wrapCell(Text(S.of(context).operating), width: 100));
     }
     var result = Container(
       decoration: _getBoxDecoration(header: true),
@@ -105,7 +105,7 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
       List<Widget> columnList = [];
       columnList = widget.columnData
           .map<Widget>(
-            (v) => _getCell(v.getData(vo.data), width: v.width),
+            (v) => _wrapCell(v.getCell(vo.data), width: v.width),
           )
           .toList();
 
@@ -186,11 +186,11 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
     return bd;
   }
 
-  _getCell(title, {double width: 200}) {
+  _wrapCell(Widget cell, {double width: 200}) {
     return Container(
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Text(title ?? ''),
+      child: cell,
       width: width,
     );
   }
@@ -245,9 +245,9 @@ enum CryTreeTableSelectType {
 }
 
 class CryTreeTableColumnData {
-  CryTreeTableColumnData(this.label, this.getData, {this.width = 200});
+  CryTreeTableColumnData({this.label, this.getCell, this.width = 200});
 
-  Function getData;
+  Function getCell;
   String label;
   double width;
 }
