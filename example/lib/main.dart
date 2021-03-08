@@ -1,12 +1,9 @@
 import 'package:cry/common/application_context.dart';
 import 'package:cry/cry_buttons.dart';
-import 'package:cry/cry_data_table.dart';
 import 'package:cry/cry_dialog.dart';
 import 'package:cry/cry_image_upload.dart';
 import 'package:cry/cry_button.dart';
-import 'package:cry/cry_list_view.dart';
 import 'package:cry/cry_menu.dart';
-import 'package:cry/cry_tree_table.dart';
 import 'package:cry/form/cry_checkbox.dart';
 import 'package:cry/form/cry_input.dart';
 import 'package:cry/form/cry_select.dart';
@@ -15,17 +12,14 @@ import 'package:cry/form/cry_select_date.dart';
 import 'package:cry/form1/cry_input.dart' as cryInput1;
 import 'package:cry/form1/cry_select.dart' as crySelect1;
 import 'package:cry/generated/l10n.dart';
-import 'package:cry/model/order_item_model.dart';
-import 'package:cry/model/page_model.dart';
-import 'package:cry/model/request_body_api.dart';
-import 'package:cry/model/response_body_api.dart';
-import 'package:cry/model/test_tree_model.dart';
-import 'package:cry/utils/http_util.dart';
-import 'package:cry/utils/tree_util.dart';
 import 'package:cry/vo/select_option_vo.dart';
-import 'package:cry/vo/tree_vo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'demo/demo_data_table.dart';
+import 'demo/demo_list_view.dart';
+import 'demo/demo_tree_table.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -112,53 +106,6 @@ class DemoMenu extends StatelessWidget {
     return result;
   }
 }
-
-class DemoDataTable extends StatefulWidget {
-  @override
-  _DemoDataTableState createState() => _DemoDataTableState();
-}
-
-class _DemoDataTableState extends State<DemoDataTable> {
-  PageModel page = PageModel(orders: [OrderItemModel(column: 'update_time')], size: 5);
-
-  @override
-  void initState() {
-    super.initState();
-    _loadData();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    CryDataTable table = CryDataTable(
-      title: 'User List',
-      page: this.page,
-      columns: [
-        DataColumn(label: Text('name')),
-        DataColumn(label: Text('createTime')),
-      ],
-      getCells: (Map m) {
-        return [
-          DataCell(Text(m['name'] ?? '--')),
-          DataCell(Text(m['createTime'] ?? '--')),
-        ];
-      },
-    );
-
-    return Column(
-      children: [
-        CryButtons.query(context, () => _loadData()),
-        table,
-      ],
-    );
-  }
-
-  _loadData() async {
-    ResponseBodyApi responseBodyApi = await HttpUtil.post('/userInfo/page', data: RequestBodyApi(page: page).toMap());
-    this.page = PageModel.fromMap(responseBodyApi.data);
-    setState(() {});
-  }
-}
-
 class DemoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -307,79 +254,5 @@ class DemoImageUpload extends StatelessWidget {
       },
     );
     return imageUpload;
-  }
-}
-
-class DemoTreeTable extends StatefulWidget {
-  @override
-  _DemoTreeTableState createState() => _DemoTreeTableState();
-}
-
-class _DemoTreeTableState extends State<DemoTreeTable> {
-  var data = TreeUtil.toTreeVOList([
-    TestTreeModel(id: '0', c1: 'c1-value0', c2: 'c2-value0'),
-    TestTreeModel(id: '1', pid: '0', c1: 'c1-value1', c2: 'c2-value1'),
-    TestTreeModel(id: '11', pid: '1', c1: 'c11-value11', c2: 'c2-value11'),
-    TestTreeModel(id: '2', pid: '0', c1: 'c1-value2', c2: 'c2-value2'),
-  ]);
-
-  @override
-  Widget build(BuildContext context) {
-    List<CryTreeTableColumnData> columnData = [
-      CryTreeTableColumnData(label: '列3', getCell: (TestTreeModel v) => Icon(Icons.map), width: 100),
-      CryTreeTableColumnData(label: '列1', getCell: (TestTreeModel v) => Text(v.c1)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-    ];
-
-    var treeTable = CryTreeTable(
-      tableWidth: 3000,
-      getRowOper: (v, parent) => [
-        CryButton(
-          iconData: Icons.delete,
-          onPressed: () => print('test'),
-        )
-      ],
-      columnData: columnData,
-      data: data,
-      onSelected: (TreeVO<TestTreeModel> v) {
-        this.setState(() {});
-      },
-    );
-    return treeTable;
-  }
-}
-
-class DemoListView extends StatefulWidget {
-  @override
-  _DemoListViewState createState() => _DemoListViewState();
-}
-
-class _DemoListViewState extends State<DemoListView> {
-  @override
-  Widget build(BuildContext context) {
-    var listView = CryListView(
-      title: 'listViewDemo',
-      count: 50,
-      getCell: (index) {
-        return ListTile(
-          title: Text('test-' + index.toString()),
-        );
-      },
-    );
-    var result = Container(
-      height: 500,
-      child: listView,
-    );
-    return result;
   }
 }
