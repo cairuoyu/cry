@@ -8,6 +8,7 @@ class DemoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var buttons = ButtonBar(
+      alignment: MainAxisAlignment.start,
       children: [
         CryButton(
           iconData: Icons.save,

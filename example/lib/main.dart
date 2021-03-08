@@ -45,22 +45,35 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    var result = Scaffold(
-      appBar: AppBar(
-        title: Text('Cry Demo Home Page'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            DemoMenu(),
-            DemoButton(),
-            DemoImageUpload(),
-            DemoForm(),
-            DemoTreeTable(),
-            DemoDataTable(),
-            DemoListView(),
-          ],
+    var tabs = [
+      Tab(child: Text('Button')),
+      Tab(child: Text('Menu')),
+      Tab(child: Text('Form')),
+      Tab(child: Text('ImageUpload')),
+      Tab(child: Text('DataTable')),
+      Tab(child: Text('TreeTable')),
+      Tab(child: Text('ListView')),
+    ];
+    var tabViews = [
+      DemoButton(),
+      DemoMenu(),
+      DemoForm(),
+      DemoImageUpload(),
+      DemoDataTable(),
+      DemoTreeTable(),
+      DemoListView(),
+    ];
+    var result = DefaultTabController(
+      length: tabs.length,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Cry Demo Home Page'),
+          bottom: TabBar(
+            tabs: tabs,
+          ),
+        ),
+        body: TabBarView(
+          children: tabViews,
         ),
       ),
     );

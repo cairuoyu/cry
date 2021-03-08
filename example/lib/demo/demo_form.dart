@@ -115,6 +115,7 @@ class _DemoFormState extends State<DemoForm> {
         ],
       ),
     );
-    return form;
+    var result = SingleChildScrollView(child: form,);
+    return result;
   }
 }
