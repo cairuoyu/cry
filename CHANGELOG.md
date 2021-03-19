@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.2.6
+* 增加CryFile
+
 ## 0.2.5
 * CryTreeTable的getData改为getCell
 

@@ -1,5 +1,6 @@
 import 'package:cry/common/application_context.dart';
 import 'package:cry/generated/l10n.dart';
+import 'package:example/demo/demo_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -53,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
       Tab(child: Text('DataTable')),
       Tab(child: Text('TreeTable')),
       Tab(child: Text('ListView')),
+      Tab(child: Text('File')),
     ];
     var tabViews = [
       DemoButton(),
@@ -62,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       DemoDataTable(),
       DemoTreeTable(),
       DemoListView(),
+      DemoFile(),
     ];
     var result = DefaultTabController(
       length: tabs.length,
@@ -69,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text('Cry Demo Home Page'),
           bottom: TabBar(
+            isScrollable: true,
             tabs: tabs,
           ),
         ),
