@@ -67,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
       DemoFile(),
     ];
     var result = DefaultTabController(
+      initialIndex: 4,
       length: tabs.length,
       child: Scaffold(
         appBar: AppBar(

@@ -7,76 +7,84 @@ class CryDataTable extends StatefulWidget {
     Key key,
     this.title = '',
     this.columns,
-    this.page,
     this.getCells,
     this.onPageChanged,
+    this.onRowsPerPageChanged,
     this.onSelectChanged,
     this.availableRowsPerPage,
     this.selectable,
   }) : super(key: key);
   final String title;
+
   final List<int> availableRowsPerPage;
   final List<DataColumn> columns;
   final Function getCells;
   final Function onPageChanged;
+  final Function onRowsPerPageChanged;
   final Function onSelectChanged;
   final Function selectable;
-  final PageModel page;
 
   @override
   CryDataTableState createState() => CryDataTableState();
 }
 
 class CryDataTableState extends State<CryDataTable> {
-  _DS _ds = _DS();
+  DS ds = DS();
+  int rowsPerPage = 10;
+  List<DataColumn> columns;
 
   @override
   void initState() {
     super.initState();
-    _ds._getCells = widget.getCells;
-    _ds._onSelectChanged = widget.onSelectChanged;
-    _ds._selectable = widget.selectable;
-    _ds.addListener(() {
-      setState(() {});
-    });
+    ds.getCells = widget.getCells;
+    ds.onSelectChanged = widget.onSelectChanged;
+    ds.selectable = widget.selectable;
+
+    var indexColumn = DataColumn(label: Text('#'));
+    columns = widget.columns ?? [];
+    columns.insert(0, indexColumn);
+  }
+
+  loadData(PageModel pageModel) {
+    ds.pageModel = pageModel;
+
+    if (pageModel.size != rowsPerPage) {
+      setState(() {
+        rowsPerPage = pageModel.size;
+      });
+    } else {
+      ds.reload();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    PageModel page = widget.page ?? PageModel();
-    _ds._page = page;
-    _ds.reload();
-    var indexColumn = DataColumn(label: Text('#'));
-    var columns = widget.columns ?? [];
-    columns.insert(0, indexColumn);
     var result = PaginatedDataTable(
       header: Text(widget.title),
-      rowsPerPage: page.size,
+      rowsPerPage: rowsPerPage,
       availableRowsPerPage: widget.availableRowsPerPage ?? [5, 10, 20, 50],
-      onPageChanged: (firstRowIndex) {
-        int current = (firstRowIndex / page.size + 1) as int;
-        return widget.onPageChanged(page.size, current);
-      },
-      onRowsPerPageChanged: (int value) {
-        return widget.onPageChanged(value, 1);
+      onPageChanged: widget.onPageChanged,
+      onRowsPerPageChanged: (int v) {
+        widget.onRowsPerPageChanged(v);
       },
       columns: columns,
-      source: _ds,
+      source: ds,
       showCheckboxColumn: true,
     );
+
     return result;
   }
 
   List<Map> getSelectedList(PageModel page) {
-    return (page ?? widget.page)?.records?.where((v) => v['selected'] ?? false)?.toList() ?? [];
+    return (page)?.records?.where((v) => v['selected'] ?? false)?.toList() ?? [];
   }
 }
 
-class _DS extends DataTableSource {
-  PageModel _page = PageModel();
-  Function _getCells;
-  Function _onSelectChanged;
-  Function _selectable;
+class DS extends DataTableSource {
+  PageModel pageModel = PageModel();
+  Function getCells;
+  Function onSelectChanged;
+  Function selectable;
 
   reload() {
     notifyListeners();
@@ -84,29 +92,28 @@ class _DS extends DataTableSource {
 
   @override
   DataRow getRow(int index) {
-    var dataIndex = index - _page.size * (_page.current - 1);
-
-    if (dataIndex >= _page.records.length) {
+    var dataIndex = index - pageModel.size * (pageModel.current - 1);
+    if (dataIndex >= pageModel.records.length) {
       return null;
     }
-    Map m = _page.records[dataIndex];
+    Map m = pageModel.records[dataIndex];
 
-    List<DataCell> cells = _getCells == null ? [] : _getCells(m);
+    List<DataCell> cells = getCells == null ? [] : getCells(m);
     cells.insert(0, DataCell(Text((index + 1).toString())));
     bool selected = m['selected'] ?? false;
     return DataRow.byIndex(
       index: index,
       cells: cells,
       selected: selected,
-      onSelectChanged: (this._selectable == null ? true : this._selectable(m))
+      onSelectChanged: (this.selectable == null ? true : this.selectable(m))
           ? (v) {
-        m['selected'] = v;
-        if (_onSelectChanged != null) {
-          _onSelectChanged(m);
-        } else {
-          notifyListeners();
-        }
-      }
+              m['selected'] = v;
+              if (onSelectChanged != null) {
+                onSelectChanged(m);
+              } else {
+                notifyListeners();
+              }
+            }
           : null,
     );
   }
@@ -115,11 +122,8 @@ class _DS extends DataTableSource {
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => _page.total;
+  int get rowCount => pageModel.total;
 
   @override
-  int get selectedRowCount =>
-      (_page?.records
-          ?.where((v) => v['selected'] ?? false)
-          ?.length) ?? 0;
+  int get selectedRowCount => (pageModel?.records?.where((v) => v['selected'] ?? false)?.length) ?? 0;
 }

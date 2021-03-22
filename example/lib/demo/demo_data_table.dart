@@ -13,7 +13,8 @@ class DemoDataTable extends StatefulWidget {
 }
 
 class _DemoDataTableState extends State<DemoDataTable> {
-  PageModel page = PageModel(orders: [OrderItemModel(column: 'update_time')], size: 5);
+  PageModel page = PageModel(orders: [OrderItemModel(column: 'update_time')], size: 10);
+  GlobalKey<CryDataTableState> tableKey = GlobalKey<CryDataTableState>();
 
   @override
   void initState() {
@@ -24,8 +25,8 @@ class _DemoDataTableState extends State<DemoDataTable> {
   @override
   Widget build(BuildContext context) {
     CryDataTable table = CryDataTable(
+      key: tableKey,
       title: 'User List',
-      page: this.page,
       columns: [
         DataColumn(label: Text('name')),
         DataColumn(label: Text('createTime')),
@@ -36,19 +37,36 @@ class _DemoDataTableState extends State<DemoDataTable> {
           DataCell(Text(m['createTime'] ?? '--')),
         ];
       },
+      onPageChanged: (firstRowIndex) {
+        page.current = (firstRowIndex / page.size + 1) as int;
+        _loadData();
+      },
+      onRowsPerPageChanged: (int size) {
+        page.size = size;
+        page.current = 1;
+        _loadData();
+      },
     );
 
-    return Column(
+    var body = Column(
       children: [
         CryButtons.query(context, () => _loadData()),
-        table,
+        Expanded(
+          child: ListView(
+            padding: const EdgeInsets.all(10.0),
+            children: <Widget>[table],
+          ),
+        ),
       ],
+    );
+    return Scaffold(
+      body: body,
     );
   }
 
   _loadData() async {
     ResponseBodyApi responseBodyApi = await HttpUtil.post('/userInfo/page', data: RequestBodyApi(page: page).toMap());
     this.page = PageModel.fromMap(responseBodyApi.data);
-    setState(() {});
+    tableKey.currentState.loadData(page);
   }
 }
