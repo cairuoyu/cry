@@ -32,6 +32,7 @@ class CryDataTableState extends State<CryDataTable> {
   DS ds = DS();
   int rowsPerPage = 10;
   List<DataColumn> columns;
+  GlobalKey<PaginatedDataTableState> tableKey = GlobalKey<PaginatedDataTableState>();
 
   @override
   void initState() {
@@ -43,6 +44,10 @@ class CryDataTableState extends State<CryDataTable> {
     var indexColumn = DataColumn(label: Text('#'));
     columns = widget.columns ?? [];
     columns.insert(0, indexColumn);
+  }
+
+  pageTo(rowIndex) {
+    tableKey.currentState.pageTo(rowIndex);
   }
 
   loadData(PageModel pageModel) {
@@ -60,6 +65,7 @@ class CryDataTableState extends State<CryDataTable> {
   @override
   Widget build(BuildContext context) {
     var result = PaginatedDataTable(
+      key: tableKey,
       header: Text(widget.title),
       rowsPerPage: rowsPerPage,
       availableRowsPerPage: widget.availableRowsPerPage ?? [5, 10, 20, 50],

@@ -1,3 +1,4 @@
+import 'package:cry/cry_button.dart';
 import 'package:cry/cry_buttons.dart';
 import 'package:cry/cry_data_table.dart';
 import 'package:cry/model/order_item_model.dart';
@@ -50,7 +51,16 @@ class _DemoDataTableState extends State<DemoDataTable> {
 
     var body = Column(
       children: [
-        CryButtons.query(context, () => _loadData()),
+        ButtonBar(
+          children: [
+            CryButtons.query(context, () => _loadData()),
+            CryButton(
+                label: 'to page 1',
+                onPressed: () {
+                  tableKey.currentState.pageTo(0);
+                }),
+          ],
+        ),
         Expanded(
           child: ListView(
             padding: const EdgeInsets.all(10.0),
