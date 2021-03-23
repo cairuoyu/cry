@@ -19,6 +19,8 @@ class _DemoFileState extends State<DemoFile> {
         print(res.data);
       },
       buttonLabel: '上传文章',
+      allowedExtensions: ['md', 'txt'],
+      // tip: '支持格式：txt/md',
     );
     return cryFile;
   }

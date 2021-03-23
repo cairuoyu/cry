@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.2.9
+* CryFile增加allowedExtensions/tip
+
 ## 0.2.8
 * 表格增加pageTo
 

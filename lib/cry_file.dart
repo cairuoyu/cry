@@ -8,8 +8,17 @@ class CryFile extends StatefulWidget {
   final Function onSaved;
   final String initFileUrl;
   final String buttonLabel;
+  final String tip;
+  final List<String> allowedExtensions;
 
-  const CryFile({Key key, this.onSaved, this.initFileUrl, this.buttonLabel}) : super(key: key);
+  const CryFile({
+    Key key,
+    this.onSaved,
+    this.initFileUrl,
+    this.buttonLabel,
+    this.tip,
+    this.allowedExtensions,
+  }) : super(key: key);
 
   @override
   _CryFileState createState() => _CryFileState();
@@ -45,10 +54,23 @@ class _CryFileState extends State<CryFile> {
     var result = Expanded(
       child: Column(
         children: [
-          CryButton(
-              iconData: Icons.file_download,
-              label: widget.buttonLabel,
-              onPressed: pickFile),
+          Wrap(
+            alignment: WrapAlignment.start,
+            children: [
+              CryButton(
+                iconData: Icons.file_download,
+                label: widget.buttonLabel,
+                onPressed: pickFile,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  widget.tip ?? (widget.allowedExtensions == null ? '' : '支持格式：' + widget.allowedExtensions.toString()),
+                  style: TextStyle(color: Colors.red),
+                ),
+              )
+            ],
+          ),
           Expanded(
             child: Card(
               child: Markdown(data: content),
@@ -63,7 +85,7 @@ class _CryFileState extends State<CryFile> {
   pickFile() async {
     FilePickerResult result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['md', 'txt'],
+      allowedExtensions: widget.allowedExtensions ?? ['txt'],
     );
 
     if (result == null) {
