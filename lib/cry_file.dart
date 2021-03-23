@@ -56,6 +56,7 @@ class _CryFileState extends State<CryFile> {
         children: [
           Wrap(
             alignment: WrapAlignment.start,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               CryButton(
                 iconData: Icons.file_download,

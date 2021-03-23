@@ -1,5 +1,8 @@
 # 更新日志
 
+## 0.2.10
+* CrySelectDate增加width,padding
+
 ## 0.2.9
 * CryFile增加allowedExtensions/tip
 

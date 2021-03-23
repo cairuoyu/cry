@@ -11,10 +11,14 @@ class CrySelectDate extends CryFormField {
     Key key,
     String value,
     String label,
+    double width,
+    double padding,
     ValueChanged onChange,
     FormFieldSetter onSaved,
   }) : super(
           key: key,
+          width: width,
+          padding: padding,
           builder: (CryFormFieldState state) {
             return TextFormField(
               decoration: InputDecoration(

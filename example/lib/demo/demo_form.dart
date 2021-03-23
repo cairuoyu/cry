@@ -32,6 +32,7 @@ class _DemoFormState extends State<DemoForm> {
     var input2 = cryInput1.CryInput(label: 'testInput1');
     var dateSelect = CrySelectDate(
       context,
+      width: 300,
       label: 'testSelectDate',
     );
     var select = CrySelect(
@@ -115,7 +116,9 @@ class _DemoFormState extends State<DemoForm> {
         ],
       ),
     );
-    var result = SingleChildScrollView(child: form,);
+    var result = SingleChildScrollView(
+      child: form,
+    );
     return result;
   }
 }
