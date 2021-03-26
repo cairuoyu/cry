@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CryButton extends StatelessWidget {
-  final String label;
-  final VoidCallback onPressed;
-  final IconData iconData;
-  final String tip;
-  final EdgeInsets padding;
+  final String? label;
+  final VoidCallback? onPressed;
+  final IconData? iconData;
+  final String? tip;
+  final EdgeInsets? padding;
   CryButton({this.label, this.iconData, this.onPressed, this.tip, this.padding});
 
   @override
@@ -20,7 +20,7 @@ class CryButton extends StatelessWidget {
       } else {
         result = RaisedButton.icon(
           icon: Icon(iconData),
-          label: Text(this.label),
+          label: Text(this.label!),
           onPressed: onPressed,
         );
       }
@@ -37,7 +37,7 @@ class CryButton extends StatelessWidget {
     if (tip != null) {
       result = Tooltip(
         child: result,
-        message: tip,
+        message: tip!,
       );
     }
     return result;

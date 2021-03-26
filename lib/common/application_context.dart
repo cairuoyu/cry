@@ -5,7 +5,7 @@ import 'package:global_configuration/global_configuration.dart';
 class ApplicationContext {
   ApplicationContext._();
 
-  static ApplicationContext _instance;
+  static ApplicationContext? _instance;
 
   static ApplicationContext get instance => _getInstance();
 
@@ -13,11 +13,11 @@ class ApplicationContext {
     if (_instance == null) {
       _instance = ApplicationContext._();
     }
-    return _instance;
+    return _instance!;
   }
 
   Map beanMap = Map();
-  Application application;
+  late Application application;
 
   init() async {
     await this.loadApplication();

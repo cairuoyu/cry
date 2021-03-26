@@ -11,11 +11,11 @@ void cryAlertWidget(BuildContext context, Widget content) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text(S.of(context).information),
+        title: Text(S.of(context)!.information),
         content: content,
         actions: <Widget>[
           FlatButton(
-            child: Text(S.of(context).cancel),
+            child: Text(S.of(context)!.cancel),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -31,17 +31,17 @@ void cryConfirm(BuildContext context, String content, onConfirm) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text(S.of(context).information),
+        title: Text(S.of(context)!.information),
         content: Text(content),
         actions: <Widget>[
           FlatButton(
-            child: Text(S.of(context).cancel),
+            child: Text(S.of(context)!.cancel),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           FlatButton(
-            child: Text(S.of(context).confirm),
+            child: Text(S.of(context)!.confirm),
             onPressed: () {
               onConfirm(context);
             },
@@ -53,12 +53,12 @@ void cryConfirm(BuildContext context, String content, onConfirm) {
 }
 
 cryDialog({
-  BuildContext context,
-  String title,
-  Widget body,
-  Future then,
-  double width,
-  double height,
+  required BuildContext context,
+  required String title,
+  Widget? body,
+  Future? then,
+  double? width,
+  double? height,
 }) {
   AppBar header = AppBar(
     title: Text(title),

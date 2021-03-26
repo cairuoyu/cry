@@ -4,8 +4,8 @@ import 'package:cry/model/page_model.dart';
 import 'package:flutter/foundation.dart';
 
 class RequestBodyApi {
-  PageModel page;
-  Map params;
+  PageModel? page;
+  Map? params;
 
   RequestBodyApi({
     this.page,
@@ -13,8 +13,8 @@ class RequestBodyApi {
   });
 
   RequestBodyApi copyWith({
-    PageModel page,
-    Map params,
+    PageModel? page,
+    Map? params,
   }) {
     return RequestBodyApi(
       page: page ?? this.page,
@@ -30,7 +30,6 @@ class RequestBodyApi {
   }
 
   factory RequestBodyApi.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
 
     return RequestBodyApi(
       page: PageModel.fromMap(map['page']),

@@ -1,17 +1,18 @@
+import 'package:cry/common/common_types.dart';
 import 'package:flutter/material.dart';
 
 class CryListView extends StatefulWidget {
-  final int count;
-  final Function getCell;
-  final VoidCallback loadMore;
-  final RefreshCallback onRefresh;
+  final int? count;
+  final IntWidgetFunction getCell;
+  final VoidCallback? loadMore;
+  final RefreshCallback? onRefresh;
   final CryListViewType cryListViewType;
-  final String title;
+  final String? title;
 
   CryListView({
-    Key key,
+    Key? key,
     this.count,
-    this.getCell,
+    required this.getCell,
     this.loadMore,
     this.cryListViewType = CryListViewType.column,
     this.onRefresh,
@@ -38,7 +39,7 @@ class CryListViewState extends State<CryListView> {
         setState(() {});
       }
       if (widget.loadMore != null && controller.position.maxScrollExtent == controller.position.pixels) {
-        widget.loadMore();
+        widget.loadMore!();
       }
     });
     super.initState();
@@ -51,14 +52,14 @@ class CryListViewState extends State<CryListView> {
       listView = ListView(
         controller: controller,
         children: List.generate(
-          widget.count,
-          (index) => widget.getCell(index),
+          widget.count!,
+          ((int index) => widget.getCell(index)) as Widget Function(int),
         ),
       );
     } else {
       double width = MediaQuery.of(context).size.width;
       int columnCount = width ~/ 500 + 1;
-      int rowConunt = widget.count ~/ columnCount + 1;
+      int rowConunt = widget.count! ~/ columnCount + 1;
       listView = ListView(
         controller: controller,
         children: [
@@ -71,7 +72,7 @@ class CryListViewState extends State<CryListView> {
                     children: [
                       ...List<Widget>.generate(columnCount, (x) {
                         int index = columnCount * y + x;
-                        var card = Padding(padding: EdgeInsets.all(10), child: (index > widget.count - 1) ? Container() : widget.getCell(index));
+                        var card = Padding(padding: EdgeInsets.all(10), child: (index > widget.count! - 1) ? Container() : widget.getCell(index));
                         return Expanded(
                           child: card,
                         );
@@ -86,7 +87,7 @@ class CryListViewState extends State<CryListView> {
       );
     }
     var result = Scaffold(
-      appBar: widget.title == null ? null : AppBar(title: Text(widget.title)),
+      appBar: widget.title == null ? null : AppBar(title: Text(widget.title!)),
       body: RefreshIndicator(
         child: listView,
         onRefresh: widget.onRefresh ?? () async {},

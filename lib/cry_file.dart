@@ -5,14 +5,14 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:dio/dio.dart';
 
 class CryFile extends StatefulWidget {
-  final Function onSaved;
-  final String initFileUrl;
-  final String buttonLabel;
-  final String tip;
-  final List<String> allowedExtensions;
+  final Function? onSaved;
+  final String? initFileUrl;
+  final String? buttonLabel;
+  final String? tip;
+  final List<String>? allowedExtensions;
 
   const CryFile({
-    Key key,
+    Key? key,
     this.onSaved,
     this.initFileUrl,
     this.buttonLabel,
@@ -25,7 +25,7 @@ class CryFile extends StatefulWidget {
 }
 
 class _CryFileState extends State<CryFile> {
-  String content = '';
+  String? content = '';
 
   @override
   void initState() {
@@ -40,9 +40,9 @@ class _CryFileState extends State<CryFile> {
     }
     var res;
     try {
-      res = await Dio().get(widget.initFileUrl);
+      res = await Dio().get(widget.initFileUrl!);
     } catch (e) {
-      print('请求文件出错：[' + widget.initFileUrl + ']' + e.toString());
+      print('请求文件出错：[' + widget.initFileUrl! + ']' + e.toString());
       return;
     }
     content = res.data;
@@ -74,7 +74,7 @@ class _CryFileState extends State<CryFile> {
           ),
           Expanded(
             child: Card(
-              child: Markdown(data: content),
+              child: Markdown(data: content!),
             ),
           ),
         ],
@@ -84,7 +84,7 @@ class _CryFileState extends State<CryFile> {
   }
 
   pickFile() async {
-    FilePickerResult result = await FilePicker.platform.pickFiles(
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: widget.allowedExtensions ?? ['txt'],
     );
@@ -92,10 +92,10 @@ class _CryFileState extends State<CryFile> {
     if (result == null) {
       return;
     }
-    var bytes = result.files.first.bytes;
-    String filename = result.files.first.name;
+    var bytes = result.files.first.bytes!;
+    String? filename = result.files.first.name;
     MultipartFile file = MultipartFile.fromBytes(bytes, filename: filename);
-    await widget.onSaved(file);
+    await widget.onSaved!(file);
     setState(() {
       content = String.fromCharCodes(bytes);
     });

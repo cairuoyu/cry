@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 
 class CryInput extends CryFormField {
   CryInput({
-    Key key,
-    double width,
-    String label,
-    double labelWidth,
-    String value,
-    ValueChanged onChange,
-    FormFieldSetter onSaved,
-    FormFieldValidator<String> validator,
-    bool enable,
+    Key? key,
+    double? width,
+    String? label,
+    double? labelWidth,
+    String? value,
+    ValueChanged? onChange,
+    FormFieldSetter? onSaved,
+    FormFieldValidator<String>? validator,
+    bool? enable,
   }) : super(
           key: key,
           width: width,

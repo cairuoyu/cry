@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CrySearchBar extends StatelessWidget {
-  final ValueChanged onSearch;
-  const CrySearchBar({Key key, this.onSearch}) : super(key: key);
+  final ValueChanged? onSearch;
+  const CrySearchBar({Key? key, this.onSearch}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class CrySearchBar extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(30)),
       child: TextField(
         onSubmitted: (v) {
-          onSearch(v);
+          onSearch!(v);
         },
         cursorColor: Theme.of(context).primaryColor,
         style: TextStyle(color: Colors.black, fontSize: 18),

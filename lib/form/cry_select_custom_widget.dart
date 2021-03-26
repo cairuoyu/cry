@@ -5,16 +5,16 @@ class CrySelectCustomWidget<T> extends FormField<T> {
     BuildContext context, {
     this.controller,
     this.initialValueLabel,
-    Key key,
-    double width,
-    double padding,
-    String label,
-    T initialValue,
-    ValueChanged onChange,
-    FormFieldSetter<T> onSaved,
-    Function getValueLabel,
-    Function getValue,
-    Widget popWidget,
+    Key? key,
+    double? width,
+    double? padding,
+    String? label,
+    T? initialValue,
+    ValueChanged? onChange,
+    FormFieldSetter<T>? onSaved,
+    Function? getValueLabel,
+    Function? getValue,
+    Widget? popWidget,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -30,13 +30,13 @@ class CrySelectCustomWidget<T> extends FormField<T> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => popWidget),
+                    MaterialPageRoute(builder: (context) => popWidget!),
                   ).then((res) {
                     if (res == null) {
                       return;
                     }
-                    String valueLabel = getValueLabel(res);
-                    initialValue = getValue(res);
+                    String valueLabel = getValueLabel!(res);
+                    initialValue = getValue!(res);
                     field.didChange(initialValue);
                     state.didChangeValueLabel(valueLabel);
                   });
@@ -50,21 +50,21 @@ class CrySelectCustomWidget<T> extends FormField<T> {
           },
         );
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
-  final String initialValueLabel;
+  final String? initialValueLabel;
 
   @override
   _CrySelectCustomWidgetState<T> createState() => _CrySelectCustomWidgetState();
 }
 
 class _CrySelectCustomWidgetState<T> extends FormFieldState<T> {
-  TextEditingController _controller;
+  TextEditingController? _controller;
 
-  TextEditingController get _effectiveController => widget.controller ?? _controller;
+  TextEditingController? get _effectiveController => widget.controller ?? _controller;
 
   @override
-  CrySelectCustomWidget<T> get widget => super.widget as CrySelectCustomWidget;
+  CrySelectCustomWidget<T> get widget => (super.widget as CrySelectCustomWidget) as CrySelectCustomWidget<T>;
 
   @override
   void initState() {
@@ -76,11 +76,11 @@ class _CrySelectCustomWidgetState<T> extends FormFieldState<T> {
 
   @override
   void reset() {
-    _effectiveController.text = widget.initialValueLabel ?? '';
+    _effectiveController!.text = widget.initialValueLabel ?? '';
     super.reset();
   }
 
   didChangeValueLabel(String valueLable) {
-    _effectiveController.text = valueLable;
+    _effectiveController!.text = valueLable;
   }
 }

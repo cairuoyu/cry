@@ -1,5 +1,8 @@
 # 更新日志
 
+## 1.0.0
+* Migrating to null safety
+
 ## 0.2.10
 * CrySelectDate增加width,padding
 

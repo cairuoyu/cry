@@ -8,13 +8,13 @@ import 'cry_form_field.dart';
 class CrySelectDate extends CryFormField {
   CrySelectDate(
     BuildContext context, {
-    Key key,
-    String value,
-    String label,
-    double width,
-    double padding,
-    ValueChanged onChange,
-    FormFieldSetter onSaved,
+    Key? key,
+    String? value,
+    String? label,
+    double? width,
+    double? padding,
+    ValueChanged? onChange,
+    FormFieldSetter? onSaved,
   }) : super(
           key: key,
           width: width,
@@ -32,8 +32,8 @@ class CrySelectDate extends CryFormField {
                 }
               },
               onTap: () async {
-                DateTime valueDt = isBlank(value) ? DateTime.now() : DateTime.parse(value);
-                final DateTime picked = await showDatePicker(
+                DateTime valueDt = isBlank(value) ? DateTime.now() : DateTime.parse(value!);
+                final DateTime? picked = await showDatePicker(
                   context: context,
                   initialDate: valueDt,
                   firstDate: DateTime(1900, 1),

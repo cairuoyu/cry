@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 class ImageModel {
-  String title;
-  String url;
-  String categoryId;
-  String thumbs;
-  String memo;
-  String createTime;
+  String? title;
+  String? url;
+  String? categoryId;
+  String? thumbs;
+  String? memo;
+  String? createTime;
 
   ImageModel({
     this.title,
@@ -18,12 +18,12 @@ class ImageModel {
   });
 
   ImageModel copyWith({
-    String title,
-    String url,
-    String categoryId,
-    String thumbs,
-    String memo,
-    String createTime,
+    String? title,
+    String? url,
+    String? categoryId,
+    String? thumbs,
+    String? memo,
+    String? createTime,
   }) {
     return ImageModel(
       title: title ?? this.title,
@@ -47,7 +47,6 @@ class ImageModel {
   }
 
   factory ImageModel.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
 
     return ImageModel(
       title: map['title'],

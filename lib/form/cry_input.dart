@@ -5,19 +5,19 @@ import 'cry_form_field.dart';
 
 class CryInput extends CryFormField {
   CryInput({
-    Key key,
-    double width,
-    double padding,
-    double contentPadding,
-    int maxLines,
-    String label,
-    String value,
-    ValueChanged onChange,
-    FormFieldSetter<String> onSaved,
-    FormFieldValidator<String> validator,
-    bool enable,
+    Key? key,
+    double? width,
+    double? padding,
+    double? contentPadding,
+    int? maxLines,
+    String? label,
+    String? value,
+    ValueChanged? onChange,
+    FormFieldSetter<String>? onSaved,
+    FormFieldValidator<String>? validator,
+    bool? enable,
     bool required = false,
-    List<TextInputFormatter> inputFormatters,
+    List<TextInputFormatter>? inputFormatters,
   }) : super(
           key: key,
           width: width,
@@ -43,7 +43,7 @@ class CryInput extends CryFormField {
                 }
               },
               validator: (v) {
-                if (required && v.isEmpty) {
+                if (required && v!.isEmpty) {
                   return '必填';
                 }
                 if (validator != null) {

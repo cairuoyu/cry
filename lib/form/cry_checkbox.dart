@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CryCheckbox extends StatefulWidget {
   final String label;
   final bool value;
-  final ValueChanged<bool> onChanged;
+  final ValueChanged<bool?> onChanged;
 
   CryCheckbox(this.label, this.value, this.onChanged);
 
@@ -12,7 +12,7 @@ class CryCheckbox extends StatefulWidget {
 }
 
 class _CryCheckboxState extends State<CryCheckbox> {
-  bool _value;
+  bool? _value;
 
   @override
   void didUpdateWidget(covariant CryCheckbox oldWidget) {

@@ -2,13 +2,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class CryMenu<T> extends StatefulWidget {
-  final Widget child;
-  final PopupMenuItemBuilder<T> itemBuilder;
-  final PopupMenuItemSelected<T> onSelected;
-  final PopupMenuCanceled onCanceled;
+  final Widget? child;
+  final PopupMenuItemBuilder<T>? itemBuilder;
+  final PopupMenuItemSelected<T>? onSelected;
+  final PopupMenuCanceled? onCanceled;
 
   const CryMenu({
-    Key key,
+    Key? key,
     this.child,
     this.itemBuilder,
     this.onCanceled,
@@ -20,8 +20,8 @@ class CryMenu<T> extends StatefulWidget {
 }
 
 class _CryMenuState<T> extends State<CryMenu<T>> {
-  Offset position;
-  RenderBox overlay;
+  late Offset position;
+  RenderBox? overlay;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class _CryMenuState<T> extends State<CryMenu<T>> {
         position = details.globalPosition;
       },
       onLongPress: () {
-        overlay = Overlay.of(context).context.findRenderObject();
+        overlay = Overlay.of(context)!.context.findRenderObject() as RenderBox?;
         showCryMenu();
       },
       child: Listener(
@@ -38,7 +38,7 @@ class _CryMenuState<T> extends State<CryMenu<T>> {
         onPointerDown: (event) {
           if (event.buttons == 2) {
             position = event.position;
-            overlay = Overlay.of(context).context.findRenderObject();
+            overlay = Overlay.of(context)!.context.findRenderObject() as RenderBox?;
             showCryMenu();
           }
         },
@@ -49,21 +49,21 @@ class _CryMenuState<T> extends State<CryMenu<T>> {
   }
 
   showCryMenu() {
-    var items = widget.itemBuilder(context);
+    List<PopupMenuEntry<T>> items = widget.itemBuilder!(context);
     showMenu(
       context: context,
       position: RelativeRect.fromRect(
         position & Size.zero,
-        Offset.zero & overlay.size,
+        Offset.zero & overlay!.size,
       ),
       items: items,
-    ).then<void>((T newValue) {
+    ).then<void>((T? newValue) {
       if (!mounted) return null;
       if (newValue == null) {
-        if (widget.onCanceled != null) widget.onCanceled();
+        if (widget.onCanceled != null) widget.onCanceled!();
         return null;
       }
-      if (widget.onSelected != null) widget.onSelected(newValue);
+      if (widget.onSelected != null) widget.onSelected!(newValue);
     });
   }
 }

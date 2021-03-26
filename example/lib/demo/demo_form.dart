@@ -25,7 +25,7 @@ class _DemoFormState extends State<DemoForm> {
       label: 'testInput',
       value: testValue1,
       onSaved: (v) {
-        this.testValue1 = v;
+        this.testValue1 = v!;
       },
     );
     var input1 = CryInput(label: 'testInput', width: 400);
@@ -50,17 +50,17 @@ class _DemoFormState extends State<DemoForm> {
       ],
     );
     var checkbox1 = CryCheckbox('checkboxTestLabel', this.testValue2, (v) {
-      this.testValue2 = v;
+      this.testValue2 = v!;
     });
     var checkbox2 = CryCheckbox('checkboxTestLabel', false, (v) {});
     var reset = CryButtons.reset(context, () {
       this.testValue2 = true;
-      formKey.currentState.reset();
+      formKey.currentState?.reset();
       setState(() {});
     });
     var save = CryButtons.save(context, () {
       print('save');
-      formKey.currentState.save();
+      formKey.currentState?.save();
       print(testValue1);
       print(testValue2);
     });

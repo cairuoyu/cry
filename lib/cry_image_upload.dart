@@ -17,10 +17,10 @@ class CryImageUpload extends StatefulWidget {
     this.updateAreaDefault,
   });
 
-  final Function onUpload;
-  final List<String> fileList;
+  final Function? onUpload;
+  final List<String>? fileList;
   final double updateAreaSize;
-  final Widget updateAreaDefault;
+  final Widget? updateAreaDefault;
 
   @override
   CryImageUploadState createState() => CryImageUploadState();
@@ -28,10 +28,10 @@ class CryImageUpload extends StatefulWidget {
 
 class CryImageUploadState extends State<CryImageUpload> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  PickedFile pickedFile;
+  PickedFile? pickedFile;
   final ImagePicker imagePicker = ImagePicker();
   ImageModel image = ImageModel();
-  Uint8List imageBytes;
+  Uint8List? imageBytes;
   final limitMessage = '图片大小不能超过10M';
   bool isHover = false;
 
@@ -112,11 +112,11 @@ class CryImageUploadState extends State<CryImageUpload> {
           child: Column(
             children: [
               ListTile(
-                title: Text(S.of(context).gallery),
+                title: Text(S.of(context)!.gallery),
                 onTap: () => pickImage(ImageSource.gallery, context: context),
               ),
               ListTile(
-                title: Text(S.of(context).camera),
+                title: Text(S.of(context)!.camera),
                 onTap: () => pickImage(ImageSource.camera, context: context),
               )
             ],
@@ -126,11 +126,11 @@ class CryImageUploadState extends State<CryImageUpload> {
     );
   }
 
-  pickImage(ImageSource source, {BuildContext context}) async {
+  pickImage(ImageSource source, {BuildContext? context}) async {
     pickedFile = await imagePicker.getImage(source: source);
-    imageBytes = await pickedFile.readAsBytes();
-    if (imageBytes.length > 1000 * 1000 * 10) {
-      cryAlert(context, limitMessage);
+    imageBytes = await pickedFile!.readAsBytes();
+    if (imageBytes!.length > 1000 * 1000 * 10) {
+      cryAlert(context!, limitMessage);
       pickedFile = null;
       imageBytes = null;
       setState(() {});
@@ -138,7 +138,7 @@ class CryImageUploadState extends State<CryImageUpload> {
     }
 
     if (pickedFile != null) {
-      widget.onUpload(imageBytes);
+      widget.onUpload!(imageBytes);
     }
     setState(() {});
     if (context != null) {
@@ -149,13 +149,13 @@ class CryImageUploadState extends State<CryImageUpload> {
   Widget previewImage() {
     if (pickedFile != null) {
       if (kIsWeb) {
-        return Image.network(pickedFile.path);
+        return Image.network(pickedFile!.path);
       } else {
-        return Image.file(File(pickedFile.path));
+        return Image.file(File(pickedFile!.path));
       }
     }
-    if (widget.fileList != null && widget.fileList.length > 0 && widget.fileList[0] != null) {
-      return Image.network(widget.fileList[0]);
+    if (widget.fileList != null && widget.fileList!.length > 0) {
+      return Image.network(widget.fileList![0]);
     } else {
       return widget.updateAreaDefault ?? Container();
     }

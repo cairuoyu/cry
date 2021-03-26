@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 
 class CryToggleButtons extends StatefulWidget {
   final List<SelectOptionVO> options;
-  final Object defaultValue;
-  final double fontSize;
-  final ValueChanged afterOnPress;
+  final Object? defaultValue;
+  final double? fontSize;
+  final ValueChanged? afterOnPress;
   CryToggleButtons(this.options, {this.defaultValue, this.fontSize, this.afterOnPress});
   @override
   CryToggleButtonsState createState() => CryToggleButtonsState();
 }
 
 class CryToggleButtonsState extends State<CryToggleButtons> {
-  List<bool> isSelected;
+  late List<bool> isSelected;
   @override
   void initState() {
     super.initState();
@@ -25,7 +25,7 @@ class CryToggleButtonsState extends State<CryToggleButtons> {
     var list = widget.options
         .map((e) => Padding(
               child: Text(
-                e.label,
+                e.label!,
                 style: TextStyle(fontSize: widget.fontSize),
               ),
               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -40,7 +40,7 @@ class CryToggleButtonsState extends State<CryToggleButtons> {
               isSelected[i] = i == index;
             });
           }
-          widget.afterOnPress(widget.options[index].value);
+          widget.afterOnPress!(widget.options[index].value);
         });
       },
       isSelected: isSelected,

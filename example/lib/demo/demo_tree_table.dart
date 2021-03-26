@@ -22,18 +22,19 @@ class _DemoTreeTableState extends State<DemoTreeTable> {
   Widget build(BuildContext context) {
     List<CryTreeTableColumnData> columnData = [
       CryTreeTableColumnData(label: '列3', getCell: (TestTreeModel v) => Icon(Icons.map), width: 100),
-      CryTreeTableColumnData(label: '列1', getCell: (TestTreeModel v) => Text(v.c1)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
-      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2)),
+      CryTreeTableColumnData(label: '列1', getCell: (TestTreeModel v) => Text(v.c1??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
+      CryTreeTableColumnData(label: '列2', getCell: (TestTreeModel v) => Text(v.c2??'--')),
     ];
 
     var treeTable = CryTreeTable(

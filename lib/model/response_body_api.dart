@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 class ResponseBodyApi<T> {
-  bool success;
-  String code;
-  String message;
-  T data;
+  bool? success;
+  String? code;
+  String? message;
+  T? data;
   ResponseBodyApi({
     this.success,
     this.code,
@@ -13,10 +13,10 @@ class ResponseBodyApi<T> {
   });
 
   ResponseBodyApi<T> copyWith({
-    bool success,
-    String code,
-    String message,
-    T data,
+    bool? success,
+    String? code,
+    String? message,
+    T? data,
   }) {
     return ResponseBodyApi<T>(
       success: success ?? this.success,
@@ -36,8 +36,7 @@ class ResponseBodyApi<T> {
   }
 
   factory ResponseBodyApi.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-  
+
     return ResponseBodyApi<T>(
       success: map['success'],
       code: map['code'],

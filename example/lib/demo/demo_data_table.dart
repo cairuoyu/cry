@@ -57,7 +57,7 @@ class _DemoDataTableState extends State<DemoDataTable> {
             CryButton(
                 label: 'to page 1',
                 onPressed: () {
-                  tableKey.currentState.pageTo(0);
+                  tableKey.currentState?.pageTo(0);
                 }),
           ],
         ),
@@ -77,6 +77,6 @@ class _DemoDataTableState extends State<DemoDataTable> {
   _loadData() async {
     ResponseBodyApi responseBodyApi = await HttpUtil.post('/userInfo/page', data: RequestBodyApi(page: page).toMap());
     this.page = PageModel.fromMap(responseBodyApi.data);
-    tableKey.currentState.loadData(page);
+    tableKey.currentState?.loadData(page);
   }
 }

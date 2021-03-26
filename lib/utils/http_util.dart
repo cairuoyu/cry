@@ -5,7 +5,7 @@ import 'package:cry/model/response_body_api.dart';
 import 'package:dio/dio.dart';
 
 class HttpUtil {
-  static Dio dio;
+  static Dio? dio;
   static const String POST = 'post';
   static const String GET = 'get';
 
@@ -21,7 +21,7 @@ class HttpUtil {
     data = data ?? {};
     method = method ?? POST;
 
-    Dio dio = createInstance();
+    Dio dio = createInstance()!;
     dio.options.method = method;
 
     ResponseBodyApi responseBodyApi;
@@ -35,19 +35,19 @@ class HttpUtil {
     return responseBodyApi;
   }
 
-  static Dio createInstance() {
+  static Dio? createInstance() {
     if (dio == null) {
       Application application = ApplicationContext.instance.application;
       BaseOptions options = new BaseOptions(
-        baseUrl: application.baseUrl,
+        baseUrl: application.baseUrl!,
         connectTimeout: application.connectTimeout,
         receiveTimeout: application.receiveTimeout,
       );
 
       dio = new Dio(options);
-      List<Interceptor> list = ApplicationContext.instance.getBean(CryConstant.KEY_DIO_INTERCEPTORS);
+      List<Interceptor>? list = ApplicationContext.instance.getBean(CryConstant.KEY_DIO_INTERCEPTORS);
       if (list != null && list.isNotEmpty) {
-        dio.interceptors.addAll(list);
+        dio!.interceptors.addAll(list);
       }
     }
 

@@ -1,16 +1,16 @@
 import 'dart:convert';
 
 class OrderItemModel {
-  String column;
-  bool asc;
+  String? column;
+  bool? asc;
   OrderItemModel({
     this.column,
     this.asc,
   });
 
   OrderItemModel copyWith({
-    String column,
-    bool asc,
+    String? column,
+    bool? asc,
   }) {
     return OrderItemModel(
       column: column ?? this.column,
@@ -26,7 +26,6 @@ class OrderItemModel {
   }
 
   factory OrderItemModel.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
 
     return OrderItemModel(
       column: map['column'],

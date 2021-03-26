@@ -4,11 +4,11 @@ import 'cry_from_field.dart';
 
 class CrySelect extends CryFormField {
   CrySelect({
-    Key key,
-    String label,
-    String value,
-    ValueChanged onChange,
-    FormFieldSetter onSaved,
+    Key? key,
+    String? label,
+    String? value,
+    ValueChanged? onChange,
+    FormFieldSetter? onSaved,
     List<SelectOptionVO> dataList = const [],
   }) : super(
           key: key,
@@ -22,8 +22,8 @@ class CrySelect extends CryFormField {
               value: value,
               items: dataList.map((v) {
                 return DropdownMenuItem<String>(
-                  value: v.value,
-                  child: Text(v.label),
+                  value: v.value as String?,
+                  child: Text(v.label!),
                 );
               }).toList(),
               onChanged: (v) {

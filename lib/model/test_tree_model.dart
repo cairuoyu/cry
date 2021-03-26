@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:cry/vo/tree_vo.dart';
 
 class TestTreeModel extends TreeData {
-  String id;
-  String pid;
-  bool checked;
-  String c1;
-  String c2;
+  String? id;
+  String? pid;
+  bool? checked;
+  String? c1;
+  String? c2;
 
   TestTreeModel({
     this.id,
@@ -18,11 +18,11 @@ class TestTreeModel extends TreeData {
   }) : super(id, pid);
 
   TestTreeModel copyWith({
-    String id,
-    String pid,
-    bool checked,
-    String c1,
-    String c2,
+    String? id,
+    String? pid,
+    bool? checked,
+    String? c1,
+    String? c2,
   }) {
     return TestTreeModel(
       id: id ?? this.id,
@@ -44,8 +44,7 @@ class TestTreeModel extends TreeData {
   }
 
   factory TestTreeModel.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-  
+
     return TestTreeModel(
       id: map['id'],
       pid: map['pid'],

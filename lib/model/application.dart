@@ -1,60 +1,58 @@
-import 'dart:convert';
 
 class Application {
-  String baseUrl;
-  int connectTimeout;
-  int receiveTimeout;
+  String? baseUrl;
+  int? connectTimeout;
+  int? receiveTimeout;
+
 
   Application({
-    this.baseUrl = "http://cairuoyu.com/api/",
+    this.baseUrl,
     this.connectTimeout,
     this.receiveTimeout,
   });
 
   Application copyWith({
-    String baseUrl,
-    int connectTimeout,
-    int receiveTimeout,
+    String? baseUrl,
+    int? connectTimeout,
+    int? receiveTimeout,
   }) {
-    return Application(
+    return new Application(
       baseUrl: baseUrl ?? this.baseUrl,
       connectTimeout: connectTimeout ?? this.connectTimeout,
       receiveTimeout: receiveTimeout ?? this.receiveTimeout,
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'baseUrl': baseUrl,
-      'connectTimeout': connectTimeout,
-      'receiveTimeout': receiveTimeout,
-    };
+  @override
+  String toString() {
+    return 'Application{baseUrl: $baseUrl, connectTimeout: $connectTimeout, receiveTimeout: $receiveTimeout}';
   }
-
-  factory Application.fromMap(Map<String, dynamic> map) {
-    if (map == null) return null;
-
-    return Application(
-      baseUrl: map['baseUrl'],
-      connectTimeout: map['connectTimeout'],
-      receiveTimeout: map['receiveTimeout'],
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Application.fromJson(String source) => Application.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Application(baseUrl: $baseUrl, connectTimeout: $connectTimeout, receiveTimeout: $receiveTimeout)';
-
-  @override
-  bool operator ==(Object o) {
-    if (identical(this, o)) return true;
-
-    return o is Application && o.baseUrl == baseUrl && o.connectTimeout == connectTimeout && o.receiveTimeout == receiveTimeout;
-  }
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Application && runtimeType == other.runtimeType && baseUrl == other.baseUrl && connectTimeout == other.connectTimeout && receiveTimeout == other.receiveTimeout);
 
   @override
   int get hashCode => baseUrl.hashCode ^ connectTimeout.hashCode ^ receiveTimeout.hashCode;
+
+  factory Application.fromMap(Map<String, dynamic> map) {
+    return new Application(
+      baseUrl: map['baseUrl'] as String,
+      connectTimeout: map['connectTimeout'] as int,
+      receiveTimeout: map['receiveTimeout'] as int,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    // ignore: unnecessary_cast
+    return {
+      'baseUrl': this.baseUrl,
+      'connectTimeout': this.connectTimeout,
+      'receiveTimeout': this.receiveTimeout,
+    } as Map<String, dynamic>;
+  }
+
+//</editor-fold>
+
 }
