@@ -4,18 +4,19 @@ import 'package:flutter/material.dart';
 import 'cry_from_field.dart';
 
 class CrySelectDate extends CryFormField {
-  CrySelectDate({
+  CrySelectDate(
+    BuildContext context, {
     Key? key,
     String? value,
     String? label,
     ValueChanged? onChange,
     FormFieldSetter? onSaved,
-    BuildContext? context,
   }) : super(
           key: key,
           label: label,
           builder: (CryFormFieldState state) {
             return TextFormField(
+              readOnly: true,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 10),
                 border: OutlineInputBorder(),
@@ -28,7 +29,7 @@ class CrySelectDate extends CryFormField {
               },
               onTap: () async {
                 final DateTime picked = (await showDatePicker(
-                  context: context!,
+                  context: context,
                   initialDate: DateTime.now(),
                   firstDate: DateTime(2015, 8),
                   lastDate: DateTime(2101),

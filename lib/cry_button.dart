@@ -18,14 +18,14 @@ class CryButton extends StatelessWidget {
           onPressed: onPressed,
         );
       } else {
-        result = RaisedButton.icon(
+        result = ElevatedButton.icon(
           icon: Icon(iconData),
           label: Text(this.label!),
           onPressed: onPressed,
         );
       }
     } else {
-      result = RaisedButton(
+      result = ElevatedButton(
         child: Text(this.label ?? ''),
         onPressed: onPressed,
       );

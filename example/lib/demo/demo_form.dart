@@ -6,8 +6,7 @@ import 'package:cry/form/cry_input.dart';
 import 'package:cry/form/cry_select.dart';
 import 'package:cry/form/cry_select_custom_widget.dart';
 import 'package:cry/form/cry_select_date.dart';
-import 'package:cry/form1/cry_input.dart' as cryInput1;
-import 'package:cry/form1/cry_select.dart' as crySelect1;
+import 'package:cry/form1/index.dart' as form1;
 
 class DemoForm extends StatefulWidget {
   @override
@@ -29,7 +28,6 @@ class _DemoFormState extends State<DemoForm> {
       },
     );
     var input1 = CryInput(label: 'testInput', width: 400);
-    var input2 = cryInput1.CryInput(label: 'testInput1');
     var dateSelect = CrySelectDate(
       context,
       width: 300,
@@ -37,13 +35,6 @@ class _DemoFormState extends State<DemoForm> {
     );
     var select = CrySelect(
       label: 'testSelect',
-      dataList: [
-        SelectOptionVO(label: '1', value: 'a'),
-        SelectOptionVO(label: '2', value: 'b'),
-      ],
-    );
-    var select1 = crySelect1.CrySelect(
-      label: 'testSelect1',
       dataList: [
         SelectOptionVO(label: '1', value: 'a'),
         SelectOptionVO(label: '2', value: 'b'),
@@ -92,6 +83,15 @@ class _DemoFormState extends State<DemoForm> {
         return '$v-valueLabel';
       },
     );
+    var form1Input = form1.CryInput(label: 'form1Input');
+    var form1Select = form1.CrySelect(
+      label: 'form1Select',
+      dataList: [
+        SelectOptionVO(label: '1', value: 'a'),
+        SelectOptionVO(label: '2', value: 'b'),
+      ],
+    );
+    var form1SelectDate = form1.CrySelectDate(context, label: 'form1SelectDate');
     var form = Form(
       key: formKey,
       child: Column(
@@ -109,8 +109,9 @@ class _DemoFormState extends State<DemoForm> {
           dateSelect,
           Wrap(
             children: [
-              input2,
-              select1,
+              form1Input,
+              form1Select,
+              form1SelectDate,
             ],
           ),
         ],

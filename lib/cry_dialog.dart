@@ -14,7 +14,7 @@ void cryAlertWidget(BuildContext context, Widget content) {
         title: Text(S.of(context)!.information),
         content: content,
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             child: Text(S.of(context)!.cancel),
             onPressed: () {
               Navigator.of(context).pop();
@@ -34,13 +34,13 @@ void cryConfirm(BuildContext context, String content, onConfirm) {
         title: Text(S.of(context)!.information),
         content: Text(content),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             child: Text(S.of(context)!.cancel),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
-          FlatButton(
+          TextButton(
             child: Text(S.of(context)!.confirm),
             onPressed: () {
               onConfirm(context);

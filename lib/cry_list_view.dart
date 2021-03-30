@@ -53,7 +53,7 @@ class CryListViewState extends State<CryListView> {
         controller: controller,
         children: List.generate(
           widget.count!,
-          ((int index) => widget.getCell(index)) as Widget Function(int),
+          ((int index) => widget.getCell(index)),
         ),
       );
     } else {

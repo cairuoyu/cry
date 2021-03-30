@@ -1,5 +1,8 @@
 # 更新日志
 
+## 1.0.1
+* Flutter按钮升级到2.0，日期选择只读
+
 ## 1.0.0
 * Migrating to null safety
 

@@ -21,6 +21,7 @@ class CrySelectDate extends CryFormField {
           padding: padding,
           builder: (CryFormFieldState state) {
             return TextFormField(
+              readOnly: true,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(horizontal: 10),
                 labelText: label,
