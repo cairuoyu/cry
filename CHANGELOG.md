@@ -1,5 +1,8 @@
 # 更新日志
 
+## 1.0.2
+* CryImageFile中的fileList项可为空
+
 ## 1.0.1
 * Flutter按钮升级到2.0，日期选择只读
 

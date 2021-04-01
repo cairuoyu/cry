@@ -18,7 +18,7 @@ class CryImageUpload extends StatefulWidget {
   });
 
   final Function? onUpload;
-  final List<String>? fileList;
+  final List<String?>? fileList;
   final double updateAreaSize;
   final Widget? updateAreaDefault;
 
@@ -154,8 +154,8 @@ class CryImageUploadState extends State<CryImageUpload> {
         return Image.file(File(pickedFile!.path));
       }
     }
-    if (widget.fileList != null && widget.fileList!.length > 0) {
-      return Image.network(widget.fileList![0]);
+    if (widget.fileList != null && widget.fileList!.length > 0 && widget.fileList![0] != null) {
+      return Image.network(widget.fileList![0]!);
     } else {
       return widget.updateAreaDefault ?? Container();
     }
