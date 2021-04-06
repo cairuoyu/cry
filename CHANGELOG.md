@@ -1,7 +1,7 @@
 # 更新日志
 
-## 1.0.3
-* 新增CryButtonBar
+## 1.0.4
+* 修改CryButtonBar
 
 ## 1.0.2
 * CryImageFile中的fileList项可为空
