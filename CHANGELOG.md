@@ -1,5 +1,8 @@
 # 更新日志
 
+## 1.0.5
+* 修复CryDataTable点击选择框无效
+
 ## 1.0.4
 * 修改CryButtonBar
 

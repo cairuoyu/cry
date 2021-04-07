@@ -38,6 +38,9 @@ class _DemoDataTableState extends State<DemoDataTable> {
           DataCell(Text(m['createTime'] ?? '--')),
         ];
       },
+      onSelectChanged: (Map selected) {
+        this.setState(() {});
+      },
       onPageChanged: (firstRowIndex) {
         page.current = (firstRowIndex / page.size + 1) as int;
         _loadData();

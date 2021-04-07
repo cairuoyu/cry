@@ -116,9 +116,8 @@ class DS extends DataTableSource {
               m['selected'] = v;
               if (onSelectChanged != null) {
                 onSelectChanged!(m);
-              } else {
-                notifyListeners();
               }
+              notifyListeners();
             }
           : null,
     );
