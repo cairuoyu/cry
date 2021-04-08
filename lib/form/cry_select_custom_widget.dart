@@ -14,7 +14,7 @@ class CrySelectCustomWidget<T> extends FormField<T> {
     FormFieldSetter<T>? onSaved,
     Function? getValueLabel,
     Function? getValue,
-    Widget? popWidget,
+    required Widget popWidget,
   }) : super(
           key: key,
           initialValue: initialValue,
@@ -30,13 +30,13 @@ class CrySelectCustomWidget<T> extends FormField<T> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => popWidget!),
+                    MaterialPageRoute(builder: (context) => popWidget),
                   ).then((res) {
                     if (res == null) {
                       return;
                     }
-                    String valueLabel = getValueLabel!(res);
-                    initialValue = getValue!(res);
+                    String valueLabel = getValueLabel == null ? res.toString() : getValueLabel(res);
+                    initialValue = getValue == null ? res.toString() : getValue(res);
                     field.didChange(initialValue);
                     state.didChangeValueLabel(valueLabel);
                   });
