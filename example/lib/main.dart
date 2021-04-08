@@ -1,6 +1,5 @@
 import 'package:cry/common/application_context.dart';
 import 'package:cry/generated/l10n.dart';
-import 'package:example/demo/demo_cascade.dart';
 import 'package:example/demo/demo_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -47,10 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     var tabs = [
-      Tab(child: Text('Cascade')),
+      Tab(child: Text('Form')),
       Tab(child: Text('Button')),
       Tab(child: Text('Menu')),
-      Tab(child: Text('Form')),
       Tab(child: Text('ImageUpload')),
       Tab(child: Text('DataTable')),
       Tab(child: Text('TreeTable')),
@@ -58,10 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
       Tab(child: Text('File')),
     ];
     var tabViews = [
-      DeomCascade(),
+      DemoForm(),
       DemoButton(),
       DemoMenu(),
-      DemoForm(),
       DemoImageUpload(),
       DemoDataTable(),
       DemoTreeTable(),

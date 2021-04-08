@@ -1,8 +1,9 @@
 import 'package:cry/cry_buttons.dart';
+import 'package:cry/model/cascade_model.dart';
 import 'package:flutter/material.dart';
 
 class CryCascade extends StatefulWidget {
-  final List<Map<String, Object>> data;
+  final List<CascadeModel> data;
   final String? title;
 
   const CryCascade({
@@ -20,7 +21,7 @@ class _CryCascadeState extends State<CryCascade> {
 
   @override
   void initState() {
-    pages = [
+    pages.add(
       CascadePage(
         key: UniqueKey(),
         data: widget.data,
@@ -28,7 +29,7 @@ class _CryCascadeState extends State<CryCascade> {
         to: addPage,
         ok: (v) => Navigator.pop(context, v),
       ),
-    ];
+    );
     super.initState();
   }
 
@@ -65,7 +66,7 @@ class _CryCascadeState extends State<CryCascade> {
 }
 
 class CascadePage extends Page {
-  final List<Map<String, Object>> data;
+  final List<CascadeModel> data;
   final String? title;
   final Function to;
   final Function ok;
@@ -84,17 +85,17 @@ class CascadePage extends Page {
       itemCount: data.length,
       itemBuilder: (c, i) {
         var d = data[i];
-        var result = d['children'] == null
+        var result = d.children == null
             ? ListTile(
-                title: Text(d["name"].toString()),
+                title: Text(d.name.toString()),
                 onTap: () {
                   ok(d);
                 },
               )
             : ListTile(
-                title: Text(d["name"].toString()),
+                title: Text(d.name.toString()),
                 onTap: () {
-                  to(d['children'], d['name']);
+                  to(d.children, d.name);
                 },
                 trailing: Icon(Icons.chevron_right),
               );
@@ -107,7 +108,7 @@ class CascadePage extends Page {
         return Scaffold(
           appBar: AppBar(
             title: Text(title ?? ''),
-            actions: [CryButtons.cancel(context, () => ok(null))],
+            actions: [CryButtons.cancel(context, () => ok(null), showLabel: false)],
           ),
           body: listView,
         );

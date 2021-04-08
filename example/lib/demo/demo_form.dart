@@ -1,11 +1,8 @@
-import 'package:cry/cry_buttons.dart';
+import 'package:cry/cry.dart';
+import 'package:cry/data/location.dart';
+import 'package:cry/model/cascade_model.dart';
 import 'package:cry/vo/select_option_vo.dart';
 import 'package:flutter/material.dart';
-import 'package:cry/form/cry_checkbox.dart';
-import 'package:cry/form/cry_input.dart';
-import 'package:cry/form/cry_select.dart';
-import 'package:cry/form/cry_select_custom_widget.dart';
-import 'package:cry/form/cry_select_date.dart';
 import 'package:cry/form1/index.dart' as form1;
 
 class DemoForm extends StatefulWidget {
@@ -59,7 +56,7 @@ class _DemoFormState extends State<DemoForm> {
     var cw = CrySelectCustomWidget(
       context,
       width: 400,
-      label: '自定义',
+      label: '自定义弹窗',
       initialValue: 'v',
       initialValueLabel: 'vl',
       onSaved: (v) {
@@ -92,14 +89,30 @@ class _DemoFormState extends State<DemoForm> {
       ],
     );
     var form1SelectDate = form1.CrySelectDate(context, label: 'form1SelectDate');
+    var data = pca.map((e) => CascadeModel.fromMap(e)).toList();
+    var cascade = CrySelectCustomWidget(
+      context,
+      label: '级联',
+      key: UniqueKey(),
+      popWidget: CryCascade(
+        data: data,
+        title: '中国',
+      ),
+      getValue: (v) => v.code,
+      getValueLabel: (v) => v.name,
+      onSaved: (v) {
+        print('cascade--onSave:$v');
+      },
+    );
     var form = Form(
       key: formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          cw,
-          Divider(height: 20, color: Colors.amber),
           bb,
+          Divider(height: 20, color: Colors.amber),
+          cascade,
+          cw,
           input,
           input1,
           Wrap(children: [checkbox1, checkbox2]),

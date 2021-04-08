@@ -10,7 +10,6 @@ class CrySelectCustomWidget<T> extends FormField<T> {
     double? padding,
     String? label,
     T? initialValue,
-    ValueChanged? onChange,
     FormFieldSetter<T>? onSaved,
     Function? getValueLabel,
     Function? getValue,
