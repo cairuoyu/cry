@@ -98,8 +98,8 @@ class _DemoFormState extends State<DemoForm> {
         data: data,
         title: '中国',
       ),
-      getValue: (v) => v.code,
-      getValueLabel: (v) => v.name,
+      getValue: (List<CascadeModel> v) => v.map((e) => e.name).toList().join(','),
+      getValueLabel: (List<CascadeModel> v) => v.map((e) => e.name).toList().join(','),
       onSaved: (v) {
         print('cascade--onSave:$v');
       },

@@ -17,38 +17,46 @@ class CryCascade extends StatefulWidget {
 }
 
 class _CryCascadeState extends State<CryCascade> {
-  List<Page> pages = [];
+  final List<Page> pages = [];
+  List<CascadeModel> selectList = [];
 
   @override
   void initState() {
-    pages.add(
-      CascadePage(
-        key: UniqueKey(),
-        data: widget.data,
-        title: widget.title,
-        to: addPage,
-        ok: (v) => Navigator.pop(context, v),
-      ),
-    );
+    addPage(widget.data, widget.title);
     super.initState();
   }
 
   removeLastPage() {
     setState(() {
+      selectList.removeLast();
       pages.removeLast();
     });
   }
 
   addPage(data, title) {
+    pages.add(CascadePage(
+      key: UniqueKey(),
+      title: title,
+      data: data,
+      to: to,
+      ok: ok,
+    ));
+  }
+
+  to(CascadeModel data, title) {
+    selectList.add(data);
     setState(() {
-      pages.add(CascadePage(
-        key: UniqueKey(),
-        title: title,
-        data: data,
-        to: addPage,
-        ok: (v) => Navigator.pop(context, v),
-      ));
+      addPage(data.children, title);
     });
+  }
+
+  ok(v) {
+    if (v == null) {
+      Navigator.pop(context);
+      return;
+    }
+    selectList.add(v);
+    Navigator.pop(context, selectList);
   }
 
   @override
@@ -95,7 +103,7 @@ class CascadePage extends Page {
             : ListTile(
                 title: Text(d.name.toString()),
                 onTap: () {
-                  to(d.children, d.name);
+                  to(d, d.name);
                 },
                 trailing: Icon(Icons.chevron_right),
               );
