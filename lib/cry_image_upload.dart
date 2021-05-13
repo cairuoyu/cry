@@ -112,11 +112,11 @@ class CryImageUploadState extends State<CryImageUpload> {
           child: Column(
             children: [
               ListTile(
-                title: Text(S.of(context)!.gallery),
+                title: Text(S.of(context).gallery),
                 onTap: () => pickImage(ImageSource.gallery, context: context),
               ),
               ListTile(
-                title: Text(S.of(context)!.camera),
+                title: Text(S.of(context).camera),
                 onTap: () => pickImage(ImageSource.camera, context: context),
               )
             ],

@@ -77,7 +77,7 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
       list.add(_wrapCell(Text(element.label ?? '--'), width: element.width));
     });
     if (widget.getRowOper != null) {
-      list.insert(0, _wrapCell(Text(S.of(context)!.operating), width: 100));
+      list.insert(0, _wrapCell(Text(S.of(context).operating), width: 100));
     }
     var result = Container(
       decoration: _getBoxDecoration(header: true),
