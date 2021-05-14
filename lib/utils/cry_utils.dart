@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class CryUtils {
   static late GlobalKey<NavigatorState> navigatorKey;
-  static late OverlayEntry loadingOE;
+  static OverlayEntry? loadingOE;
 
   static get context => navigatorKey.currentContext;
 
@@ -30,6 +30,9 @@ class CryUtils {
   }
 
   static void loading({bool tapClose = false}) {
+    if (loadingOE != null) {
+      return;
+    }
     var child = Container(
         child: tapClose
             ? InkWell(
@@ -44,10 +47,14 @@ class CryUtils {
         ));
     loadingOE = OverlayEntry(builder: (c) => child);
 
-    Overlay.of(CryUtils.context)!.insert(loadingOE);
+    Overlay.of(CryUtils.context)!.insert(loadingOE!);
   }
 
   static void loaded() {
-    loadingOE.remove();
+    if (loadingOE == null) {
+      return;
+    }
+    loadingOE!.remove();
+    loadingOE = null;
   }
 }

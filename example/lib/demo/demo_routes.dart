@@ -11,9 +11,7 @@ class DemoRoutes extends StatelessWidget {
         CryButton(
           iconData: Icons.reply,
           label: 'testButton',
-          onPressed: () {
-            Cry.pushNamed('/button');
-          },
+          onPressed: () => Cry.pushNamed('/button'),
         ),
       ],
     );

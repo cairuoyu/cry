@@ -1,7 +1,12 @@
 # 更新日志
 
+## 1.1.1
+* 修复多重loading并发问题
+* 增加demo_message 
+
 ## 1.1.0
 * 使用 Flutter Navigator 2 管理路由
+* 增加 demo_routes
 
 ## 1.0.7
 * 修改级联组件

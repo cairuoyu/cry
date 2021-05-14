@@ -1,4 +1,5 @@
 
+import 'package:example/demo/demo_message.dart';
 import 'package:example/demo/demo_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,7 @@ class _HomeState extends State<Home> {
       Tab(child: Text('ListView')),
       Tab(child: Text('File')),
       Tab(child: Text('Routes')),
+      Tab(child: Text('Message')),
     ];
     var tabViews = [
       DemoForm(),
@@ -40,6 +42,7 @@ class _HomeState extends State<Home> {
       DemoListView(),
       DemoFile(),
       DemoRoutes(),
+      DemoMessage(),
     ];
     var result = DefaultTabController(
       // initialIndex: 2,
