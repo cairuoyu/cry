@@ -12,14 +12,7 @@ dependencies:
 class DemoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var button = CryButton(
-      iconData: Icons.save,
-      label: 'testButton',
-      onPressed: () {
-        print('testButton');
-      },
-    );
-    return button;
+    return CryButtons.query(context, () => print('test queryButton'));
   }
 }
 ```

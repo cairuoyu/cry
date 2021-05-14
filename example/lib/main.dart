@@ -1,16 +1,14 @@
 import 'package:cry/common/application_context.dart';
 import 'package:cry/generated/l10n.dart';
-import 'package:example/demo/demo_file.dart';
+import 'package:cry/routes/cry.dart';
+import 'package:cry/routes/cry_route_Information_parser.dart';
+import 'package:cry/routes/cry_router_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'demo/demo_button.dart';
-import 'demo/demo_data_table.dart';
 import 'demo/demo_form.dart';
-import 'demo/demo_image_upload.dart';
-import 'demo/demo_list_view.dart';
-import 'demo/demo_menu.dart';
-import 'demo/demo_tree_table.dart';
+import 'home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,9 +19,17 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
+    Map<String, Widget> pageMap = {
+      '/': Home(),
+      '/button': DemoButton(),
+      '/form': DemoForm(),
+    };
+    return MaterialApp.router(
+      key: UniqueKey(),
       title: 'Cry Demo',
+      locale: Locale('en'),
+      debugShowCheckedModeBanner: false,
+      builder: Cry.init,
       localizationsDelegates: [
         S.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -31,56 +37,8 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: Locale('en'),
-      home: MyHomePage(),
+      routerDelegate: CryRouterDelegate(pageMap: pageMap),
+      routeInformationParser: CryRouteInformationParser(),
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    var tabs = [
-      Tab(child: Text('Form')),
-      Tab(child: Text('Button')),
-      Tab(child: Text('Menu')),
-      Tab(child: Text('ImageUpload')),
-      Tab(child: Text('DataTable')),
-      Tab(child: Text('TreeTable')),
-      Tab(child: Text('ListView')),
-      Tab(child: Text('File')),
-    ];
-    var tabViews = [
-      DemoForm(),
-      DemoButton(),
-      DemoMenu(),
-      DemoImageUpload(),
-      DemoDataTable(),
-      DemoTreeTable(),
-      DemoListView(),
-      DemoFile(),
-    ];
-    var result = DefaultTabController(
-      // initialIndex: 2,
-      length: tabs.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Cry Demo Home Page'),
-          bottom: TabBar(
-            isScrollable: true,
-            tabs: tabs,
-          ),
-        ),
-        body: TabBarView(
-          children: tabViews,
-        ),
-      ),
-    );
-    return result;
   }
 }
