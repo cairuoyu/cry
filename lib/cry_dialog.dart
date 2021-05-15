@@ -43,6 +43,7 @@ void cryConfirm(BuildContext context, String content, onConfirm) {
           TextButton(
             child: Text(S.of(context).confirm),
             onPressed: () {
+              Navigator.of(context).pop();
               onConfirm(context);
             },
           ),

@@ -23,7 +23,7 @@ class DemoButton extends StatelessWidget {
         CryButtons.commit(context, () => print('test commonButton')),
         CryButtons.delete(context, () {
           cryConfirm(context, '确定？', (context) {
-            Navigator.pop(context);
+            print('deleted--');
           });
         }),
       ],

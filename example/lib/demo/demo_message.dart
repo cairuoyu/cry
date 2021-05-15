@@ -10,12 +10,12 @@ class DemoMessage extends StatelessWidget {
       children: [
         CryButton(
           iconData: Icons.message,
-          label: 'testButton',
+          label: 'testMessage',
           onPressed: () => CryUtils.message('message'),
         ),
         CryButton(
           iconData: Icons.local_airport,
-          label: 'testButton',
+          label: 'testLoading',
           onPressed: () {
             load();
             load();

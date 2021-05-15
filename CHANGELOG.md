@@ -1,5 +1,8 @@
 # 更新日志
 
+## 1.1.2
+* cryConfirm点击确定后直接关闭
+
 ## 1.1.1
 * 修复多重loading并发问题
 * 增加demo_message 
