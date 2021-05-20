@@ -6,7 +6,9 @@ class CryButton extends StatelessWidget {
   final IconData? iconData;
   final String? tip;
   final EdgeInsets? padding;
-  CryButton({this.label, this.iconData, this.onPressed, this.tip, this.padding});
+  final Color? iconColor;
+
+  CryButton({this.label, this.iconColor = Colors.blue, this.iconData, this.onPressed, this.tip, this.padding});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +16,18 @@ class CryButton extends StatelessWidget {
     if (iconData != null) {
       if (label == null) {
         result = IconButton(
-          icon: Icon(iconData),
+          icon: Icon(
+            iconData,
+            color: iconColor,
+          ),
           onPressed: onPressed,
         );
       } else {
         result = ElevatedButton.icon(
-          icon: Icon(iconData),
+          icon: Icon(
+            iconData,
+            color: iconColor,
+          ),
           label: Text(this.label!),
           onPressed: onPressed,
         );

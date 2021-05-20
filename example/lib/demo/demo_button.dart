@@ -1,4 +1,3 @@
-
 import 'package:cry/cry_button.dart';
 import 'package:cry/cry_buttons.dart';
 import 'package:cry/cry_dialog.dart';
@@ -28,6 +27,17 @@ class DemoButton extends StatelessWidget {
         }),
       ],
     );
-    return buttons;
+    return ListView(
+      children: [
+        buttons,
+        ListTile(
+          title: CryButton(
+            iconData: Icons.ac_unit,
+            iconColor: Colors.red,
+
+          ),
+        ),
+      ],
+    );
   }
 }
