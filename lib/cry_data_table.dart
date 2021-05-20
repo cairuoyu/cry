@@ -19,7 +19,7 @@ class CryDataTable extends StatefulWidget {
   final List<int>? availableRowsPerPage;
   final List<DataColumn>? columns;
   final Function? getCells;
-  final Function? onPageChanged;
+  final Function(int)? onPageChanged;
   final Function? onRowsPerPageChanged;
   final Function? onSelectChanged;
   final Function? selectable;
@@ -69,7 +69,7 @@ class CryDataTableState extends State<CryDataTable> {
       header: Text(widget.title),
       rowsPerPage: rowsPerPage!,
       availableRowsPerPage: widget.availableRowsPerPage ?? [5, 10, 20, 50],
-      onPageChanged: widget.onPageChanged as void Function(int)?,
+      onPageChanged: widget.onPageChanged,
       onRowsPerPageChanged: (int? v) {
         widget.onRowsPerPageChanged!(v);
       },
@@ -81,7 +81,7 @@ class CryDataTableState extends State<CryDataTable> {
     return result;
   }
 
-  List<Map> getSelectedList(PageModel page) {
+  List<Map<String,dynamic>> getSelectedList(PageModel page) {
     return page.records?.where((v) => v['selected'] ?? false).toList() ?? [];
   }
 }
@@ -98,7 +98,7 @@ class DS extends DataTableSource {
 
   @override
   DataRow? getRow(int index) {
-    var dataIndex = index - pageModel.size! * (pageModel.current! - 1);
+    var dataIndex = index - pageModel.size * (pageModel.current - 1);
     if (dataIndex >= pageModel.records!.length) {
       return null;
     }

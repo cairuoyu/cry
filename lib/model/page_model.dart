@@ -5,12 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'order_item_model.dart';
 
 class PageModel {
-  num? total;
-  num? size;
-  num? current;
-  num? pages;
+  int total;
+  int size;
+  int current;
+  int pages;
   List<OrderItemModel>? orders;
-  List<Map>? records;
+  List<Map<String, dynamic>>? records;
 
   PageModel({
     this.total = 0,
@@ -22,12 +22,12 @@ class PageModel {
   });
 
   PageModel copyWith({
-    num? total,
-    num? size,
-    num? current,
-    num? pages,
+    int? total,
+    int? size,
+    int? current,
+    int? pages,
     List<OrderItemModel>? orders,
-    List<Map>? records,
+    List<Map<String, dynamic>>? records,
   }) {
     return PageModel(
       total: total ?? this.total,
@@ -51,14 +51,13 @@ class PageModel {
   }
 
   factory PageModel.fromMap(Map<String, dynamic> map) {
-
     return PageModel(
       total: map['total'],
       size: map['size'],
       current: map['current'],
       pages: map['pages'],
       orders: map['orders'] == null ? [] : List<OrderItemModel>.from(map['orders'].map((x) => OrderItemModel.fromMap(x))),
-      records: List<Map>.from(map['records']?.map((x) => x)),
+      records: List.from(map['records']?.map((x) => x)),
     );
   }
 

@@ -41,8 +41,8 @@ class _DemoDataTableState extends State<DemoDataTable> {
       onSelectChanged: (Map selected) {
         this.setState(() {});
       },
-      onPageChanged: (firstRowIndex) {
-        page.current = (firstRowIndex / page.size + 1) as int;
+      onPageChanged: (int firstRowIndex) {
+        page.current = (firstRowIndex ~/ page.size + 1);
         _loadData();
       },
       onRowsPerPageChanged: (int size) {
