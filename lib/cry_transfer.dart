@@ -6,8 +6,8 @@ class CryTransfer extends StatefulWidget {
   CryTransfer({Key? key, this.left, this.right, this.toRight, this.toLeft}) : super(key: key);
   final Widget? left;
   final Widget? right;
-  final Function? toRight;
-  final Function? toLeft;
+  final VoidCallback? toRight;
+  final VoidCallback? toLeft;
 
   @override
   _CryTransferState createState() => _CryTransferState();
@@ -20,8 +20,8 @@ class _CryTransferState extends State<CryTransfer> {
       width: 60,
       child: ButtonBar(
         children: [
-          CryButton(iconData: Icons.arrow_forward, onPressed: widget.toRight as void Function()?),
-          CryButton(iconData: Icons.arrow_back, onPressed: widget.toLeft as void Function()?),
+          CryButton(iconData: Icons.arrow_forward, onPressed: widget.toRight),
+          CryButton(iconData: Icons.arrow_back, onPressed: widget.toLeft),
         ],
       ),
     );

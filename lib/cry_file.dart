@@ -5,7 +5,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:dio/dio.dart';
 
 class CryFile extends StatefulWidget {
-  final Function? onSaved;
+  final Function(MultipartFile)? onSaved;
   final String? initFileUrl;
   final String? buttonLabel;
   final String? tip;

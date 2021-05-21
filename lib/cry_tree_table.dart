@@ -7,8 +7,8 @@ class CryTreeTable<T extends TreeData> extends StatefulWidget {
   final List<CryTreeTableColumnData>? columnData;
   final List<TreeVO<T>>? data;
   final Widget? toolbars;
-  final Function? getRowOper;
-  final Function? onSelected;
+  final Function(TreeVO<T>, TreeVO<T>?)? getRowOper;
+  final Function(TreeVO<T>?)? onSelected;
   final double tableWidth;
   final CryTreeTableSelectType selectType;
 

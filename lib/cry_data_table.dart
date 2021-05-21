@@ -1,3 +1,4 @@
+import 'package:cry/common/common_types.dart';
 import 'package:flutter/material.dart';
 
 import 'model/page_model.dart';
@@ -18,11 +19,11 @@ class CryDataTable extends StatefulWidget {
 
   final List<int>? availableRowsPerPage;
   final List<DataColumn>? columns;
-  final Function? getCells;
-  final Function(int)? onPageChanged;
-  final Function? onRowsPerPageChanged;
-  final Function? onSelectChanged;
-  final Function? selectable;
+  final MapDataCellListFunction? getCells;
+  final ValueChanged<int>? onPageChanged;
+  final ValueChanged<int?>? onRowsPerPageChanged;
+  final MapVoidFunction? onSelectChanged;
+  final MapVoidFunction? selectable;
 
   @override
   CryDataTableState createState() => CryDataTableState();
@@ -55,7 +56,7 @@ class CryDataTableState extends State<CryDataTable> {
 
     if (pageModel.size != rowsPerPage) {
       setState(() {
-        rowsPerPage = pageModel.size as int?;
+        rowsPerPage = pageModel.size;
       });
     } else {
       ds.reload();
@@ -71,7 +72,7 @@ class CryDataTableState extends State<CryDataTable> {
       availableRowsPerPage: widget.availableRowsPerPage ?? [5, 10, 20, 50],
       onPageChanged: widget.onPageChanged,
       onRowsPerPageChanged: (int? v) {
-        widget.onRowsPerPageChanged!(v);
+        widget.onRowsPerPageChanged?.call(v);
       },
       columns: columns,
       source: ds,
@@ -81,14 +82,14 @@ class CryDataTableState extends State<CryDataTable> {
     return result;
   }
 
-  List<Map<String,dynamic>> getSelectedList(PageModel page) {
-    return page.records?.where((v) => v['selected'] ?? false).toList() ?? [];
+  List<Map<String, dynamic>> getSelectedList(PageModel page) {
+    return page.records.where((v) => v['selected'] ?? false).toList();
   }
 }
 
 class DS extends DataTableSource {
   PageModel pageModel = PageModel();
-  Function? getCells;
+  MapDataCellListFunction? getCells;
   Function? onSelectChanged;
   Function? selectable;
 
@@ -99,10 +100,10 @@ class DS extends DataTableSource {
   @override
   DataRow? getRow(int index) {
     var dataIndex = index - pageModel.size * (pageModel.current - 1);
-    if (dataIndex >= pageModel.records!.length) {
+    if (dataIndex >= pageModel.records.length) {
       return null;
     }
-    Map m = pageModel.records![dataIndex as int];
+    Map<String, dynamic> m = pageModel.records[dataIndex];
 
     List<DataCell> cells = getCells == null ? [] : getCells!(m);
     cells.insert(0, DataCell(Text((index + 1).toString())));
@@ -127,8 +128,8 @@ class DS extends DataTableSource {
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => pageModel.total as int;
+  int get rowCount => pageModel.total;
 
   @override
-  int get selectedRowCount => (pageModel.records?.where((v) => v['selected'] ?? false).length) ?? 0;
+  int get selectedRowCount => (pageModel.records.where((v) => v['selected'] ?? false).length);
 }

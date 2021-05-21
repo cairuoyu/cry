@@ -47,7 +47,7 @@ class _DemoTreeTableState extends State<DemoTreeTable> {
       ],
       columnData: columnData,
       data: data,
-      onSelected: (TreeVO<TestTreeModel> v) {
+      onSelected: (TreeVO<TestTreeModel>? v) {
         this.setState(() {});
       },
     );

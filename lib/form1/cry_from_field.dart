@@ -5,7 +5,7 @@ class CryFormField extends StatefulWidget {
   final String? label;
   final double? width;
   final double? labelWidth;
-  final Function? builder;
+  final Function(CryFormFieldState)? builder;
 
   CryFormField({
     Key? key,

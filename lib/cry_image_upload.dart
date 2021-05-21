@@ -17,7 +17,7 @@ class CryImageUpload extends StatefulWidget {
     this.updateAreaDefault,
   });
 
-  final Function? onUpload;
+  final Function(Uint8List?)? onUpload;
   final List<String?>? fileList;
   final double updateAreaSize;
   final Widget? updateAreaDefault;

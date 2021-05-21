@@ -45,8 +45,8 @@ class _DemoDataTableState extends State<DemoDataTable> {
         page.current = (firstRowIndex ~/ page.size + 1);
         _loadData();
       },
-      onRowsPerPageChanged: (int size) {
-        page.size = size;
+      onRowsPerPageChanged: (int? size) {
+        page.size = size ?? page.size;
         page.current = 1;
         _loadData();
       },

@@ -9,16 +9,16 @@ class PageModel {
   int size;
   int current;
   int pages;
-  List<OrderItemModel>? orders;
-  List<Map<String, dynamic>>? records;
+  List<OrderItemModel> orders;
+  List<Map<String, dynamic>> records;
 
   PageModel({
     this.total = 0,
     this.size = 10,
     this.current = 1,
     this.pages = 1,
-    this.orders,
-    this.records,
+    this.orders = const [],
+    this.records = const [],
   });
 
   PageModel copyWith({
@@ -45,7 +45,7 @@ class PageModel {
       'size': size,
       'current': current,
       'pages': pages,
-      'orders': orders?.map((x) => x.toMap()).toList(),
+      'orders': orders.map((x) => x.toMap()).toList(),
       'records': records,
     };
   }
@@ -57,7 +57,7 @@ class PageModel {
       current: map['current'],
       pages: map['pages'],
       orders: map['orders'] == null ? [] : List<OrderItemModel>.from(map['orders'].map((x) => OrderItemModel.fromMap(x))),
-      records: List.from(map['records']?.map((x) => x)),
+      records: List.from(map['records'].map((x) => x)),
     );
   }
 

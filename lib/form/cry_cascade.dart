@@ -76,8 +76,8 @@ class _CryCascadeState extends State<CryCascade> {
 class CascadePage extends Page {
   final List<CascadeModel> data;
   final String? title;
-  final Function to;
-  final Function ok;
+  final Function(CascadeModel, String) to;
+  final Function(CascadeModel?) ok;
 
   CascadePage({
     required LocalKey key,
