@@ -1,19 +1,18 @@
 import 'dart:io';
 
+import 'package:cry/cry.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CryUtils {
-  static late GlobalKey<NavigatorState> navigatorKey;
   static OverlayEntry? loadingOE;
 
-  static get context => navigatorKey.currentContext;
 
   static void message(String message, {int duration = 2}) {
     if (!kIsWeb && Platform.isWindows) {
-      ScaffoldMessenger.of(CryUtils.context).hideCurrentSnackBar();
-      ScaffoldMessenger.of(CryUtils.context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(Cry.context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(Cry.context).showSnackBar(SnackBar(
         content: Text(message),
       ));
     } else {
@@ -47,7 +46,7 @@ class CryUtils {
         ));
     loadingOE = OverlayEntry(builder: (c) => child);
 
-    Overlay.of(CryUtils.context)!.insert(loadingOE!);
+    Overlay.of(Cry.context)!.insert(loadingOE!);
   }
 
   static void loaded() {

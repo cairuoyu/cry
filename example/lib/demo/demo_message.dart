@@ -1,4 +1,4 @@
-import 'package:cry/cry.dart';
+import 'package:cry/cry_button.dart';
 import 'package:cry/utils/cry_utils.dart';
 import 'package:flutter/material.dart';
 

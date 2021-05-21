@@ -1,14 +1,42 @@
-export './form/index.dart';
-export './cry_button.dart';
-export './cry_button_bar.dart';
-export './cry_buttons.dart';
-export './cry_data_table.dart';
-export './cry_dialog.dart';
-export './cry_file.dart';
-export './cry_image_upload.dart';
-export './cry_list_view.dart';
-export './cry_menu.dart';
-export './cry_search_bar.dart';
-export './cry_toggle_buttons.dart';
-export './cry_transfer.dart';
-export './cry_tree_table.dart';
+import 'package:flutter/material.dart';
+
+import 'routes/cry_route.dart';
+
+class Cry {
+  static GlobalKey<NavigatorState>? navigatorKey;
+
+  static get context {
+    if (navigatorKey == null) {
+      throw FlutterError('未初始化NavigatorKey');
+    }
+    return navigatorKey!.currentContext;
+  }
+
+  static Widget init(BuildContext context, Widget? child) {
+    return Material(
+      child: Overlay(
+        initialEntries: [
+          OverlayEntry(builder: (c) => child ?? Container()),
+        ],
+      ),
+    );
+  }
+
+  static pushNamedAndRemove(String name) {
+    CryRoute.instance.pushNamedAndRemove(name);
+  }
+
+  static popAndPushNamed(String name) {
+    CryRoute.instance.popAndPushNamed(name);
+  }
+
+  static pushNamed(String name) {
+    CryRoute.instance.pushNamed(name);
+  }
+
+  static push(Widget widget) {
+    CryRoute.instance.push(widget);
+  }
+
+  static pop() => CryRoute.instance.pop();
+}

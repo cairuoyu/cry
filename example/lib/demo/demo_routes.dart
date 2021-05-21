@@ -1,5 +1,5 @@
 import 'package:cry/cry.dart';
-import 'package:cry/routes/cry.dart';
+import 'package:cry/cry_button.dart';
 import 'package:flutter/material.dart';
 
 class DemoRoutes extends StatelessWidget {
