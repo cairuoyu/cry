@@ -78,7 +78,16 @@ class CryRouterDelegate extends RouterDelegate<RouteInformation> with ChangeNoti
     notifyListeners();
   }
 
-  push(Widget widget) {}
+  push(Widget widget) {
+    pages.add(
+      MaterialPage(
+        key: UniqueKey(),
+        child: widget,
+      ),
+    );
+
+    notifyListeners();
+  }
 
   pop() {
     pages.removeLast();
