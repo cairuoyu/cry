@@ -21,9 +21,9 @@ class CryDataTable extends StatefulWidget {
   final List<DataColumn>? columns;
   final MapDataCellListFunction? getCells;
   final ValueChanged<int>? onPageChanged;
-  final ValueChanged<int?>? onRowsPerPageChanged;
+  final ValueChanged<int>? onRowsPerPageChanged;
   final MapVoidFunction? onSelectChanged;
-  final MapVoidFunction? selectable;
+  final MapBoolFunction? selectable;
 
   @override
   CryDataTableState createState() => CryDataTableState();
@@ -72,7 +72,7 @@ class CryDataTableState extends State<CryDataTable> {
       availableRowsPerPage: widget.availableRowsPerPage ?? [5, 10, 20, 50],
       onPageChanged: widget.onPageChanged,
       onRowsPerPageChanged: (int? v) {
-        widget.onRowsPerPageChanged?.call(v);
+        widget.onRowsPerPageChanged?.call(v ?? 10);
       },
       columns: columns,
       source: ds,
@@ -91,7 +91,7 @@ class DS extends DataTableSource {
   PageModel pageModel = PageModel();
   MapDataCellListFunction? getCells;
   Function? onSelectChanged;
-  Function? selectable;
+  MapBoolFunction? selectable;
 
   reload() {
     notifyListeners();
