@@ -8,7 +8,7 @@ class CryButton extends StatelessWidget {
   final EdgeInsets? padding;
   final Color? iconColor;
 
-  CryButton({this.label, this.iconColor = Colors.blue, this.iconData, this.onPressed, this.tip, this.padding});
+  CryButton({this.label, this.iconColor, this.iconData, this.onPressed, this.tip, this.padding});
 
   @override
   Widget build(BuildContext context) {
