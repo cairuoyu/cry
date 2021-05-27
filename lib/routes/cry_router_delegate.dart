@@ -43,7 +43,7 @@ class CryRouterDelegate extends RouterDelegate<RouteInformation> with ChangeNoti
 
   @override
   Future<void> setNewRoutePath(RouteInformation routeInformation) async {
-    pushNamed(routeInformation.location ?? '/');
+    popAndPushNamed(routeInformation.location ?? '/');
   }
 
   pushNamedAndRemove(String name) {
@@ -90,7 +90,9 @@ class CryRouterDelegate extends RouterDelegate<RouteInformation> with ChangeNoti
   }
 
   pop() {
-    pages.removeLast();
-    notifyListeners();
+    if (pages.length > 0) {
+      pages.removeLast();
+      notifyListeners();
+    }
   }
 }
