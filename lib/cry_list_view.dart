@@ -14,7 +14,7 @@ class CryListView extends StatefulWidget {
   final VoidCallback? loadMore;
   final RefreshCallback? onRefresh;
   final CryListViewType cryListViewType;
-  final String? title;
+  final AppBar? appBar;
 
   CryListView({
     Key? key,
@@ -23,7 +23,7 @@ class CryListView extends StatefulWidget {
     this.loadMore,
     this.cryListViewType = CryListViewType.column,
     this.onRefresh,
-    this.title,
+    this.appBar,
   }) : super(key: key);
 
   @override
@@ -94,7 +94,7 @@ class CryListViewState extends State<CryListView> {
       );
     }
     var result = Scaffold(
-      appBar: widget.title == null ? null : AppBar(title: Text(widget.title!)),
+      appBar: widget.appBar,
       body: RefreshIndicator(
         child: listView,
         onRefresh: widget.onRefresh ?? () async {},

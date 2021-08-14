@@ -1,3 +1,4 @@
+import 'package:cry/cry_all.dart';
 import 'package:cry/cry_list_view.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class _DemoListViewState extends State<DemoListView> {
   @override
   Widget build(BuildContext context) {
     var listView = CryListView(
-      title: 'listViewDemo',
+      appBar: AppBar(title: Text('listViewDemo'),actions: [CryButtons.reset(context, (){})],),
       count: 50,
       getCell: (index) {
         return ListTile(
