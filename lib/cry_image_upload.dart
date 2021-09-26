@@ -7,6 +7,7 @@
 
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:cry/cry.dart';
 import 'package:cry/model/image_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -137,7 +138,7 @@ class CryImageUploadState extends State<CryImageUpload> {
     pickedFile = await imagePicker.getImage(source: source);
     imageBytes = await pickedFile!.readAsBytes();
     if (imageBytes!.length > 1000 * 1000 * 10) {
-      cryAlert(context!, limitMessage);
+      cryAlert(Cry.context, limitMessage);
       pickedFile = null;
       imageBytes = null;
       setState(() {});

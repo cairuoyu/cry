@@ -7,7 +7,7 @@
 
 import 'package:cry/model/application.dart';
 import 'package:global_configuration/global_configuration.dart';
-
+import 'package:flutter/services.dart';
 
 class ApplicationContext {
   ApplicationContext._();
@@ -25,9 +25,11 @@ class ApplicationContext {
 
   Map beanMap = Map();
   late Application application;
+  late String privacy;
 
   init() async {
     await this.loadApplication();
+    this.loadPrivacy();
   }
 
   loadApplication() async {
@@ -35,6 +37,12 @@ class ApplicationContext {
     print("application:");
     print(globalConfiguration.appConfig);
     this.application = Application.fromMap(globalConfiguration.appConfig);
+  }
+
+  loadPrivacy() async {
+    print('load privacy:');
+    this.privacy = await rootBundle.loadString('PRIVACY');
+    print(this.privacy);
   }
 
   addBean(String key, object) {

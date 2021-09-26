@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add": MessageLookupByLibrary.simpleMessage("Add"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "commit": MessageLookupByLibrary.simpleMessage("Commit"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirmDelete": MessageLookupByLibrary.simpleMessage("Are you sure?"),

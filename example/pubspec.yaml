@@ -21,6 +21,7 @@ dependencies:
 flutter:
   assets:
     - config/application.json
+    - PRIVACY
 
   uses-material-design: true
 

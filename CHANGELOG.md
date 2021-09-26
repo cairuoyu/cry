@@ -1,5 +1,9 @@
 # 更新日志
 
+## 1.1.9
+* applicationContext 增加 load privacy
+* 修改cryDialog
+
 ## 1.1.8
 * cryListView的title改为appBar
 

@@ -19,10 +19,11 @@ void cryAlertWidget(BuildContext context, Widget content) {
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(S.of(context).information),
+        scrollable: true,
         content: content,
         actions: <Widget>[
           TextButton(
-            child: Text(S.of(context).cancel),
+            child: Text(S.of(context).close),
             onPressed: () {
               Navigator.of(context).pop();
             },

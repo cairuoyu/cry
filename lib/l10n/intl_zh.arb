@@ -7,6 +7,7 @@
   "save": "保存",
   "cancel": "取消",
   "commit": "提交",
+  "close": "关闭",
 
   "saved": "保存成功",
   "confirmDelete": "确定删除",

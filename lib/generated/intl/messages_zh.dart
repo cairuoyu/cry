@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add": MessageLookupByLibrary.simpleMessage("增加"),
         "camera": MessageLookupByLibrary.simpleMessage("相机"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
+        "close": MessageLookupByLibrary.simpleMessage("关闭"),
         "commit": MessageLookupByLibrary.simpleMessage("提交"),
         "confirm": MessageLookupByLibrary.simpleMessage("确定"),
         "confirmDelete": MessageLookupByLibrary.simpleMessage("确定删除"),
