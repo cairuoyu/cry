@@ -1,4 +1,5 @@
 
+import 'package:cry/common/keep_alive_wrapper.dart';
 import 'package:example/demo/demo_message.dart';
 import 'package:example/demo/demo_routes.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class _HomeState extends State<Home> {
       Tab(child: Text('Message')),
     ];
     var tabViews = [
-      DemoForm(),
+      KeepAliveWrapper(child: DemoForm()),
       DemoButton(),
       DemoMenu(),
       DemoImageUpload(),

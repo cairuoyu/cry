@@ -1,5 +1,8 @@
 # 更新日志
 
+## 1.1.10
+* 增加KeepAliveWrapper和IndexedStackLazy
+
 ## 1.1.9
 * applicationContext 增加 load privacy
 * 修改cryDialog
