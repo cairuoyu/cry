@@ -1,5 +1,8 @@
 # 更新日志
 
+## 1.1.11
+* 配置文件使用yaml
+
 ## 1.1.10
 * 增加KeepAliveWrapper和IndexedStackLazy
 

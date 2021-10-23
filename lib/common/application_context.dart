@@ -5,9 +5,11 @@
 /// @version: 1.0
 /// @description:
 
-import 'package:cry/model/application.dart';
-import 'package:global_configuration/global_configuration.dart';
+import 'dart:convert';
+
+import 'package:cry/model/api_roperties.dart';
 import 'package:flutter/services.dart';
+import 'package:yaml/yaml.dart';
 
 class ApplicationContext {
   ApplicationContext._();
@@ -24,7 +26,7 @@ class ApplicationContext {
   }
 
   Map beanMap = Map();
-  late Application application;
+  late ApiProperties apiProperties;
   late String privacy;
 
   init() async {
@@ -33,10 +35,15 @@ class ApplicationContext {
   }
 
   loadApplication() async {
-    GlobalConfiguration globalConfiguration = await GlobalConfiguration().loadFromPath('config/application.json');
-    print("application:");
-    print(globalConfiguration.appConfig);
-    this.application = Application.fromMap(globalConfiguration.appConfig);
+    var yamlstr = await rootBundle.loadString('config/application.yaml');
+    YamlMap yamlMap = loadYaml(yamlstr);
+
+    print("api:");
+    print(yamlMap.nodes);
+    var apiYaml = yamlMap.nodes['cry']?.value['api'];
+    var api = json.decode(json.encode(apiYaml));
+    this.apiProperties = ApiProperties.fromMap(api);
+    print(this.apiProperties);
   }
 
   loadPrivacy() async {
