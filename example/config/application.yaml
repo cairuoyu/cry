@@ -3,3 +3,4 @@ cry:
     baseUrl: http://www.cairuoyu.com/api/p4/
     connectTimeout: 10000
     receiveTimeout: 3000
+  logger: error

@@ -7,6 +7,8 @@
 
 import 'dart:convert';
 
+import 'package:cry/constants/cry_enums.dart';
+import 'package:cry/cry_logger.dart';
 import 'package:cry/model/api_roperties.dart';
 import 'package:flutter/services.dart';
 import 'package:yaml/yaml.dart';
@@ -27,6 +29,7 @@ class ApplicationContext {
 
   Map beanMap = Map();
   late ApiProperties apiProperties;
+  late LoggerType logger;
   late String privacy;
 
   init() async {
@@ -35,21 +38,29 @@ class ApplicationContext {
   }
 
   loadApplication() async {
-    var yamlstr = await rootBundle.loadString('config/application.yaml');
-    YamlMap yamlMap = loadYaml(yamlstr);
-
+    var yamlStr = await rootBundle.loadString('config/application.yaml');
+    YamlMap yamlMap = loadYaml(yamlStr);
     print("api:");
     print(yamlMap.nodes);
-    var apiYaml = yamlMap.nodes['cry']?.value['api'];
-    var api = json.decode(json.encode(apiYaml));
+    YamlMap cry = yamlMap.nodes['cry']!.value;
+
+    String loggerStr = cry['logger'] ?? 'info';
+    this.logger = loggerStr == 'error'
+        ? LoggerType.error
+        : loggerStr == 'debug'
+            ? LoggerType.debug
+            : LoggerType.info;
+    print(this.logger);
+
+    var apiStr = cry['api'];
+    var api = json.decode(json.encode(apiStr));
     this.apiProperties = ApiProperties.fromMap(api);
-    print(this.apiProperties);
+    CryLogger.info(this.apiProperties);
   }
 
   loadPrivacy() async {
-    print('load privacy:');
     this.privacy = await rootBundle.loadString('PRIVACY');
-    print(this.privacy);
+    CryLogger.info(this.privacy);
   }
 
   addBean(String key, object) {
