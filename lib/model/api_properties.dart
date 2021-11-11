@@ -36,7 +36,7 @@ class ApiProperties{
   @override
   int get hashCode => baseUrl.hashCode ^ connectTimeout.hashCode ^ receiveTimeout.hashCode;
 
-  factory ApiProperties.fromMap(Map<String, dynamic> map) {
+  factory ApiProperties.fromMap(Map map) {
     return new ApiProperties(
       baseUrl: map['baseUrl'] as String?,
       connectTimeout: map['connectTimeout'] as int?,

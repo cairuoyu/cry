@@ -7,4 +7,8 @@
 
 class CryConstant {
   static const String KEY_DIO_INTERCEPTORS = "dioInterceptors";
+
+  static const String LOGGEER_LEVEL_ERROR = "error";
+  static const String LOGGEER_LEVEL_INFO = "info";
+  static const String LOGGEER_LEVEL_DEBUG = "debug";
 }

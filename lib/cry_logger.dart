@@ -6,23 +6,29 @@
 /// @description:
 
 import 'package:cry/common/application_context.dart';
-import 'constants/cry_enums.dart';
+import 'package:cry/constants/cry_constant.dart';
 
 class CryLogger {
   static error(_) {
-    if ([LoggerType.error, LoggerType.info, LoggerType.debug].contains(ApplicationContext.instance.logger)) {
+    if ([
+      CryConstant.LOGGEER_LEVEL_ERROR,
+      CryConstant.LOGGEER_LEVEL_INFO,
+      CryConstant.LOGGEER_LEVEL_DEBUG
+    ].contains(ApplicationContext.instance.loggerProperties.level)) {
       print(_);
     }
   }
 
   static info(_) {
-    if ([LoggerType.info, LoggerType.debug].contains(ApplicationContext.instance.logger)) {
+    if ([CryConstant.LOGGEER_LEVEL_INFO, CryConstant.LOGGEER_LEVEL_DEBUG]
+        .contains(ApplicationContext.instance.loggerProperties.level)) {
       print(_);
     }
   }
 
   static debug(_) {
-    if ([LoggerType.debug].contains(ApplicationContext.instance.logger)) {
+    if ([CryConstant.LOGGEER_LEVEL_DEBUG]
+        .contains(ApplicationContext.instance.loggerProperties.level)) {
       print(_);
     }
   }
