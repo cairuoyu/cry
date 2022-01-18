@@ -3,18 +3,19 @@
 /// @github: https://github.com/cairuoyu/cry、https://github.com/cairuoyu/flutter_admin
 /// @date: 2021/6/21
 /// @version: 1.0
-/// @description: 
+/// @description:
 
 import 'dart:io';
 
+import 'package:cry/common/application_context.dart';
 import 'package:cry/cry.dart';
+import 'package:cry/model/cry_properties.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CryUtils {
   static OverlayEntry? loadingOE;
-
 
   static void message(String message, {int duration = 2}) {
     if (!kIsWeb && Platform.isWindows) {
@@ -62,5 +63,10 @@ class CryUtils {
     }
     loadingOE!.remove();
     loadingOE = null;
+  }
+
+  static CryProperties getCryProperties() {
+    CryProperties cryProperties = ApplicationContext.instance.getBean('cryProperties');
+    return cryProperties;
   }
 }

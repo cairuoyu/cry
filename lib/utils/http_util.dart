@@ -7,7 +7,9 @@
 
 import 'package:cry/common/application_context.dart';
 import 'package:cry/constants/cry_constant.dart';
+import 'package:cry/model/cry_properties.dart';
 import 'package:cry/model/response_body_api.dart';
+import 'package:cry/utils/cry_utils.dart';
 import 'package:dio/dio.dart';
 
 class HttpUtil {
@@ -43,7 +45,8 @@ class HttpUtil {
 
   static Dio? createInstance() {
     if (dio == null) {
-      var apiProperties = ApplicationContext.instance.apiProperties;
+      CryProperties cryProperties = CryUtils.getCryProperties();
+      var apiProperties = cryProperties.apiProperties;
       BaseOptions options = new BaseOptions(
         baseUrl: apiProperties.baseUrl!,
         connectTimeout: apiProperties.connectTimeout,

@@ -1,5 +1,6 @@
 import 'package:cry/cry_logger.dart';
 import 'package:cry/model/api_properties.dart';
+import 'package:cry/model/cry_properties.dart';
 import 'package:cry/model/logger_properties.dart';
 import 'package:flutter/services.dart';
 import 'package:yaml/yaml.dart';
@@ -25,8 +26,8 @@ class ApplicationContext {
   }
 
   Map beanMap = Map();
-  late ApiProperties apiProperties;
-  late LoggerProperties loggerProperties;
+  late YamlMap yamlMap;
+  late Map variableMap;
   late String privacy;
 
   init() async {
@@ -34,14 +35,38 @@ class ApplicationContext {
     this.loadPrivacy();
   }
 
+  MapEntry convertVariable(key, value) {
+    var match = RegExp(r'\$\{(.*)\}').firstMatch(value.toString());
+    if (match != null) {
+      var value2 = variableMap[match.group(1)];
+      return MapEntry(key, value2);
+    }
+    return MapEntry(key, value);
+  }
+
+  parseCryProperties() async {
+    YamlMap cry = yamlMap.nodes['cry']!.value;
+    Map profiles = cry['profiles'].value;
+    String? profilesActive = profiles['active'];
+    if (profilesActive != null) {
+      var profilesStr = await rootBundle.loadString('config/application-${profilesActive}.yaml');
+      variableMap = await loadYaml(profilesStr);
+      print('profile-${profilesActive}');
+      print(variableMap);
+    }
+
+    CryProperties cryProperties = CryProperties();
+    cryProperties.loggerProperties = LoggerProperties.fromMap(cry['logger'].value.map(convertVariable));
+    cryProperties.apiProperties = ApiProperties.fromMap(cry['api'].value.map(convertVariable));
+    addBean('cryProperties', cryProperties);
+  }
+
   loadApplication() async {
     var yamlStr = await rootBundle.loadString('config/application.yaml');
-    YamlMap yamlMap = loadYaml(yamlStr);
+    yamlMap = loadYaml(yamlStr);
     print("application:");
     print(yamlMap.nodes);
-    YamlMap cry = yamlMap.nodes['cry']!.value;
-    this.loggerProperties = LoggerProperties.fromMap(cry['logger'].value);
-    this.apiProperties = ApiProperties.fromMap(cry['api'].value);
+    await this.parseCryProperties();
   }
 
   loadPrivacy() async {
