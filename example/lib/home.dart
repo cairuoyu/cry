@@ -1,5 +1,6 @@
 
 import 'package:cry/common/keep_alive_wrapper.dart';
+import 'package:example/demo/demo_face.dart';
 import 'package:example/demo/demo_message.dart';
 import 'package:example/demo/demo_routes.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,7 @@ class _HomeState extends State<Home> {
       Tab(child: Text('File')),
       Tab(child: Text('Routes')),
       Tab(child: Text('Message')),
+      Tab(child: Text('Face')),
     ];
     var tabViews = [
       KeepAliveWrapper(child: DemoForm()),
@@ -44,6 +46,7 @@ class _HomeState extends State<Home> {
       DemoFile(),
       DemoRoutes(),
       DemoMessage(),
+      DemoFace(),
     ];
     var result = DefaultTabController(
       // initialIndex: 2,

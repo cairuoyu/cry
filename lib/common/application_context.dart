@@ -1,8 +1,11 @@
+import 'package:camera/camera.dart';
 import 'package:cry/cry_logger.dart';
 import 'package:cry/model/api_properties.dart';
 import 'package:cry/model/cry_properties.dart';
 import 'package:cry/model/logger_properties.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:yaml/yaml.dart';
 
 /// @author: cairuoyu
@@ -29,10 +32,19 @@ class ApplicationContext {
   late YamlMap yamlMap;
   late Map variableMap;
   late String privacy;
+  List<CameraDescription> cameras = [];
+
+  FaceDetector faceDetector = GoogleMlKit.vision.faceDetector(FaceDetectorOptions(
+    enableContours: true,
+    enableClassification: true,
+  ));
 
   init() async {
     await this.loadApplication();
     this.loadPrivacy();
+    if(!kIsWeb){
+      cameras = await availableCameras();
+    }
   }
 
   MapEntry convertVariable(key, value) {
@@ -49,9 +61,9 @@ class ApplicationContext {
     Map profiles = cry['profiles'].value;
     String? profilesActive = profiles['active'];
     if (profilesActive != null) {
-      var profilesStr = await rootBundle.loadString('config/application-${profilesActive}.yaml');
+      var profilesStr = await rootBundle.loadString('config/application-$profilesActive.yaml');
       variableMap = await loadYaml(profilesStr);
-      print('profile-${profilesActive}');
+      print('profile-$profilesActive');
       print(variableMap);
     }
 

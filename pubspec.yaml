@@ -1,8 +1,8 @@
 name: cry
-description: 一个Flutter组件库，包含button、form、dataTable、dialog、imageUpload、root、toggleButton、transfer、treeTable、menu
-version: 1.1.14
+description: 一个Flutter组件库，参考https://github.com/cairuoyu/flutter_admin
+version: 1.2.0
 homepage: http://www.cairuoyu.com/
-publish_to: https://pub.dev
+#publish_to: https://pub.dev
 #publish_to: https://pub.dartlang.org
 
 environment:
@@ -22,6 +22,8 @@ dependencies:
   flutter_markdown: ^0.6.1
   fluttertoast: ^8.0.3
   yaml: ^3.1.0
+  camera: ^0.9.4
+  google_ml_kit: ^0.5.0
 
 flutter:
 
