@@ -1,5 +1,4 @@
 import 'package:cry/cry_all.dart';
-import 'package:cry/cry_list_view.dart';
 import 'package:flutter/material.dart';
 
 class DemoListView extends StatefulWidget {

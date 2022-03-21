@@ -2,9 +2,13 @@ import 'dart:io';
 
 import 'package:cry/common/application_context.dart';
 import 'package:cry/common/face_recognition.dart';
+import 'package:cry/common/face_service_import.dart';
+import 'package:cry/cry_all.dart';
+import 'package:cry/cry_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
+
 
 /// @author: cairuoyu
 /// @homepage: http://cairuoyu.com
@@ -22,6 +26,7 @@ class _DemoFaceState extends State<DemoFace> {
   String? imagePath;
   CameraImage? cameraImage;
   Face? face;
+  String imageData = '';
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +45,15 @@ class _DemoFaceState extends State<DemoFace> {
                   setState(() {
                     this.isFaceRecognition = true;
                   });
-                })
+                }),
+        if (this.cameraImage != null && this.face != null)
+          CryButton(
+            label: '保存',
+            onPressed: () {
+              imageData = FaceService().toData(this.cameraImage!, this.face!);
+              CryLogger.info(this.imageData);
+            },
+          ),
       ],
     );
     var f = FaceRecognition(onFountFace: (CameraImage cameraImage, String imagePath, List<Face> faces) {

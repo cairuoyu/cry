@@ -8,6 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:yaml/yaml.dart';
 
+import 'face_service_import.dart';
+
 /// @author: cairuoyu
 /// @homepage: http://cairuoyu.com
 /// @github: https://github.com/cairuoyu/cry、https://github.com/cairuoyu/flutter_admin
@@ -42,7 +44,8 @@ class ApplicationContext {
   init() async {
     await this.loadApplication();
     this.loadPrivacy();
-    if(!kIsWeb){
+    FaceService().loadModel();
+    if (!kIsWeb) {
       cameras = await availableCameras();
     }
   }
