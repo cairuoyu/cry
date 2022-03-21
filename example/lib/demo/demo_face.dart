@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 
-
 /// @author: cairuoyu
 /// @homepage: http://cairuoyu.com
 /// @github: https://github.com/cairuoyu/cry、https://github.com/cairuoyu/flutter_admin
@@ -26,7 +25,7 @@ class _DemoFaceState extends State<DemoFace> {
   String? imagePath;
   CameraImage? cameraImage;
   Face? face;
-  String imageData = '';
+  String imageData = 'none';
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +49,13 @@ class _DemoFaceState extends State<DemoFace> {
           CryButton(
             label: '保存',
             onPressed: () {
-              imageData = FaceService().toData(this.cameraImage!, this.face!);
-              CryLogger.info(this.imageData);
+              setState(() {
+                imageData = FaceService().toData(this.cameraImage!, this.face!);
+                CryLogger.info(this.imageData);
+              });
             },
           ),
+        Container(child: Text(this.imageData),height: 400,),
       ],
     );
     var f = FaceRecognition(onFountFace: (CameraImage cameraImage, String imagePath, List<Face> faces) {
