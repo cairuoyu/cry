@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:cry/cry_logger.dart';
 import 'package:cry/model/api_properties.dart';
@@ -45,7 +47,10 @@ class ApplicationContext {
     await this.loadApplication();
     this.loadPrivacy();
     FaceService().loadModel();
-    if (!kIsWeb) {
+    CryLogger.info(1111);
+    CryLogger.info(kIsWeb);
+    // CryLogger.info(Platform.isAndroid);
+    if (!kIsWeb&&Platform.isAndroid) {
       cameras = await availableCameras();
     }
   }
