@@ -6,7 +6,7 @@ homepage: http://www.cairuoyu.com/
 #publish_to: https://pub.dartlang.org
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.17.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -26,6 +26,10 @@ dependencies:
   google_ml_kit: ^0.5.0
   tflite_flutter: ^0.8.0
   image: ^3.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
 
 flutter:
 

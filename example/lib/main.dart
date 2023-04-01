@@ -7,6 +7,7 @@ import 'package:cry/routes/cry_router_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'common/dio_interceptors_example.dart';
 import 'demo/demo_button.dart';
 import 'demo/demo_form.dart';
 import 'home.dart';
@@ -14,6 +15,7 @@ import 'home.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ApplicationContext.instance.init();
+  ApplicationContext.instance.addBean("dioInterceptors", [DioInterceptorsExample()]);
   print('loggerType:');
   CryLogger.error('error');
   CryLogger.info('info');
