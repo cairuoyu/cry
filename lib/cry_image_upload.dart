@@ -36,7 +36,7 @@ class CryImageUpload extends StatefulWidget {
 
 class CryImageUploadState extends State<CryImageUpload> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  PickedFile? pickedFile;
+  XFile? pickedFile;
   final ImagePicker imagePicker = ImagePicker();
   ImageModel image = ImageModel();
   Uint8List? imageBytes;
@@ -135,7 +135,7 @@ class CryImageUploadState extends State<CryImageUpload> {
   }
 
   pickImage(ImageSource source, {BuildContext? context}) async {
-    pickedFile = await imagePicker.getImage(source: source);
+    pickedFile = await imagePicker.pickImage(source: source);
     imageBytes = await pickedFile!.readAsBytes();
     if (imageBytes!.length > 1000 * 1000 * 10) {
       cryAlert(Cry.context, limitMessage);

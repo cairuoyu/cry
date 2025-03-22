@@ -49,8 +49,8 @@ class HttpUtil {
       var apiProperties = cryProperties.apiProperties;
       BaseOptions options = new BaseOptions(
         baseUrl: apiProperties.baseUrl!,
-        connectTimeout: apiProperties.connectTimeout,
-        receiveTimeout: apiProperties.receiveTimeout,
+        connectTimeout: Duration(milliseconds: apiProperties.connectTimeout!),
+        receiveTimeout: Duration(milliseconds: apiProperties.receiveTimeout!),
       );
 
       dio = new Dio(options);

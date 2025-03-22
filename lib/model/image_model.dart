@@ -6,7 +6,6 @@ class ImageModel {
   String? categoryId;
   String? thumbs;
   String? memo;
-  String? createTime;
 
   ImageModel({
     this.title,
@@ -14,7 +13,6 @@ class ImageModel {
     this.categoryId,
     this.thumbs,
     this.memo,
-    this.createTime,
   });
 
   ImageModel copyWith({
@@ -23,7 +21,6 @@ class ImageModel {
     String? categoryId,
     String? thumbs,
     String? memo,
-    String? createTime,
   }) {
     return ImageModel(
       title: title ?? this.title,
@@ -31,7 +28,6 @@ class ImageModel {
       categoryId: categoryId ?? this.categoryId,
       thumbs: thumbs ?? this.thumbs,
       memo: memo ?? this.memo,
-      createTime: createTime ?? this.createTime,
     );
   }
 
@@ -42,7 +38,6 @@ class ImageModel {
       'categoryId': categoryId,
       'thumbs': thumbs,
       'memo': memo,
-      'createTime': createTime,
     };
   }
 
@@ -54,7 +49,6 @@ class ImageModel {
       categoryId: map['categoryId'],
       thumbs: map['thumbs'],
       memo: map['memo'],
-      createTime: map['createTime'],
     );
   }
 
@@ -64,18 +58,18 @@ class ImageModel {
 
   @override
   String toString() {
-    return 'ImageModel(title: $title, url: $url, categoryId: $categoryId, thumbs: $thumbs, memo: $memo, createTime: $createTime)';
+    return 'ImageModel(title: $title, url: $url, categoryId: $categoryId, thumbs: $thumbs, memo: $memo)';
   }
 
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
-    return o is ImageModel && o.title == title && o.url == url && o.categoryId == categoryId && o.thumbs == thumbs && o.memo == memo && o.createTime == createTime;
+    return o is ImageModel && o.title == title && o.url == url && o.categoryId == categoryId && o.thumbs == thumbs && o.memo == memo;
   }
 
   @override
   int get hashCode {
-    return title.hashCode ^ url.hashCode ^ categoryId.hashCode ^ thumbs.hashCode ^ memo.hashCode ^ createTime.hashCode;
+    return title.hashCode ^ url.hashCode ^ categoryId.hashCode ^ thumbs.hashCode ^ memo.hashCode;
   }
 }
