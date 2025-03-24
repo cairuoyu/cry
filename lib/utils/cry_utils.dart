@@ -17,7 +17,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class CryUtils {
   static OverlayEntry? loadingOE;
 
-  static void message(String message, {int duration = 2}) {
+  static void message(String message, {int duration = 5}) {
     if (!kIsWeb && Platform.isWindows) {
       ScaffoldMessenger.of(Cry.context).hideCurrentSnackBar();
       ScaffoldMessenger.of(Cry.context).showSnackBar(SnackBar(
@@ -28,10 +28,11 @@ class CryUtils {
         msg: message,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
+        timeInSecForIosWeb: duration,
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0,
+        webShowClose: true,
       );
     }
   }
@@ -54,7 +55,7 @@ class CryUtils {
         ));
     loadingOE = OverlayEntry(builder: (c) => child);
 
-    Overlay.of(Cry.context)!.insert(loadingOE!);
+    Overlay.of(Cry.context).insert(loadingOE!);
   }
 
   static void loaded() {
