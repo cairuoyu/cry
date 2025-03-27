@@ -9,21 +9,21 @@ import 'utils/cry_utils.dart';
 /// @version: 1.0
 /// @description:
 class CryLogger {
-  static error(_) {
+  static error(message) {
     if ([CryConstant.LOGGEER_LEVEL_ERROR, CryConstant.LOGGEER_LEVEL_INFO, CryConstant.LOGGEER_LEVEL_DEBUG].contains(CryUtils.getCryProperties().loggerProperties.level)) {
-      print(_);
+      print(message);
     }
   }
 
-  static info(_) {
+  static info(message) {
     if ([CryConstant.LOGGEER_LEVEL_INFO, CryConstant.LOGGEER_LEVEL_DEBUG].contains(CryUtils.getCryProperties().loggerProperties.level)) {
-      print(_);
+      print(message);
     }
   }
 
-  static debug(_) {
+  static debug(message) {
     if ([CryConstant.LOGGEER_LEVEL_DEBUG].contains(CryUtils.getCryProperties().loggerProperties.level)) {
-      print(_);
+      print(message);
     }
   }
 }

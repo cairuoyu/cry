@@ -178,7 +178,7 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
     return list;
   }
 
-  _getBoxDecoration({header: false, odd: true}) {
+  _getBoxDecoration({header = false, odd = true}) {
     var bd = BoxDecoration(
       boxShadow: [
         BoxShadow(color: Colors.black26, offset: Offset(2.0, 2.0), blurRadius: 4.0),
@@ -193,7 +193,7 @@ class CryTreeTableState<T extends TreeData> extends State<CryTreeTable<T>> {
     return bd;
   }
 
-  _wrapCell(Widget? cell, {double width: 200}) {
+  _wrapCell(Widget? cell, {double width = 200}) {
     return Container(
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 10),
