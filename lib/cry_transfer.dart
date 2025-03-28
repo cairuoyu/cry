@@ -25,7 +25,7 @@ class _CryTransferState extends State<CryTransfer> {
   Widget build(BuildContext context) {
     var buttonBar = Container(
       width: 60,
-      child: ButtonBar(
+      child: OverflowBar(
         children: [
           CryButton(iconData: Icons.arrow_forward, onPressed: widget.toRight),
           CryButton(iconData: Icons.arrow_back, onPressed: widget.toLeft),

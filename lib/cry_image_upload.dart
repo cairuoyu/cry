@@ -6,7 +6,6 @@
 /// @description:
 
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:cry/cry.dart';
 import 'package:cry/model/image_model.dart';
 import 'package:flutter/foundation.dart';
@@ -61,7 +60,7 @@ class CryImageUploadState extends State<CryImageUpload> {
     var tools = Opacity(
       opacity: this.isHover ? 1.0 : 0,
       child: Container(
-        child: ButtonBar(
+        child: OverflowBar(
           alignment: MainAxisAlignment.center,
           children: [
             CryButton(

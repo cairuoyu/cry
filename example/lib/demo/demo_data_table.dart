@@ -54,7 +54,7 @@ class _DemoDataTableState extends State<DemoDataTable> {
 
     var body = Column(
       children: [
-        ButtonBar(
+        OverflowBar(
           children: [
             CryButtons.query(context, () => _loadData()),
             CryButton(

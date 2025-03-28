@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class DemoMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var buttons = ButtonBar(
+    var buttons = OverflowBar(
       alignment: MainAxisAlignment.start,
       children: [
         CryButton(

@@ -36,7 +36,7 @@ class _CryMenuState<T> extends State<CryMenu<T>> {
         position = details.globalPosition;
       },
       onLongPress: () {
-        overlay = Overlay.of(context)!.context.findRenderObject() as RenderBox?;
+        overlay = Overlay.of(context).context.findRenderObject() as RenderBox?;
         showCryMenu();
       },
       child: Listener(
@@ -44,7 +44,7 @@ class _CryMenuState<T> extends State<CryMenu<T>> {
         onPointerDown: (event) {
           if (event.buttons == 2) {
             position = event.position;
-            overlay = Overlay.of(context)!.context.findRenderObject() as RenderBox?;
+            overlay = Overlay.of(context).context.findRenderObject() as RenderBox?;
             showCryMenu();
           }
         },

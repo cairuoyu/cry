@@ -26,7 +26,7 @@ class DioInterceptorsExample extends InterceptorsWrapper {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     CryUtils.loaded();
     CryLogger.error('ERROR[${err.response?.statusCode}] => PATH: ${err.response?.realUri}');
     CryLogger.error(err.toString());

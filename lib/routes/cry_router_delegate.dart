@@ -50,7 +50,7 @@ class CryRouterDelegate extends RouterDelegate<RouteInformation> with ChangeNoti
 
   @override
   Future<void> setNewRoutePath(RouteInformation routeInformation) async {
-    popAndPushNamed(routeInformation.location ?? '/');
+    popAndPushNamed(routeInformation.location);
   }
 
   pushNamedAndRemove(String name) {
