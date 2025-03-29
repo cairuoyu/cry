@@ -1,6 +1,4 @@
-import 'package:cry/cry_button.dart';
-import 'package:cry/cry_buttons.dart';
-import 'package:cry/cry_dialog.dart';
+import 'package:cry/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DemoButton extends StatelessWidget {

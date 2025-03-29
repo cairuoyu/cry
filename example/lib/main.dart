@@ -1,9 +1,7 @@
-import 'package:cry/common/application_context.dart';
-import 'package:cry/cry.dart';
-import 'package:cry/cry_logger.dart';
-import 'package:cry/generated/l10n.dart';
-import 'package:cry/routes/cry_route_Information_parser.dart';
-import 'package:cry/routes/cry_router_delegate.dart';
+import 'package:cry/common.dart';
+import 'package:cry/generated.dart';
+import 'package:cry/routes.dart';
+import 'package:cry/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -17,9 +15,9 @@ void main() async {
   await ApplicationContext.instance.init();
   ApplicationContext.instance.addBean("dioInterceptors", [DioInterceptorsExample()]);
   print('loggerType:');
-  CryLogger.error('error');
-  CryLogger.info('info');
-  CryLogger.debug('debug');
+  LoggerUtil.error('error');
+  LoggerUtil.info('info');
+  LoggerUtil.debug('debug');
   runApp(MyApp());
 }
 
@@ -36,7 +34,7 @@ class MyApp extends StatelessWidget {
       title: 'Cry Demo',
       locale: Locale('en'),
       debugShowCheckedModeBanner: false,
-      builder: Cry.init,
+      builder: CryUtil.init,
       localizationsDelegates: [
         S.delegate,
         GlobalCupertinoLocalizations.delegate,

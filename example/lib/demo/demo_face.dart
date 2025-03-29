@@ -1,10 +1,8 @@
 import 'dart:io';
 
-import 'package:cry/common/application_context.dart';
-import 'package:cry/common/face_recognition.dart';
-import 'package:cry/common/face_service_import.dart';
-import 'package:cry/cry_all.dart';
-import 'package:cry/cry_logger.dart';
+import 'package:cry/common.dart';
+import 'package:cry/utils.dart';
+import 'package:cry/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
@@ -51,7 +49,7 @@ class _DemoFaceState extends State<DemoFace> {
             onPressed: () {
               setState(() {
                 imageData = FaceService().toData(this.cameraImage!, this.face!);
-                CryLogger.info(this.imageData);
+                LoggerUtil.info(this.imageData);
               });
             },
           ),

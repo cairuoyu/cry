@@ -1,9 +1,9 @@
-import 'package:cry/cry_all.dart';
-import 'package:cry/data/location.dart';
-import 'package:cry/model/cascade_model.dart';
-import 'package:cry/vo/select_option_vo.dart';
+import 'package:cry/model.dart';
+import 'package:cry/vo.dart';
+import 'package:cry/data.dart';
+import 'package:cry/widgets.dart';
+import 'package:cry/widgets1.dart' as form1;
 import 'package:flutter/material.dart';
-import 'package:cry/form1/index.dart' as form1;
 
 class DemoForm extends StatefulWidget {
   @override

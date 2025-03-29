@@ -1,5 +1,5 @@
-import 'package:cry/cry.dart';
-import 'package:cry/cry_button.dart';
+import 'package:cry/utils.dart';
+import 'package:cry/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DemoRoutes extends StatelessWidget {
@@ -11,7 +11,7 @@ class DemoRoutes extends StatelessWidget {
         CryButton(
           iconData: Icons.reply,
           label: 'testButton',
-          onPressed: () => Cry.pushNamed('/button'),
+          onPressed: () => CryUtil.pushNamed('/button'),
         ),
       ],
     );

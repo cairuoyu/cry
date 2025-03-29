@@ -1,5 +1,5 @@
-import 'package:cry/cry_button.dart';
-import 'package:cry/utils/cry_utils.dart';
+import 'package:cry/utils.dart';
+import 'package:cry/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DemoMessage extends StatelessWidget {
@@ -11,7 +11,7 @@ class DemoMessage extends StatelessWidget {
         CryButton(
           iconData: Icons.message,
           label: 'testMessage',
-          onPressed: () => CryUtils.message('message'),
+          onPressed: () => CryUtil.message('message'),
         ),
         CryButton(
           iconData: Icons.local_airport,
@@ -27,8 +27,8 @@ class DemoMessage extends StatelessWidget {
   }
 
   void load() async {
-    CryUtils.loading();
+    CryUtil.loading();
     await Future.delayed(Duration(seconds: 1));
-    CryUtils.loaded();
+    CryUtil.loaded();
   }
 }

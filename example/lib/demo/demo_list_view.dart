@@ -1,4 +1,4 @@
-import 'package:cry/cry_all.dart';
+import 'package:cry/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DemoListView extends StatefulWidget {

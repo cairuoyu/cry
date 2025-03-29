@@ -1,5 +1,5 @@
 
-import 'package:cry/cry_image_upload.dart';
+import 'package:cry/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DemoImageUpload extends StatelessWidget {

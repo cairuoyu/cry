@@ -1,5 +1,5 @@
 
-import 'package:cry/cry_menu.dart';
+import 'package:cry/widgets.dart';
 import 'package:flutter/material.dart';
 
 class DemoMenu extends StatelessWidget {

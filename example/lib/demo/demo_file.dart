@@ -1,4 +1,4 @@
-import 'package:cry/cry_file.dart';
+import 'package:cry/widgets.dart';
 import 'package:example/api/file_api.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
