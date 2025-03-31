@@ -1,4 +1,5 @@
 
+import 'package:cry/utils.dart';
 import 'package:cry/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class DemoImageUpload extends StatelessWidget {
       fileList: [null],
       updateAreaDefault: Icon(Icons.person, size: 200),
       onUpload: (imageBytes) {
-        print('onUpload');
+        LoggerUtil.info('onUpload');
       },
     );
     return imageUpload;

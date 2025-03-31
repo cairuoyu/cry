@@ -19,7 +19,9 @@ class DioInterceptorsExample extends InterceptorsWrapper {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     CryUtil.loaded();
-    LoggerUtil.info('RESPONSE.statusCode[${response.statusCode}] => response.realUri: ${response.realUri}');
+    LoggerUtil.info(
+      'RESPONSE.statusCode[${response.statusCode}] => response.realUri: ${response.realUri}',
+    );
     LoggerUtil.info('RESPONSE.data[${response.data}]');
     super.onResponse(response, handler);
   }
@@ -27,9 +29,11 @@ class DioInterceptorsExample extends InterceptorsWrapper {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     CryUtil.loaded();
-    LoggerUtil.error('ERROR[${err.response?.statusCode}] => PATH: ${err.response?.realUri}');
-    LoggerUtil.error(err.toString());
-    String message = '请求出错：' + err.toString();
+    LoggerUtil.error(
+      'ERROR[${err.response?.statusCode}] => PATH: ${err.response?.realUri}',
+      error: err,
+    );
+    String message = '系统繁忙，请稍后再试';
     CryUtil.message(message);
     super.onError(err, handler);
   }

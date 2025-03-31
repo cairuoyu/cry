@@ -1,3 +1,4 @@
+import 'package:cry/utils.dart';
 import 'package:cry/widgets.dart';
 import 'package:example/api/file_api.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class _DemoFileState extends State<DemoFile> {
       onSaved: (MultipartFile file) async {
         FormData formData = FormData.fromMap({"file": file});
         var res = await FileApi.upload(formData);
-        print(res.data);
+        LoggerUtil.info(res.data);
       },
       buttonLabel: '上传文章',
       allowedExtensions: ['md', 'txt'],

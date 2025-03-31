@@ -74,6 +74,9 @@ class _DemoDataTableState extends State<DemoDataTable> {
 
   _loadData() async {
     ResponseBodyApi responseBodyApi = await HttpUtil.post('/userInfo/page', data: RequestBodyApi(page: page).toMap());
+    if(!responseBodyApi.success!){
+      return ;
+    }
     this.page = PageModel.fromMap(responseBodyApi.data);
     tableKey.currentState?.loadData(page);
   }

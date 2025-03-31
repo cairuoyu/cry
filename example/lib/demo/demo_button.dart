@@ -1,3 +1,4 @@
+import 'package:cry/utils.dart';
 import 'package:cry/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -11,16 +12,16 @@ class DemoButton extends StatelessWidget {
           iconData: Icons.save,
           label: 'testButton',
           onPressed: () {
-            print('testButton');
+            LoggerUtil.info('testButton');
           },
         ),
-        CryButtons.query(context, () => print('test commonButton')),
-        CryButtons.add(context, () => print('test commonButton')),
-        CryButtons.save(context, () => print('test commonButton')),
-        CryButtons.commit(context, () => print('test commonButton')),
+        CryButtons.query(context, () => LoggerUtil.info('test commonButton')),
+        CryButtons.add(context, () => LoggerUtil.info('test commonButton')),
+        CryButtons.save(context, () => LoggerUtil.info('test commonButton')),
+        CryButtons.commit(context, () => LoggerUtil.info('test commonButton')),
         CryButtons.delete(context, () {
           cryConfirm(context, '确定？', (context) {
-            print('deleted--');
+            LoggerUtil.info('deleted--');
           });
         }),
       ],

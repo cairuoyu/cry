@@ -41,7 +41,7 @@ class _DemoTreeTableState extends State<DemoTreeTable> {
       getRowOper: (v, parent) => [
         CryButton(
           iconData: Icons.delete,
-          onPressed: () => print('test'),
+          onPressed: () => LoggerUtil.info('test'),
         )
       ],
       columnData: columnData,

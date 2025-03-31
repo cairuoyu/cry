@@ -1,4 +1,5 @@
 
+import 'package:cry/utils.dart';
 import 'package:cry/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class DemoMenu extends StatelessWidget {
         title: Text('右键或长按'),
       ),
       onSelected: (v) {
-        print(v);
+        LoggerUtil.info(v);
       },
       itemBuilder: (context) => <PopupMenuEntry>[
         PopupMenuItem(

@@ -35,19 +35,17 @@ class ApplicationContext {
   late String privacy;
   List<CameraDescription> cameras = [];
 
-  FaceDetector faceDetector = GoogleMlKit.vision.faceDetector(FaceDetectorOptions(
-    enableContours: true,
-    enableClassification: true,
-  ));
+  FaceDetector faceDetector = GoogleMlKit.vision.faceDetector(
+    FaceDetectorOptions(enableContours: true, enableClassification: true),
+  );
 
   init() async {
     await this.loadApplication();
     this.loadPrivacy();
     FaceService().loadModel();
-    LoggerUtil.info(1111);
-    LoggerUtil.info(kIsWeb);
-    // CryLogger.info(Platform.isAndroid);
-    if (!kIsWeb&&Platform.isAndroid) {
+    LoggerUtil.info('初始化完成');
+    LoggerUtil.debug(CryUtil.getCryProperties());
+    if (!kIsWeb && Platform.isAndroid) {
       cameras = await availableCameras();
     }
   }
@@ -66,29 +64,33 @@ class ApplicationContext {
     Map profiles = cry['profiles'].value;
     String? profilesActive = profiles['active'];
     if (profilesActive != null) {
-      var profilesStr = await rootBundle.loadString('config/application-$profilesActive.yaml');
+      var profilesStr = await rootBundle.loadString(
+        'config/application-$profilesActive.yaml',
+      );
       variableMap = await loadYaml(profilesStr);
-      print('profile-$profilesActive');
-      print(variableMap);
     }
 
-    CryProperties cryProperties = CryProperties();
-    cryProperties.loggerProperties = LoggerProperties.fromMap(cry['logger'].value.map(convertVariable));
-    cryProperties.apiProperties = ApiProperties.fromMap(cry['api'].value.map(convertVariable));
+    var loggerProperties = LoggerProperties.fromMap(
+      cry['logger'].value.map(convertVariable),
+    );
+    var apiProperties = ApiProperties.fromMap(
+      cry['api'].value.map(convertVariable),
+    );
+    CryProperties cryProperties = CryProperties(
+      loggerProperties: loggerProperties,
+      apiProperties: apiProperties,
+    );
     addBean('cryProperties', cryProperties);
   }
 
   loadApplication() async {
     var yamlStr = await rootBundle.loadString('config/application.yaml');
     yamlMap = loadYaml(yamlStr);
-    print("application:");
-    print(yamlMap.nodes);
     await this.parseCryProperties();
   }
 
   loadPrivacy() async {
     this.privacy = await rootBundle.loadString('PRIVACY');
-    LoggerUtil.debug(this.privacy);
   }
 
   addBean(String key, object) {

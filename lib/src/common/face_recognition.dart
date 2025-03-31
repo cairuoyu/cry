@@ -103,7 +103,7 @@ class _FaceRecognitionState extends State<FaceRecognition> {
     if (status == CommonStatus.success) {
       return;
     }
-    print('Found ${faces.length} faces');
+    LoggerUtil.info('Found ${faces.length} faces');
     if (faces.length > 0) {
       status = CommonStatus.success;
       await _controller?.stopImageStream();

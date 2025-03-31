@@ -1,4 +1,5 @@
 import 'package:cry/model.dart';
+import 'package:cry/utils.dart';
 import 'package:cry/vo.dart';
 import 'package:cry/data.dart';
 import 'package:cry/widgets.dart';
@@ -47,10 +48,10 @@ class _DemoFormState extends State<DemoForm> {
       setState(() {});
     });
     var save = CryButtons.save(context, () {
-      print('save');
+      LoggerUtil.info('save');
       formKey.currentState?.save();
-      print(testValue1);
-      print(testValue2);
+      LoggerUtil.info(testValue1);
+      LoggerUtil.info(testValue2);
     });
     OverflowBar bb = OverflowBar(children: [reset, save]);
     var cw = CrySelectCustomWidget(
@@ -60,8 +61,8 @@ class _DemoFormState extends State<DemoForm> {
       initialValue: 'v',
       initialValueLabel: 'vl',
       onSaved: (v) {
-        print('onSave');
-        print(v);
+        LoggerUtil.info('onSave');
+        LoggerUtil.info(v);
       },
       popWidget: OverflowBar(
         children: [
@@ -101,7 +102,7 @@ class _DemoFormState extends State<DemoForm> {
       getValue: (List<CascadeModel> v) => v.map((e) => e.name).toList().join(','),
       getValueLabel: (List<CascadeModel> v) => v.map((e) => e.name).toList().join(','),
       onSaved: (v) {
-        print('cascade--onSave:$v');
+        LoggerUtil.info('cascade--onSave:$v');
       },
     );
     var form = Form(

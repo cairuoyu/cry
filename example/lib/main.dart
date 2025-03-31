@@ -14,10 +14,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ApplicationContext.instance.init();
   ApplicationContext.instance.addBean("dioInterceptors", [DioInterceptorsExample()]);
-  print('loggerType:');
-  LoggerUtil.error('error');
-  LoggerUtil.info('info');
-  LoggerUtil.debug('debug');
   runApp(MyApp());
 }
 

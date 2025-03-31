@@ -109,7 +109,7 @@ class FaceService {
 
       return img;
     } catch (e) {
-      print(e);
+      LoggerUtil.error(e);
     }
     return null;
   }

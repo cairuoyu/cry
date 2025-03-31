@@ -99,10 +99,7 @@ class CryUtil {
     loadingOE = null;
   }
 
-  static CryProperties getCryProperties() {
-    CryProperties cryProperties = ApplicationContext.instance.getBean(
-      'cryProperties',
-    );
-    return cryProperties;
+  static CryProperties? getCryProperties() {
+    return ApplicationContext.instance.getBean('cryProperties');
   }
 }

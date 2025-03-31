@@ -5,6 +5,7 @@
 /// @version: 1.0
 /// @description: 
 
+import 'package:cry/utils.dart';
 import 'package:cry/widgets.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class _CryFileState extends State<CryFile> {
     try {
       res = await Dio().get(widget.initFileUrl!);
     } catch (e) {
-      print('请求文件出错：[' + widget.initFileUrl! + ']' + e.toString());
+      LoggerUtil.info('请求文件出错：[' + widget.initFileUrl! + ']' + e.toString());
       return;
     }
     content = res.data;

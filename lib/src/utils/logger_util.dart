@@ -7,15 +7,20 @@
 
 import 'package:cry/constants.dart';
 import 'package:cry/utils.dart';
+import 'package:logger/logger.dart';
 
 class LoggerUtil {
-  static error(message) {
+  static var logger = Logger(printer: PrettyPrinter());
+  static var loggerSimple = Logger(printer: SimplePrinter());
+  static var loggerNoStack = Logger(printer: PrettyPrinter(methodCount: 0));
+
+  static error(message, {Object? error}) {
     if ([
       CryConstant.LOGGEER_LEVEL_ERROR,
       CryConstant.LOGGEER_LEVEL_INFO,
       CryConstant.LOGGEER_LEVEL_DEBUG,
-    ].contains(CryUtil.getCryProperties().loggerProperties.level)) {
-      print(message);
+    ].contains(getLevel())) {
+      logger.e(message, error: error);
     }
   }
 
@@ -23,16 +28,20 @@ class LoggerUtil {
     if ([
       CryConstant.LOGGEER_LEVEL_INFO,
       CryConstant.LOGGEER_LEVEL_DEBUG,
-    ].contains(CryUtil.getCryProperties().loggerProperties.level)) {
-      print(message);
+    ].contains(getLevel())) {
+      loggerSimple.i(message);
     }
   }
 
   static debug(message) {
     if ([
       CryConstant.LOGGEER_LEVEL_DEBUG,
-    ].contains(CryUtil.getCryProperties().loggerProperties.level)) {
-      print(message);
+    ].contains(getLevel())) {
+      loggerSimple.d(message);
     }
+  }
+
+  static getLevel() {
+    return (CryUtil.getCryProperties()?.loggerProperties.level) ?? 'debug';
   }
 }
