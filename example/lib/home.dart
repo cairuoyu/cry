@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
       DemoFile(),
       DemoRoutes(),
       DemoMessage(),
-      DemoFace(),
+      // DemoFace(),
     ];
     var result = DefaultTabController(
       // initialIndex: 2,
