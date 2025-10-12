@@ -1,12 +1,10 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
-import 'package:cry/common.dart';
 import 'package:cry/model.dart';
 import 'package:cry/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:yaml/yaml.dart';
 
 /// @author: cairuoyu
@@ -35,14 +33,14 @@ class ApplicationContext {
   late String privacy;
   List<CameraDescription> cameras = [];
 
-  FaceDetector faceDetector = GoogleMlKit.vision.faceDetector(
-    FaceDetectorOptions(enableContours: true, enableClassification: true),
-  );
+  // FaceDetector faceDetector = GoogleMlKit.vision.faceDetector(
+  //   FaceDetectorOptions(enableContours: true, enableClassification: true),
+  // );
 
   init() async {
     await this.loadApplication();
     this.loadPrivacy();
-    FaceService().loadModel();
+    // FaceService().loadModel();
     LoggerUtil.info('初始化完成');
     LoggerUtil.debug(CryUtil.getCryProperties());
     if (!kIsWeb && Platform.isAndroid) {

@@ -1,6 +1,5 @@
 
 import 'package:cry/common.dart';
-import 'package:example/demo/demo_face.dart';
 import 'package:example/demo/demo_message.dart';
 import 'package:example/demo/demo_routes.dart';
 import 'package:flutter/material.dart';

@@ -24,8 +24,8 @@ dependencies:
   fluttertoast: ^9.0.0
   yaml: ^3.1.0
   camera: ^0.11.1
-  google_ml_kit: ^0.20.0
-  tflite_flutter: ^0.11.0
+#  google_ml_kit: ^0.20.0
+#  tflite_flutter: ^0.11.0
   image: ^4.5.4
   logger: ^2.5.0
 
