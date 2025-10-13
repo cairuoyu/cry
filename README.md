@@ -18,7 +18,7 @@ class DemoWidget extends StatelessWidget {
 ```
 
 ## live demo
-http://www.cairuoyu.com/flutter_admin
+http://www.cairuoyu.com:81/flutter_admin
 
 
 
