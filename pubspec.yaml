@@ -18,6 +18,7 @@ dependencies:
   global_configuration: ^2.0.0
   date_format: ^2.0.2
   image_picker: ^1.1.2
+  intl: ^0.20.2
   image_picker_for_web: ^3.0.6
   file_picker: ^10.3.3
   flutter_markdown: ^0.7.6+2
